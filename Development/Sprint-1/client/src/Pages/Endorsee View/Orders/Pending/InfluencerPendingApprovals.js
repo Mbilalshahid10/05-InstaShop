@@ -14,7 +14,7 @@ const InfluencerApprovalsPending = ()=>{
     const [pendinglist,setpendinglist] = useState([])
     const [newpendlist, setnewpendlist] = useState([])
     useEffect(()=>{
-        axios.get("http://localhost:8000/influencerpendingapprovals").then(
+        axios.get("http://localhost:8000/influencerpendingapprovals", {withCredentials: true}).then(
             (res)=>{
                 console.log(res.data)
                 setpendinglist(res.data)

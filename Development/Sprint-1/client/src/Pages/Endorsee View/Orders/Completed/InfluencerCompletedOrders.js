@@ -15,7 +15,7 @@ const InfluencerCompleteOrderList = ()=>{
     const [pendinglist,setpendinglist] = useState([])
     const [newpendlist, setnewpendlist] = useState([])
     useEffect(()=>{
-        axios.get("http://localhost:8000/influencercompletedorders").then(
+        axios.get("http://localhost:8000/influencercompletedorders", {withCredentials: true}).then(
             (res)=>{
                 console.log(res.data)
                 setpendinglist(res.data)

@@ -70,20 +70,20 @@ app.get('/adminProfile' , (authenticateUser) , async(req,res) =>{
 
 
 // Pending Approvals
-app.get('/clientPendingapprovals', async(req,res) =>{
+app.get('/clientPendingapprovals',(authenticateUser) ,  async(req,res) =>{
     await  getPendingApprovals(req, res)    
 })
 
-app.get('/influencerpendingapprovals', async(req,res) =>{
+app.get('/influencerpendingapprovals',(authenticateUser) , async(req,res) =>{
     await  getPendingApprovals(req, res)    
 })
 
 // Completed Orders
-app.get('/clientCompletedorders', async(req,res) =>{
+app.get('/clientCompletedorders',(authenticateUser) , async(req,res) =>{
     await  getCompletedOrders(req, res)    
 })
 
-app.get('/influencercompletedorders', async(req,res) =>{
+app.get('/influencercompletedorders',(authenticateUser), async(req,res) =>{
     await  getCompletedOrders(req, res)    
 })
 
