@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './ClientCompletedOrders.css'
-
 import axios from 'axios'
 import { useState } from 'react'
+
 // const shapack = require('./database/Schema/Announcement')
 // const shapack = require("../../../server/database/Schema/Announcement")
+
 const ClientCompleteOrderList = ()=>{
     const location = useLocation()
     const email = location.state.email
+    const role = location.state.role
+    const [rating , setRating] = useState(1)
 
-        // e.preventDefault();
+    // e.preventDefault();
     const [pendinglist,setpendinglist] = useState([])
     const [newpendlist, setnewpendlist] = useState([])
     useEffect(()=>{
@@ -31,10 +34,38 @@ const ClientCompleteOrderList = ()=>{
                 newpendlist[key] = val
             }
         })
-
     }
     myfunc()
     // shapack();
+    const SetRating = async(myID)=>{
+        const acceptData = {ans:true, email:email, myID:myID } 
+        await axios.post("http://localhost:8000/RatingAccepted",acceptData)
+        console.log(myID)
+    }
+    const api_url = "http://localhost:8000/GetRatingClient";
+
+    async function GetRatingDB(url){
+        const response = await fetch(url);
+        var data = await response.json();
+        console.log(data);
+        }
+    GetRatingDB(api_url);
+
+
+    const sendRating = async(myrating , influenceremail)=>{
+    if(location.state.role === "Client"){
+        const acceptData ={ email:influenceremail,  myrating: myrating} 
+        console.log(acceptData)
+        await axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
+}
+    // else if(location.state.role === "Influencer"){
+    //     const acceptData ={ email:email,  myrating: myrating} 
+    //     console.log("is it over here ?");
+            // await axios.post("http://localhost:8000/RatingsSend" , acceptData);
+
+    // }
+}
+
     return(
         <div>
         {
@@ -49,6 +80,20 @@ const ClientCompleteOrderList = ()=>{
                                     <p>Client Email: {JSON.parse(JSON.stringify(val,undefined,3)).clientEmail}</p>
                                     <p>Price: PKR{JSON.parse(JSON.stringify(val,undefined,3)).price}</p>
                                     <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
+
+                                    {/* <p>Rating Backend: {GetRatingDB}</p>  */}
+                                    <br></br>
+                                    {/* value  */}
+                                    <button onClick={ ()=>sendRating(1 , val.influencerEmail)} type="radio" name="stars" value="1">1 </button>
+                                    <button onClick={()=>sendRating(2 , val.influencerEmail)} type="radio" name="stars" value="2">2 </button>
+                                    <button onClick={()=>sendRating(3 , val.influencerEmail)} type="radio" name="stars" value="3">3 </button>
+                                    <button onClick={()=>sendRating(4 , val.influencerEmail)} type="radio" name="stars" value="4">4 </button>
+                                    <button onClick={()=>sendRating(5 , val.influencerEmail)} type="radio" name="stars" value="5">5 </button>
+
+                                    <button onClick={()=>{SetRating(val.orderID)}}>Click here after Rating selected !!!</button> 
+                                    <br></br>
+                                    {/* button onClick={()=>{sendRating(val.orderID, val.influencerEmail)}}></button>  */}
+
                                 </div>
                             </div>
                         )

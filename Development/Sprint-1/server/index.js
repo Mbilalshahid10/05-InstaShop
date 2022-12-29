@@ -28,7 +28,14 @@ const { getPendingApprovals } = require('./rest_apis/client/viewpendingapprovals
 const { getCompletedOrders} = require('./rest_apis/client/completedorders.js')
 const { updateAccept } = require('./rest_apis/client/changeacceptdb.js')
 const { updateStatus } = require('./rest_apis/client/changeStatusToOngoing.js')
+const { placeOrder } = require('./rest_apis/client/placeOrder')
 
+
+// Rating
+const{updateRating} = require('./rest_apis/client/updateRating.js')
+const{getRating} = require('./rest_apis/client/getRating.js')
+const{sendRating} = require('./rest_apis/client/RatingSend.js')
+const {sendRatingInfluencer} = require('./rest_apis/influencer/RatingsSendInfluencer.js')
 
 
 const PORT = process.env.PORT || 8000
@@ -97,6 +104,32 @@ app.post('/changeAccepted',async(req,res)=>{
 app.post('/changeStatus',async(req,res)=>{
     await updateStatus(req,res)
 })
+
+app.post('/placeOrder', async(req,res)=>{
+    await placeOrder(req,res)
+})
+
+
+// Rating Stars and Order marks
+app.post('/RatingAccepted',async(req,res)=>{  //Order is marked true when updated status
+    await updateRating(req,res)
+})
+app.get('/GetRatingClient' , async(req,res)=>{
+    await getRating(req,res)
+})
+
+app.post('/RatingsSend', async(req,res)=>{
+    await sendRating(req,res)
+})
+
+app.post('/RatingsSendInfluencer', async(req,res)=>{
+    await sendRatingInfluencer(req,res)
+})
+
+
+
+
+
 //Influencer Profile
 // app.get('/getInfluencerProfile' , (authenticateUser) , async(req,res) =>{
 //     await  getInfluencerProfile(req, res)    

@@ -8,56 +8,68 @@ import axios from 'axios';
 
 const HomePage = ()=>{
   
-  const [allProfiles, setAllProfiles] = useState([])
-
-  useEffect( () => {
-    axios.get('http://localhost:8000/allInfProfiles', {withCredentials: true})
-    .then(response => response.data)
-    .then(data => {
-      const temp = data.slice(0,5)
-      const profiles = temp.map(profile => {
-        return (
-          <ProfileCards 
-            name = {profile.name.first}
-            email = {profile.email}
-            niche = {profile.niche}
-            rating = {profile.rating}
-          />
-        )
-      })
-      setAllProfiles(profiles)
-    })
-  }, [])
-  
   const navigate = useNavigate()
   const location = useLocation()
+
+  const [allProfiles, setAllProfiles] = useState([])
+  const role = location.state.role
+
+  
+  useEffect( () => {
+    if (role === "Client"){
+      axios.get('http://localhost:8000/allInfProfiles', {withCredentials: true})
+      .then(response => response.data)
+      .then(data => {
+        const temp = data.slice(0,5)
+        const profiles = temp.map(profile => {
+          return (
+            <ProfileCards 
+              name = {profile.name.first}
+              niche = {profile.niche}
+              rating = {profile.rating}
+              clientEmail = {location.state.email}
+              influencerEmail = {profile.email}
+            />
+          )
+        })
+        setAllProfiles(profiles)
+      })
+    }
+    
+  }, [])
 
   // console.log("Location.state: ", location.state)
   
   const jobOffers = () => {
     if(location.state.role === "Client"){
+      navigate('/clientJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
 
     }
     else if (location.state.role === "Influencer"){
-
+      navigate('/influencerJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+      
     }
   }
 
   const ongoingOrders = () => {
     if(location.state.role === "Client"){
+      navigate('/clientOngoingOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
 
     }
     else if (location.state.role === "Influencer"){
-      
+      navigate('/influencerOngoingOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+
     }
   }
 
   const rejectedOrders = () => {
     if(location.state.role === "Client"){
+      navigate('/clientRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
 
     }
     else if (location.state.role === "Influencer"){
-      
+      navigate('/influencerRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+
     }
   }
 
