@@ -42,14 +42,14 @@ const ClientCompleteOrderList = ()=>{
         await axios.post("http://localhost:8000/RatingAccepted",acceptData)
         console.log(myID)
     }
-    const api_url = "http://localhost:8000/GetRatingClient";
+    // const api_url = "http://localhost:8000/GetRatingClient";
 
-    async function GetRatingDB(url){
-        const response = await fetch(url);
-        var data = await response.json();
-        console.log(data);
-        }
-    GetRatingDB(api_url);
+    // async function GetRatingDB(url){
+    //     const response = await fetch(url);
+    //     var data = await response.json();
+    //     console.log(data);
+    //     }
+    // GetRatingDB(api_url);
 
 
     const sendRating = async(myrating , influenceremail)=>{
@@ -57,6 +57,25 @@ const ClientCompleteOrderList = ()=>{
         const acceptData ={ email:influenceremail,  myrating: myrating} 
         console.log(acceptData)
         await axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
+    const sendRating = async(myrating, influencerEmail)=>{
+
+    if(location.state.role ==="Client"){
+        const acceptData ={ email: influencerEmail,  myrating: myrating} 
+        // console.log(acceptData);
+        await axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
+    }
+
+    // const sendRating = async(myrating , influenceremail)=>{
+    //     if(location.state.role === "Client"){
+    //         const acceptData ={ email:influenceremail,  myrating: myrating} 
+    //         console.log(acceptData)
+    //         await axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
+    // }
+    // else if(location.state.role ==="Influencer"){
+    //     const acceptData ={ email:email,  myrating: myrating} 
+    //     console.log("is it over here ?");
+    //     await axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
+    // }
 }
     // else if(location.state.role === "Influencer"){
     //     const acceptData ={ email:email,  myrating: myrating} 
@@ -77,14 +96,13 @@ const ClientCompleteOrderList = ()=>{
                             <div className='clientCompletedOrderCard'>
                                 <div>
                                     <p>Order ID: {JSON.parse(JSON.stringify(val,undefined,3)).orderID}</p>
-                                    <p>Client Email: {JSON.parse(JSON.stringify(val,undefined,3)).clientEmail}</p>
+                                    <p>Influencer Email: {JSON.parse(JSON.stringify(val,undefined,3)).influencerEmail}</p>
                                     <p>Price: PKR{JSON.parse(JSON.stringify(val,undefined,3)).price}</p>
                                     <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
 
                                     {/* <p>Rating Backend: {GetRatingDB}</p>  */}
                                     <br></br>
-                                    {/* value  */}
-                                    <button onClick={ ()=>sendRating(1 , val.influencerEmail)} type="radio" name="stars" value="1">1 </button>
+                                    <button onClick={()=>sendRating(1 , val.influencerEmail)} type="radio" name="stars" value="1">1 </button>
                                     <button onClick={()=>sendRating(2 , val.influencerEmail)} type="radio" name="stars" value="2">2 </button>
                                     <button onClick={()=>sendRating(3 , val.influencerEmail)} type="radio" name="stars" value="3">3 </button>
                                     <button onClick={()=>sendRating(4 , val.influencerEmail)} type="radio" name="stars" value="4">4 </button>
@@ -92,8 +110,6 @@ const ClientCompleteOrderList = ()=>{
 
                                     <button onClick={()=>{SetRating(val.orderID)}}>Click to Finish !!!</button> 
                                     <br></br>
-                                    {/* button onClick={()=>{sendRating(val.orderID, val.influencerEmail)}}></button>  */}
-
                                 </div>
                             </div>
                         )

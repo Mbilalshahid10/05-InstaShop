@@ -2,15 +2,14 @@ const sanitize = require("mongo-sanitize")
 const mongoose = require("mongoose")
 
 const sendRatingInfluencer =async(req,res)=>{
-    console.log(req.body)
+    // console.log(req.body)
     try{
-        //find and average
         const result = await mongoose.connection.db.collection('influencers').findOneAndUpdate({"email":req.body.email},{
             $set:{
                 "rating" : req.body.myrating
             }
         })
-        console.log(result)
+        // console.log(result)
     }catch(err){
         console.log(err)
     }
