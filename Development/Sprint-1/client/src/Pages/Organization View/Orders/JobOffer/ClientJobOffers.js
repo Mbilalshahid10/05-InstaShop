@@ -39,7 +39,7 @@ const ClientJobOffers = ()=>{
         <div>
         {
             <div className='ipa'>
-                <h2>Here are your job offers received from Clients</h2>
+                <h2>Here are the job offers you have sent out</h2>
                 {
                     newpendlist.map((val,key)=>{
                         return(

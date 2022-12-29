@@ -69,31 +69,32 @@ const ClientCompleteOrderList = ()=>{
     return(
         <div>
         {
-            <div className='ico'>
+            <div className='cco'>
                 <h2>Here are your completed orders</h2>
                 {
                     newpendlist.map((val,key)=>{
                         return(
-                            <div className='clientCompletedOrderCard'>
-                                <div>
-                                    <p>Order ID: {JSON.parse(JSON.stringify(val,undefined,3)).orderID}</p>
-                                    <p>Client Email: {JSON.parse(JSON.stringify(val,undefined,3)).clientEmail}</p>
-                                    <p>Price: PKR{JSON.parse(JSON.stringify(val,undefined,3)).price}</p>
-                                    <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
-
-                                    {/* <p>Rating Backend: {GetRatingDB}</p>  */}
-                                    <br></br>
-                                    {/* value  */}
-                                    <button onClick={ ()=>sendRating(1 , val.influencerEmail)} type="radio" name="stars" value="1">1 </button>
-                                    <button onClick={()=>sendRating(2 , val.influencerEmail)} type="radio" name="stars" value="2">2 </button>
-                                    <button onClick={()=>sendRating(3 , val.influencerEmail)} type="radio" name="stars" value="3">3 </button>
-                                    <button onClick={()=>sendRating(4 , val.influencerEmail)} type="radio" name="stars" value="4">4 </button>
-                                    <button onClick={()=>sendRating(5 , val.influencerEmail)} type="radio" name="stars" value="5">5 </button>
-
-                                    <button onClick={()=>{SetRating(val.orderID)}}>Click here after Rating selected !!!</button> 
-                                    <br></br>
-                                    {/* button onClick={()=>{sendRating(val.orderID, val.influencerEmail)}}></button>  */}
-
+                            <div>
+                                <div className='left'>
+                                    <div className='clientCompletedOrderCard'>
+                                        <div>
+                                            <p>Order ID: {JSON.parse(JSON.stringify(val,undefined,3)).orderID}</p>
+                                            <p>Client Email: {JSON.parse(JSON.stringify(val,undefined,3)).clientEmail}</p>
+                                            <p>Price: PKR{JSON.parse(JSON.stringify(val,undefined,3)).price}</p>
+                                            <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className='right'>
+                                    <div>
+                                        <button className='ccorating' onClick={ ()=>sendRating(1 , val.influencerEmail)} type="radio" name="stars" value="1">1 </button>
+                                        <button className='ccorating' onClick={()=>sendRating(2 , val.influencerEmail)} type="radio" name="stars" value="2">2 </button>
+                                        <button className='ccorating' onClick={()=>sendRating(3 , val.influencerEmail)} type="radio" name="stars" value="3">3 </button>
+                                        <button className='ccorating' onClick={()=>sendRating(4 , val.influencerEmail)} type="radio" name="stars" value="4">4 </button>
+                                        <button className='ccorating' onClick={()=>sendRating(5 , val.influencerEmail)} type="radio" name="stars" value="5">5 </button>
+                                        <button className='ccoratingconfirm' onClick={()=>{SetRating(val.orderID)}}>Confirm</button>
+                                    </div>
                                 </div>
                             </div>
                         )

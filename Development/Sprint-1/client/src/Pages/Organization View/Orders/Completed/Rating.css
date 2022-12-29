@@ -1,11 +1,11 @@
-.ico{
+.rating{
     text-align: center;
     align-items: center;
     justify-content: center;
     color: white;
 }
 
-.clientCompletedOrderCard {
+.clientratingCard {
     position: relative;
     left: 10%;
     text-align: center;
