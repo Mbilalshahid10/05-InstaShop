@@ -51,7 +51,7 @@ const Navbar = () => {
             </NavLink>
           </NavMenu>
           <NavBtn>
-            <NavBtnLink onClick={logout}>Sign Out</NavBtnLink>
+            <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
           </NavBtn>
         </Nav>
     );
@@ -82,7 +82,7 @@ const Navbar = () => {
             </NavLink>
           </NavMenu>
           <NavBtn>
-            <NavBtnLink onClick={logout}>Sign Out</NavBtnLink>
+            <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
           </NavBtn>
         </Nav>
     );
@@ -110,7 +110,7 @@ const Navbar = () => {
             </NavLink>
           </NavMenu>
           <NavBtn>
-            <NavBtnLink onClick={logout}>Sign Out</NavBtnLink>
+            <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
           </NavBtn>
         </Nav>
     );
