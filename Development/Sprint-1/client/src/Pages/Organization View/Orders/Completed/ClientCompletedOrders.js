@@ -90,7 +90,7 @@ const ClientCompleteOrderList = ()=>{
                                     <button onClick={()=>sendRating(4 , val.influencerEmail)} type="radio" name="stars" value="4">4 </button>
                                     <button onClick={()=>sendRating(5 , val.influencerEmail)} type="radio" name="stars" value="5">5 </button>
 
-                                    <button onClick={()=>{SetRating(val.orderID)}}>Click here after Rating selected !!!</button> 
+                                    <button onClick={()=>{SetRating(val.orderID)}}>Click to Finish !!!</button> 
                                     <br></br>
                                     {/* button onClick={()=>{sendRating(val.orderID, val.influencerEmail)}}></button>  */}
 
