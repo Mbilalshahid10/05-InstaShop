@@ -95,11 +95,12 @@ const ClientCompleteOrderList = ()=>{
                                     <button onClick={()=>{SetRating(val.orderID)}}>Click here after Rating selected !!!</button> 
                                     <br></br>
                                     Adding Stars method <br></br>
-                                    {/* <span className="star">&#9733;</span>
                                     <span className="star">&#9733;</span>
                                     <span className="star">&#9733;</span>
                                     <span className="star">&#9733;</span>
-                                    <span className="star">&#9733;</span> */}
+                                    <span className="star">&#9733;</span>
+                                    <span className="star">&#9733;</span> 
+                                    
                                     {/* <div className="star-rating">
                                     {[...Array(5)].map((star, index) => {
                                         index += 1;
