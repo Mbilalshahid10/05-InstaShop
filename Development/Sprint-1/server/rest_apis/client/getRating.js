@@ -9,7 +9,7 @@ async function getRating(req, res){
     try{
         const result = await mongoose.connection.db.collection('clients').find({"rating":req.body.rating},{
             $set:{
-                "rating":req.body.ans
+                rating:req.body.myrating
             }
         })
         console.log(result)

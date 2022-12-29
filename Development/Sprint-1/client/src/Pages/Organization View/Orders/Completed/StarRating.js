@@ -52,7 +52,6 @@ const StarRating =()=>{
         })};
         <p>The Rating is {ratingValue}</p>
     </div>
-
     );
 };
 

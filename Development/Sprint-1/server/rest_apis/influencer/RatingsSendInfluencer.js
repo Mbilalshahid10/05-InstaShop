@@ -7,7 +7,7 @@ const sendRatingInfluencer =async(req,res)=>{
 
         const result = await mongoose.connection.db.collection('influencers').findOneAndUpdate({"rating":req.body.myrating},{
             $set:{
-                rating : req.body.ans
+                rating : req.body.myrating
             }
         })
         console.log(result)
