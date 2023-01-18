@@ -26,15 +26,17 @@ const HomePage = ()=>{
       axios.get('http://localhost:8000/allInfProfiles', {withCredentials: true})
       .then(response => response.data)
       .then(data => {
+        // console.log(data)
+
         const temp = data.slice(0,5)
         const profiles = temp.map(profile => {
           return (
             <ProfileCards 
-              name = {profile.name.first}
-              niche = {profile.niche}
-              rating = {profile.rating}
-              clientEmail = {location.state.email}
-              influencerEmail = {profile.email}
+            name = {profile.name.first}
+            niche = {profile.niche}
+            rating = {profile.rating}
+            clientEmail = {location.state.email}
+            influencerEmail = {profile.email}
             />
           )
         })
@@ -49,7 +51,6 @@ const HomePage = ()=>{
   const jobOffers = () => {
     if(location.state.role === "Client"){
       navigate('/clientJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-
     }
     else if (location.state.role === "Influencer"){
       navigate('/influencerJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
@@ -60,7 +61,6 @@ const HomePage = ()=>{
   const ongoingOrders = () => {
     if(location.state.role === "Client"){
       navigate('/clientOngoingOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-
     }
     else if (location.state.role === "Influencer"){
       navigate('/influencerOngoingOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
@@ -71,7 +71,6 @@ const HomePage = ()=>{
   const rejectedOrders = () => {
     if(location.state.role === "Client"){
       navigate('/clientRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-
     }
     else if (location.state.role === "Influencer"){
       navigate('/influencerRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
@@ -95,8 +94,16 @@ const HomePage = ()=>{
       navigate('/influencerCompletedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
     }
   }
-  
-  
+
+  const OrderHistory = ()=>{
+    if(location.state.role === "Client"){
+      navigate('/clientHistory', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+    }
+    else if(location.state.role === "Influencer"){
+      navigate('/influencerHistory', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+    }
+  }
+
   return (
     <div className="homepage">
       <div className='homepagearea'>
@@ -114,6 +121,7 @@ const HomePage = ()=>{
           <button onClick={topending}>Pending approvals</button>
           <button onClick={toComplete}>Completed Orders</button>
           <button onClick={rejectedOrders}>Rejected Orders</button>
+          <button onClick={OrderHistory}>Order History</button>
         </div>
       </div>
 

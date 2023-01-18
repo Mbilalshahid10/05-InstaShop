@@ -18,7 +18,6 @@ const ProfileCards = (props) => {
         price: price, status:"Pending"}
         await axios.post("http://localhost:8000/placeOrder", orderDetails)
     }
-    
     return (
         <div className="card">
             <h1>Name: {props.name}</h1>
@@ -31,4 +30,3 @@ const ProfileCards = (props) => {
 }
 
 export default ProfileCards;
-

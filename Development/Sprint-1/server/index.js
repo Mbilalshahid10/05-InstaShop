@@ -33,10 +33,17 @@ const { placeOrder } = require('./rest_apis/client/placeOrder')
 
 // Rating
 const{updateRating} = require('./rest_apis/client/updateRating.js')
-const{getRating} = require('./rest_apis/client/getRating.js')
-const{sendRating} = require('./rest_apis/client/RatingSend.js')
-const {sendRatingInfluencer} = require('./rest_apis/influencer/RatingsSendInfluencer.js')
+const {updateRatingInfluencer} = require('./rest_apis/influencer/updateRatingInfluencer.js')
 
+const{getRating} = require('./rest_apis/influencer/getRating.js')
+// const{sendRating} = require('./rest_apis/client/RatingSend.js')
+const {sendRatingInfluencer} = require('./rest_apis/influencer/RatingsSendInfluencer.js')
+const{sendRatingClient} = require('./rest_apis/client/RatingSendClient.js')
+
+//Order History
+const{getClientHistory} = require('./rest_apis/client/clientHistory.js')
+const{getInfluencerHistory} = require('./rest_apis/influencer/influencerHistory.js')
+const{Ordercount} = require('./rest_apis/influencer/getOrder.js')
 
 const PORT = process.env.PORT || 8000
 
@@ -94,6 +101,15 @@ app.get('/influencercompletedorders', async(req,res) =>{
     await  getCompletedOrders(req, res)    
 })
 
+//Order history
+app.get('/clientHistory' , async(req,res)=>{
+    await getClientHistory(req,res)
+})
+
+app.get('/influencerHistory', async(req,res)=>{
+    await getInfluencerHistory(req,res)
+})
+
 
 app.get('/allInfProfiles', (authenticateUser), async(req,res) => {
     await getAllInfluencers(req, res)
@@ -109,35 +125,47 @@ app.post('/placeOrder', async(req,res)=>{
     await placeOrder(req,res)
 })
 
+app.get('/getOrder' , async(req,res)=>{
+    await Ordercount(req,res)
+})
 
 // Rating Stars and Order marks
 app.post('/RatingAccepted',async(req,res)=>{  //Order is marked true when updated status
     await updateRating(req,res)
 })
+
+app.post('/RatingAcceptedInfluencer', async(req,res)=>{
+    await updateRatingInfluencer(req,res)
+})
+
 app.get('/GetRatingClient' , async(req,res)=>{
     await getRating(req,res)
 })
 
-app.post('/RatingsSend', async(req,res)=>{
-    await sendRating(req,res)
-})
+
+// app.post('/RatingsSend', async(req,res)=>{
+//     await sendRating(req,res)
+// })
 
 app.post('/RatingsSendInfluencer', async(req,res)=>{
     await sendRatingInfluencer(req,res)
 })
 
+app.post('/RatingsSendClient', async(req,res)=>{
+    await sendRatingClient(req,res)
+})
 
 
 
-
+// see the correct files names
 //Influencer Profile
-// app.get('/getInfluencerProfile' , (authenticateUser) , async(req,res) =>{
-//     await  getInfluencerProfile(req, res)    
-// })
+app.get('/InfluencerProfile' , (authenticateUser) , async(req,res) =>{
+    await  getInfluencerProfile(req, res)    
+})
 // //Client Profile
-// app.get('/getclientProfile' , (authenticateUser) , async(req,res) =>{
-//     await  getclientProfile(req, res)    
-// })
+app.get('/clientProfile' , (authenticateUser) , async(req,res) =>{
+    await  getclientProfile(req, res)    
+})
 
 // general
 app.get('/logout', (req, res) => {

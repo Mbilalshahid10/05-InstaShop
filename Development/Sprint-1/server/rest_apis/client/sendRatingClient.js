@@ -1,13 +1,12 @@
 const sanitize = require("mongo-sanitize")
 const mongoose = require("mongoose")
 
-const sendRating =async(req,res)=>{
+const sendRatingClient =async(req,res)=>{
     // console.log(req.body)
     try{
-
-        const result = await mongoose.connection.db.collection('clients').findOneAndUpdate({"rating":req.body.myrating},{
+        const result = await mongoose.connection.db.collection('clients').findOneAndUpdate({"email":req.body.email},{
             $set:{
-                rating : req.body.ans
+                "rating" : req.body.myrating
             }
         })
         // console.log(result)
@@ -15,4 +14,4 @@ const sendRating =async(req,res)=>{
         console.log(err)
     }
 }
-module.exports = {sendRating}
+module.exports = {sendRatingClient}

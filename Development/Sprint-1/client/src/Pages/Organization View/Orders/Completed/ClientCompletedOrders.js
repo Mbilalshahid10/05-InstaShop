@@ -4,14 +4,10 @@ import './ClientCompletedOrders.css'
 import axios from 'axios'
 import { useState } from 'react'
 
-// const shapack = require('./database/Schema/Announcement')
-// const shapack = require("../../../server/database/Schema/Announcement")
-
 const ClientCompleteOrderList = ()=>{
     const location = useLocation()
     const email = location.state.email
     const role = location.state.role
-    const [rating , setRating] = useState(1)
 
     // e.preventDefault();
     const [pendinglist,setpendinglist] = useState([])
@@ -21,9 +17,7 @@ const ClientCompleteOrderList = ()=>{
             (res)=>{
                 console.log(res.data)
                 setpendinglist(res.data)
-            }
-
-            ).catch(
+            }).catch(
                 err=>{console.log(err)}
             )
     },[])
@@ -36,54 +30,47 @@ const ClientCompleteOrderList = ()=>{
         })
     }
     myfunc()
-    // shapack();
-    const SetRating = async(myID)=>{
-        const acceptData = {ans:true, email:email, myID:myID } 
-        await axios.post("http://localhost:8000/RatingAccepted",acceptData)
-        console.log(myID)
+ 
+    const sendRating = async(myrating, influencerEmail , myID)=>{
+        const ratingOrder ={ email: influencerEmail,  myrating: myrating , myID:myID} 
+        console.log(ratingOrder)
+        let request1  =  axios.post("http://localhost:8000/RatingAccepted", ratingOrder)
+    
+        const ratedata = { email: influencerEmail,  myrating: myrating , myID:myID}
+        console.log("check if old rating is fetched")
+        // let ratenew = await axios.get("http://localhost:8000/GetRatingClient" , ratedata)
+        console.log("Check if rating is coming from backend !!! ")
+        // console.log(ratenew.rating)
+
+
+        let newrate = await axios.get('http://localhost:8000/GetRatingClient' , ratedata)
+        .then(response => {
+            const data = response.data;
+            var result = data.find(item => item.email === influencerEmail);
+            const newrating = result.rating
+            console.log("result is : " , newrating)
+            console.log("client ne db se rating pickup karli")
+
+            const orderdata = { email: influencerEmail}
+            let Ordercount  = axios.get('http://localhost:8000/getOrder' , orderdata)
+            .then(response => {
+                const data = response.data;
+                console.log(" data of orders is displayed here : " , data)
+                // var count = data.find(item => item.influencerEmail === influencerEmail);
+                // console.log("Which order is printed ab" ,  result)
+                // result = count; //replace count function here just for total orders
+                let updatedRating = (newrating+myrating)/2;
+                console.log("updated rating here is now " ,updatedRating)
+                const acceptData ={ email: influencerEmail,  myrating: updatedRating}
+                //third query
+                let request2 =  axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
+            })
+        }).catch(error => {
+            console.log(error);
+        });
+
+        console.log("finished axios.all method")
     }
-    // const api_url = "http://localhost:8000/GetRatingClient";
-
-    // async function GetRatingDB(url){
-    //     const response = await fetch(url);
-    //     var data = await response.json();
-    //     console.log(data);
-    //     }
-    // GetRatingDB(api_url);
-
-
-    const sendRating = async(myrating , influenceremail)=>{
-    if(location.state.role === "Client"){
-        const acceptData ={ email:influenceremail,  myrating: myrating} 
-        console.log(acceptData)
-        await axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
-    const sendRating = async(myrating, influencerEmail)=>{
-
-    if(location.state.role ==="Client"){
-        const acceptData ={ email: influencerEmail,  myrating: myrating} 
-        // console.log(acceptData);
-        await axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
-    }
-
-    // const sendRating = async(myrating , influenceremail)=>{
-    //     if(location.state.role === "Client"){
-    //         const acceptData ={ email:influenceremail,  myrating: myrating} 
-    //         console.log(acceptData)
-    //         await axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
-    // }
-    // else if(location.state.role ==="Influencer"){
-    //     const acceptData ={ email:email,  myrating: myrating} 
-    //     console.log("is it over here ?");
-    //     await axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
-    // }
-}
-    // else if(location.state.role === "Influencer"){
-    //     const acceptData ={ email:email,  myrating: myrating} 
-    //     console.log("is it over here ?");
-            // await axios.post("http://localhost:8000/RatingsSend" , acceptData);
-
-    // }
-}
 
     return(
         <div>
@@ -100,16 +87,15 @@ const ClientCompleteOrderList = ()=>{
                                     <p>Price: PKR{JSON.parse(JSON.stringify(val,undefined,3)).price}</p>
                                     <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
 
-                                    {/* <p>Rating Backend: {GetRatingDB}</p>  */}
                                     <br></br>
-                                    <button onClick={()=>sendRating(1 , val.influencerEmail)} type="radio" name="stars" value="1">1 </button>
-                                    <button onClick={()=>sendRating(2 , val.influencerEmail)} type="radio" name="stars" value="2">2 </button>
-                                    <button onClick={()=>sendRating(3 , val.influencerEmail)} type="radio" name="stars" value="3">3 </button>
-                                    <button onClick={()=>sendRating(4 , val.influencerEmail)} type="radio" name="stars" value="4">4 </button>
-                                    <button onClick={()=>sendRating(5 , val.influencerEmail)} type="radio" name="stars" value="5">5 </button>
+                                    <button onClick={()=>sendRating(1 , val.influencerEmail , val.orderID)} type="radio" name="stars" value="1">1 </button>
+                                    <button onClick={()=>sendRating(2 , val.influencerEmail, val.orderID )} type="radio" name="stars" value="2">2 </button>
+                                    <button onClick={()=>sendRating(3 , val.influencerEmail,  val.orderID)} type="radio" name="stars" value="3">3 </button>
+                                    <button onClick={()=>sendRating(4 , val.influencerEmail ,  val.orderID)} type="radio" name="stars" value="4">4 </button>
+                                    <button onClick={()=>sendRating(5 , val.influencerEmail,  val.orderID)} type="radio" name="stars" value="5">5 </button>
 
-                                    <button onClick={()=>{SetRating(val.orderID)}}>Click to Finish !!!</button> 
-                                    <br></br>
+                                    {/* <button onClick={()=>{SetRatingClient(val.orderID , val.influencerEmail)}}>Click to Finish !!!</button> 
+                                    <br></br> */}
                                 </div>
                             </div>
                         )

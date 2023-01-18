@@ -1,21 +1,11 @@
-.ico{
+.ipa{
     text-align: center;
     align-items: center;
     justify-content: center;
     color: white;
 }
 
-.left{
-    width: 70%;
-    float: left;
-}
-
-.right{
-    width: 30%;
-    float: right;
-}
-
-.influencercompletedordercard {
+.clientPendingApprovalCard {
     position: relative;
     left: 10%;
     text-align: center;
@@ -26,5 +16,5 @@
     background-color: #395B64;
     color: white;
     border-radius: 0.5rem;
-    height: 9rem;
+    height: 14rem;
 }

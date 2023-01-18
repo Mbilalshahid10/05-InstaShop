@@ -39,8 +39,13 @@ const clientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    // confirmPassword:{
+    //     type: String,
+    //     required: true
+    // },
     rating:{
-        type: Number
+        type: Number,
+        required:true
     },
     pastOrders:{
         type: [Number]

@@ -30,8 +30,14 @@ const OrderSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
-    ratingGiven : {
-        type: Boolean,
+    ratingGivenClient : {
+        // type: Boolean,
+        type: Number,
+        required: true
+    },
+    ratingGivenInfluencer : {
+        // type: Boolean,
+        type: Number,
         required: true
     }
 })
