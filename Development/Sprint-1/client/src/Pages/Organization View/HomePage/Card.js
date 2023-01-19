@@ -12,12 +12,13 @@ const ProfileCards = (props) => {
     }
 
     const placeOrder = async () => {
-        // console.log("In place Order")
-        // console.log("Props are: ", props)
+        console.log("In place Order")
+        console.log("Props are: ", props)
         const orderDetails = {clientEmail: props.clientEmail, influencerEmail: props.influencerEmail,
         price: price, status:"Pending"}
         await axios.post("http://localhost:8000/placeOrder", orderDetails)
     }
+    
     return (
         <div className="card">
             <h1>Name: {props.name}</h1>
@@ -30,3 +31,4 @@ const ProfileCards = (props) => {
 }
 
 export default ProfileCards;
+

@@ -28,7 +28,7 @@ const { getPendingApprovals } = require('./rest_apis/client/viewpendingapprovals
 const { getCompletedOrders} = require('./rest_apis/client/completedorders.js')
 const { updateAccept } = require('./rest_apis/client/changeacceptdb.js')
 const { updateStatus } = require('./rest_apis/client/changeStatusToOngoing.js')
-const { placeOrder } = require('./rest_apis/client/placeOrder')
+const { placeOrder } = require('./rest_apis/client/placeOrder.js')
 
 
 // Rating

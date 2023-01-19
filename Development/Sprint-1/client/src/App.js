@@ -51,8 +51,8 @@ const App = ()=>{
           <Route path="/announce" element={(<Announce />)}/>
           <Route path="/adminprofile" element={(<EditAdminProfile />)}/>
           <Route path="/home" element={(<HomePage />)}/>
-          <Route path = "/clientProfile" element ={(<EditOrgProfile/>)}/>
-          <Route path = "/InfluencerProfile" element ={(<EditEndorseeProfile/>)}/>
+          <Route path ="/clientProfile" element ={(<EditOrgProfile/>)}/>
+          <Route path ="/InfluencerProfile" element ={(<EditEndorseeProfile/>)}/>
 
           <Route path="/clientJobOffers" element={(<ClientJobOffers />)}/>
           <Route path="/clientOngoingOrders" element={(<ClientOngoingOrders />)}/>

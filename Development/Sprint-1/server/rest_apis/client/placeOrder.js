@@ -1,5 +1,4 @@
 const sanitize = require('mongo-sanitize')
-const mongoose = require("mongoose")
 const {createOrder} = require('../../../server/database/Create/createOrder')
 const orderModel = require('../../../server/database/Schema/Order')
 

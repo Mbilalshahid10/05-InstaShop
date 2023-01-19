@@ -13,12 +13,12 @@ const HomePage = ()=>{
 
   const [allProfiles, setAllProfiles] = useState([])
   
-  console.log("Location is: ", location)
-
-  let role = ""
-  if (location.state !== null){
-    role = location.state.role
-  }
+  const role = location.state.role
+  // console.log("Location is: ", location
+  // let role = ""
+  // if (location.state !== null){
+  //   role = location.state.role
+  // }
   
   
   useEffect( () => {
@@ -27,7 +27,6 @@ const HomePage = ()=>{
       .then(response => response.data)
       .then(data => {
         // console.log(data)
-
         const temp = data.slice(0,5)
         const profiles = temp.map(profile => {
           return (
