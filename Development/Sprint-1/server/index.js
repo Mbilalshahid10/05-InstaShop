@@ -10,15 +10,16 @@ connect(uri);
 
 // rest apis
 const {login} = require('./rest_apis/login')
-const {getAnnouncements} = require('./rest_apis/getAnnouncements')
 const {create_announcement} = require('./rest_apis/admin/createAnnouncement')
 const {Signup}  = require('./rest_apis/Signup')
 const {changePasswordGeneral} = require('./rest_apis/changePasswordGeneral')
 
 //Admin
 // const {changePassword} = require('./rest_apis/admin/changePassword')
-// const {create_announcement} = require('./rest_apis/admin/createAnnouncement')
 const{getAdminProfile} = require('./rest_apis/admin/adminProfile')
+const{get_announcement} = require('./rest_apis/admin/getAnnouncement.js')
+// const {getAnnouncements} = require('./rest_apis/getAnnouncements')
+
 //Influencer
 const{getInfluencerProfile} = require('./rest_apis/influencer/InfluencerProfile')
 // Client
@@ -82,6 +83,9 @@ app.get('/adminProfile' , (authenticateUser) , async(req,res) =>{
     await  getAdminProfile(req, res)    
 })
 
+app.get('/get_announcement' , (authenticateUser , async(req,res)=>{
+    await get_announcement(req,res)
+}))
 
 // Pending Approvals
 app.get('/clientPendingapprovals', async(req,res) =>{

@@ -18,9 +18,7 @@ const ClientHistory = ()=>{
             (res)=>{
                 console.log(res.data)
                 setpendinglist(res.data)
-            }
-
-            ).catch(
+            }).catch(
                 err=>{console.log(err)}
             )
     },[])

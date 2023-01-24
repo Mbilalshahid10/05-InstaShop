@@ -27,16 +27,16 @@ const  EditAdminProfile =  ()=>{
         <h1 className='editaptitle'>View Profile</h1>
         <form onSubmit={onClickHandler}>
           <label>
-            <input name='fname' id='fname' value={fName} type="text" placeholder='First Name' className='editapinput1'/>
+            <input name='fname' id='fname' value={fName} type="text" placeholder='First Name'  onChange={(e)=>setFName(e.target.value)}className='editapinput1'/>
           </label>
           <label>
-            <input name='lname' id='lname' value={lName} type="text" placeholder='Last Name' className='editapinput2'/>
+            <input name='lname' id='lname' value={lName} type="text" placeholder='Last Name'  onChange={(e)=>setLName(e.target.value)} className='editapinput2'/>
           </label>
           <label>
-            <input name='email' id='email' value={email} type="email" placeholder='Email' className='editapinput1'/>
+            <input name='email' id='email' value={email} type="email" placeholder='Email' onChange={(e)=>setEmail(e.target.value)}  className='editapinput1'/>
           </label>
           <label>
-            <input value={username} name='username' id='username' type="text" placeholder='Username' className='editapinput2'/>
+            <input value={username} name='username' id='username' type="text" placeholder='Username' onChange={(e)=>setUserName(e.target.value)} className='editapinput2'/>
           </label>
           <button className='editapbuttons' onClick={onClickHandler} >Change Password</button>
         </form>
