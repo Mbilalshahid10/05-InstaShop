@@ -37,13 +37,12 @@ const ClientCompleteOrderList = ()=>{
         let request1  =  axios.post("http://localhost:8000/RatingAccepted", ratingOrder)
     
         const ratedata = { email: influencerEmail,  myrating: myrating , myID:myID}
+
         console.log("check if old rating is fetched")
-        // let ratenew = await axios.get("http://localhost:8000/GetRatingClient" , ratedata)
         console.log("Check if rating is coming from backend !!! ")
         // console.log(ratenew.rating)
 
-
-        let newrate = await axios.get('http://localhost:8000/GetRatingClient' , ratedata)
+        let newrate = await axios.get('http://localhost:8000/GetRatingClient' ,{withCredentials:true} ,ratedata)
         .then(response => {
             const data = response.data;
             var result = data.find(item => item.email === influencerEmail);
@@ -52,31 +51,35 @@ const ClientCompleteOrderList = ()=>{
             console.log("client ne db se rating pickup karli")
 
             const orderdata = { email: influencerEmail}
-            let Ordercount  = axios.get('http://localhost:8000/getOrder' , orderdata)
+            console.log("Order data :" ,orderdata)
+            let Ordercount  = axios.get('http://localhost:8000/getOrder' , ratedata)
             .then(response => {
-                const data = response.data;
-                console.log(" data of orders is displayed here : " , data)
-                // var count = data.find(item => item.influencerEmail === influencerEmail);
-                // console.log("Which order is printed ab" ,  result)
-                // result = count; //replace count function here just for total orders
+                const data2 = response.data;
+                console.log(data2)
+                console.log(" data of orders is displayed here : " , data2)
+                var result2 = data2.find(item => item.email === influencerEmail);
+                const newdata2 = result2.pastOrders
+                console.log("what is new data2 : " , newdata2)
+                console.log("the length is " , newdata2.length)
+                
                 let updatedRating = (newrating+myrating)/2;
-                console.log("updated rating here is now " ,updatedRating)
-                const acceptData ={ email: influencerEmail,  myrating: updatedRating}
+                var num3 = Number(updatedRating.toFixed(2));
+
+                console.log("updated rating here is now " ,num3)
+                const acceptData ={ email: influencerEmail,  myrating: num3}
                 //third query
                 let request2 =  axios.post("http://localhost:8000/RatingsSendInfluencer" , acceptData);
             })
         }).catch(error => {
             console.log(error);
         });
-
         console.log("finished axios.all method")
     }
 
     return(
         <div>
         {
-            <div className='cco'>
-                
+            <div className='cco'>    
                 <h2>Here are your completed orders</h2>
                 {
                     newpendlist.map((val,key)=>{

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-// import './ClientJobOffers.css'
 import axios from 'axios'
 import { useState } from 'react'
 
@@ -53,6 +52,4 @@ const SendAnnouncement = ()=>{
         </div>
     )
 }
-
-
 export default SendAnnouncement;

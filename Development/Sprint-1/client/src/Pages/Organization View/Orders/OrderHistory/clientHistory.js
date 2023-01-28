@@ -58,5 +58,4 @@ const ClientHistory = ()=>{
         </div>
     )
 }
-
 export default ClientHistory;
