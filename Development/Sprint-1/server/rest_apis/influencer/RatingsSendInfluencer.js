@@ -3,8 +3,8 @@ const mongoose = require("mongoose")
 
 const sendRatingInfluencer =async(req,res)=>{
     console.log(req.body)
+    
     try{
-        //find and average
         const result = await mongoose.connection.db.collection('influencers').findOneAndUpdate({"email":req.body.email},{
             $set:{
                 "rating" : req.body.myrating

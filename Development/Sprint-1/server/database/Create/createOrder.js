@@ -1,6 +1,6 @@
 const Order = require('../Schema/Order')
 
-async function createOrder(OrderID, clemail , infemail, price, status="Pending", acceptedByClient=false, ratingGiven=false) {
+async function createOrder(OrderID, clemail , infemail, price, status="Pending", acceptedByClient=false,  ratingGivenClient = 0 , ratingGivenInfluencer = 0  ) {
     
     const order = await Order.create({  
         orderID: OrderID,
@@ -9,8 +9,8 @@ async function createOrder(OrderID, clemail , infemail, price, status="Pending",
         price: price,
         status: status,
         acceptedByClient: acceptedByClient,
-        ratingGiven: ratingGiven
-
+        ratingGivenClient: ratingGivenClient,
+        ratingGivenInfluencer:ratingGivenInfluencer
     })
     await order.save()
 }

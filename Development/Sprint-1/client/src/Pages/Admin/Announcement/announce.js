@@ -10,13 +10,20 @@ const Announce = ()=>{
 
     const announcement = async (e) =>{
       e.preventDefault()
+      console.log("idhar aya ya nahin ");
       const announcements = {title:Title,body:Body}
       // setAllentry([...allEntry, newEntry])
       // console.log(allEntry)
       console.log(announcements)
       await axios.post('http://localhost:8000/create_announcement', announcements, {withCredentials: true}).then(navigate('/home')).catch(err=>console.log(err))
-      
   }
+
+  const viewannouncement = async (e) =>{
+    e.preventDefault()
+    navigate('/viewannouncement')
+    // await axios.get('http://localhost:8000/get_announcement',{withCredentials: true})
+    // .then(navigate('/home')).catch(err=>console.log(err))   
+}
 
   return (
     <div className="announce">
@@ -32,6 +39,8 @@ const Announce = ()=>{
           </label>
         </form>
         <button className='announcebuttons' onClick={announcement}>Send Announcement</button>
+        <button className='announcebuttons2' onClick={viewannouncement}>View Announcement</button>
+
       </div>
     </div>
   );

@@ -31,14 +31,15 @@ const ClientApprovalsPending = ()=>{
                 newpendlist[key] = val
             }
         })
-
     }
+    
     myfunc()
     const setAccepted = async(myID)=>{
         const acceptData = {ans:true, email:email, myID:myID}
         // console.log(acceptData)
         await axios.post("http://localhost:8000/changeAccepted",acceptData)
-
+        //add in past order history
+        // await axios.post("" , acceptData)
     }
     const setStatus = async(myID)=>{
         const acceptData = {ans:"Ongoing", email:email, myID:myID}

@@ -4,31 +4,33 @@ import React, { useState, useEffect} from 'react'
 import {useNavigate, useLocation} from 'react-router-dom';
 import './HomePage.css'
 import ProfileCards from './Card.js'
+
 import axios from 'axios';
 
 const HomePage = ()=>{
   
   const navigate = useNavigate()
   const location = useLocation()
-
   const [allProfiles, setAllProfiles] = useState([])
+  const [first, setFirst] = useState("")
   const role = location.state.role
 
-  
+
   useEffect( () => {
     if (role === "Client"){
       axios.get('http://localhost:8000/allInfProfiles', {withCredentials: true})
       .then(response => response.data)
       .then(data => {
+        // console.log(data)
         const temp = data.slice(0,5)
         const profiles = temp.map(profile => {
           return (
             <ProfileCards 
-              name = {profile.name.first}
-              niche = {profile.niche}
-              rating = {profile.rating}
-              clientEmail = {location.state.email}
-              influencerEmail = {profile.email}
+            name = {profile.name.first}
+            niche = {profile.niche}
+            rating = {profile.rating}
+            clientEmail = {location.state.email}
+            influencerEmail = {profile.email}
             />
           )
         })
@@ -43,7 +45,6 @@ const HomePage = ()=>{
   const jobOffers = () => {
     if(location.state.role === "Client"){
       navigate('/clientJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-
     }
     else if (location.state.role === "Influencer"){
       navigate('/influencerJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
@@ -54,7 +55,6 @@ const HomePage = ()=>{
   const ongoingOrders = () => {
     if(location.state.role === "Client"){
       navigate('/clientOngoingOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-
     }
     else if (location.state.role === "Influencer"){
       navigate('/influencerOngoingOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
@@ -65,7 +65,6 @@ const HomePage = ()=>{
   const rejectedOrders = () => {
     if(location.state.role === "Client"){
       navigate('/clientRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-
     }
     else if (location.state.role === "Influencer"){
       navigate('/influencerRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
@@ -89,8 +88,20 @@ const HomePage = ()=>{
       navigate('/influencerCompletedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
     }
   }
-  
-  
+
+  const OrderHistory = ()=>{
+    if(location.state.role === "Client"){
+      navigate('/clientHistory', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+    }
+    else if(location.state.role === "Influencer"){
+      navigate('/influencerHistory', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+    }
+  }
+  const searchInfluencer = ()=>{
+    const newData = {firstName: first}
+    navigate('/searchInf',{state:{firstName:first}})
+  }
+
   return (
     <div className="homepage">
       <div className='homepagearea'>
@@ -98,16 +109,17 @@ const HomePage = ()=>{
         <h1 className='homepagetitle'>Find An Endorsee</h1>
         <form>
           <label>
-            <input type="text" placeholder="Enter Endorsee's Name" className='homepageinput1'/>
+          <input type="text" placeholder="Enter Endorsee's first Name" className='homepageinput1' value={first} onChange={(e)=>setFirst(e.target.value)}/>
           </label>
         </form>
-        <button className='homepagebuttons' type='submit'>Search</button>
+        <button onClick={searchInfluencer} className='homepagebuttons' type='submit'>Search</button>
         <div className='orderTabs'>
           <button onClick={jobOffers}>Job Offers</button>
           <button onClick={ongoingOrders}>Ongoing Orders</button>
           <button onClick={topending}>Pending approvals</button>
           <button onClick={toComplete}>Completed Orders</button>
           <button onClick={rejectedOrders}>Rejected Orders</button>
+          <button onClick={OrderHistory}>Order History</button>
         </div>
       </div>
 

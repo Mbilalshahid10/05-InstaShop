@@ -43,12 +43,12 @@ const RatingList = ()=>{
         <div>
             RATING LIST STARS !!!!!!!!!!!!!!!!!
             {
-            <div className='rating'>
+            <div className='ico'>
                 <h2>Here is your Rating Orders</h2>
                 {
                     newrating.map((val,key)=>{
                         return(
-                            <div className='clientratingCard'>
+                            <div className='clientCompletedOrderCard'>
                                 <div>
                                 <p> Order ID : {JSON.parse(JSON.stringify(val,undefined,3)).orderID}</p>
                                 <p>Client Email: {JSON.parse(JSON.stringify(val,undefined,3)).clientEmail}</p>

@@ -27,7 +27,7 @@ const EditEndorseeProfile = ()=>{
         setAllentry([...allEntry, newEntry])
         console.log(allEntry)
         try{
-          await axios.post('http://localhost:8000/InfluencerProfile', allEntry, {withCredentials: true});
+          await axios.post('http://localhost:8000/InfluencerProfileShow', allEntry, {withCredentials: true});
           navigate('/')
         }
         catch (err) {
