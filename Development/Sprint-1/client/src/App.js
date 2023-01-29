@@ -33,6 +33,7 @@ import RejectedJobOffer from "./Pages/Endorsee View/Orders/Rejected/RejectedJobO
 import ClientHistory from "./Pages/Organization View/Orders/OrderHistory/clientHistory";
 import InfluencerHistory from "./Pages/Endorsee View/Orders/OrderHistory/influencerHistory";
 import SendAnnouncement from "./Pages/Admin/Announcement/ViewAnnouncement";
+import SearchInfluencerByName from "./Pages/Organization View/HomePage/searchInfluencer";
 
 const App = ()=>{
   return(
@@ -55,6 +56,7 @@ const App = ()=>{
           <Route path ="/clientProfile" element ={(<EditOrgProfile/>)}/>
           <Route path ="/InfluencerProfile" element ={(<EditEndorseeProfile/>)}/>
           <Route path = "/viewannouncement" element={(<SendAnnouncement/>)}/>
+          <Route path ="/searchInf" element={(<SearchInfluencerByName />)}/>
 
           <Route path="/clientJobOffers" element={(<ClientJobOffers />)}/>
           <Route path="/clientOngoingOrders" element={(<ClientOngoingOrders />)}/>
@@ -72,9 +74,6 @@ const App = ()=>{
 
         </Routes>
       </Router>     
-
-       {/* <StarRating />  */}
-
     </div>
 
   )

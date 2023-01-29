@@ -4,23 +4,18 @@ import React, { useState, useEffect} from 'react'
 import {useNavigate, useLocation} from 'react-router-dom';
 import './HomePage.css'
 import ProfileCards from './Card.js'
+
 import axios from 'axios';
 
 const HomePage = ()=>{
   
   const navigate = useNavigate()
   const location = useLocation()
-
   const [allProfiles, setAllProfiles] = useState([])
-  
+  const [first, setFirst] = useState("")
   const role = location.state.role
-  // console.log("Location is: ", location
-  // let role = ""
-  // if (location.state !== null){
-  //   role = location.state.role
-  // }
-  
-  
+
+
   useEffect( () => {
     if (role === "Client"){
       axios.get('http://localhost:8000/allInfProfiles', {withCredentials: true})
@@ -102,6 +97,10 @@ const HomePage = ()=>{
       navigate('/influencerHistory', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
     }
   }
+  const searchInfluencer = ()=>{
+    const newData = {firstName: first}
+    navigate('/searchInf',{state:{firstName:first}})
+  }
 
   return (
     <div className="homepage">
@@ -110,10 +109,10 @@ const HomePage = ()=>{
         <h1 className='homepagetitle'>Find An Endorsee</h1>
         <form>
           <label>
-            <input type="text" placeholder="Enter Endorsee's Name" className='homepageinput1'/>
+          <input type="text" placeholder="Enter Endorsee's first Name" className='homepageinput1' value={first} onChange={(e)=>setFirst(e.target.value)}/>
           </label>
         </form>
-        <button className='homepagebuttons' type='submit'>Search</button>
+        <button onClick={searchInfluencer} className='homepagebuttons' type='submit'>Search</button>
         <div className='orderTabs'>
           <button onClick={jobOffers}>Job Offers</button>
           <button onClick={ongoingOrders}>Ongoing Orders</button>

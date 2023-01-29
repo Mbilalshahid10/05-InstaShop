@@ -13,7 +13,6 @@ async function Ordercount(req, res){
         // const rate = await orderModel.find({"influencerEmail":req.body.email}).countDocuments({}).exec()
         // const rate = await orderModel.find()
         const rate = await influencer.find()
-
         console.log("Order Count is here !!!")
         console.log("Rate is :" , rate)
         res.status(200).json(rate) 

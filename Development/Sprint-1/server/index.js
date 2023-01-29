@@ -30,7 +30,7 @@ const { getCompletedOrders} = require('./rest_apis/client/completedorders.js')
 const { updateAccept } = require('./rest_apis/client/changeacceptdb.js')
 const { updateStatus } = require('./rest_apis/client/changeStatusToOngoing.js')
 const { placeOrder } = require('./rest_apis/client/placeOrder.js')
-
+const{findInfluencerByName} = require('./rest_apis/client/findInfluencer.js')
 
 // Rating
 const{updateRating} = require('./rest_apis/client/updateRating.js')
@@ -159,7 +159,9 @@ app.post('/RatingsSendClient', async(req,res)=>{
     await sendRatingClient(req,res)
 })
 
-
+app.get('/searchInf', async(req,res) => {
+    await findInfluencerByName(req, res)
+})
 
 // see the correct files names
 //Influencer Profile
