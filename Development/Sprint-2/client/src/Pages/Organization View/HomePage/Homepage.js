@@ -15,6 +15,9 @@ const HomePage = ()=>{
   const [first, setFirst] = useState("")
   const role = location.state.role
 
+  const [recProfiles, setRecProfiles] = useState([])
+  
+
 
   useEffect( () => {
     if (role === "Client"){
@@ -38,7 +41,62 @@ const HomePage = ()=>{
       })
     }
     
-  }, [])
+  }, [])    
+  // let email = 
+  const client_email = {email: location.state.email}
+
+
+
+
+
+  useEffect( () => {
+    if (role === "Client"){
+      axios.post('http://localhost:8000/RecommendationstoClient', client_email ,{withCredentials: true})
+      .then(response => response.data)
+      .then(data => {
+        console.log(data)
+        const temp = data.slice(0,5)
+        const profiles = temp.map(profile => {
+          return (
+            <ProfileCards 
+            name = {profile.name.first}
+            niche = {profile.niche}
+            rating = {profile.rating}
+            clientEmail = {location.state.email}
+            influencerEmail = {profile.email}
+            />
+          )
+        })
+        setRecProfiles(profiles)
+      })
+    }
+    
+  }, [])    
+  
+  // // console.log(newEntry)
+  // axios.post('http://localhost:8000/RecommendationstoClient', client_email ,{withCredentials: true})
+  //     .then(response => 
+  //       console.log(response.data)
+  //       )
+      // .then(data => {
+      //   // console.log(data)
+      //   // const temp = data.slice(0,5)
+      //   // const profiles = temp.map(profile => {
+      //   //   return (
+      //   //     <ProfileCards 
+      //   //     name = {profile.name.first}
+      //   //     niche = {profile.niche}
+      //   //     rating = {profile.rating}
+      //   //     clientEmail = {location.state.email}
+      //   //     influencerEmail = {profile.email}
+      //   //     />
+      //   //   )
+      //   // }
+      //   )
+      //   setAllProfiles(profiles)
+      // })
+
+
 
   // console.log("Location.state: ", location.state)
   
@@ -112,6 +170,7 @@ const HomePage = ()=>{
           <input type="text" placeholder="Enter Endorsee's first Name" className='homepageinput1' value={first} onChange={(e)=>setFirst(e.target.value)}/>
           </label>
         </form>
+        
         <button onClick={searchInfluencer} className='homepagebuttons' type='submit'>Search</button>
         <div className='orderTabs'>
           <button onClick={jobOffers}>Job Offers</button>
@@ -122,6 +181,12 @@ const HomePage = ()=>{
           <button onClick={OrderHistory}>Order History</button>
         </div>
       </div>
+      {/* <div className='orderTabs'> */}
+      <h1 className='rec'>Recommendations</h1>
+        <div className='Card'>
+          {recProfiles}
+        </div>
+        {/* </div> */}
 
       {allProfiles && 
         <div className='Card'>

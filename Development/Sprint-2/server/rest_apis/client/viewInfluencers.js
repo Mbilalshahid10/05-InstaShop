@@ -7,9 +7,9 @@ const Order = require('../../database/Schema/Order')
 
 async function getAllInfluencers(req, res){
     try{
-        console.log("fetch details of all influencers")
+        // console.log("fetch details of all influencers")
         const infProfiles = await Influencer.find()
-        console.log(infProfiles)
+        // console.log(infProfiles)
     
         res.status(200).json(infProfiles) 
     } catch(err) {

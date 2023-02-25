@@ -40,7 +40,7 @@ const{getRating} = require('./rest_apis/influencer/getRating.js')
 // const{sendRating} = require('./rest_apis/client/RatingSend.js')
 const {sendRatingInfluencer} = require('./rest_apis/influencer/RatingsSendInfluencer.js')
 const{sendRatingClient} = require('./rest_apis/client/RatingSendClient.js')
-
+const{sendRecommendationsClient} = require('./rest_apis/client/sendRecommendationsClient.js')
 //Order History
 const{getClientHistory} = require('./rest_apis/client/clientHistory.js')
 const{getInfluencerHistory} = require('./rest_apis/influencer/influencerHistory.js')
@@ -157,6 +157,14 @@ app.post('/RatingsSendInfluencer', async(req,res)=>{
 
 app.post('/RatingsSendClient', async(req,res)=>{
     await sendRatingClient(req,res)
+})
+
+// app.get('/RecommendationstoClient', async(req,res)=>{
+//     await sendRecommendationsClient(req,res)
+// })
+
+app.post('/RecommendationstoClient', async(req,res)=>{
+    await sendRecommendationsClient(req,res)
 })
 
 app.get('/searchInf', async(req,res) => {
