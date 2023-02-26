@@ -34,6 +34,7 @@ import ClientHistory from "./Pages/Organization View/Orders/OrderHistory/clientH
 import InfluencerHistory from "./Pages/Endorsee View/Orders/OrderHistory/influencerHistory";
 import SendAnnouncement from "./Pages/Admin/Announcement/ViewAnnouncement";
 import SearchInfluencerByName from "./Pages/Organization View/HomePage/searchInfluencer";
+import EditProfile from "./Pages/Admin/My Profile/EditProfile";
 
 const App = ()=>{
   return(
@@ -48,7 +49,7 @@ const App = ()=>{
           <Route path="/signuporg" element={(<Orgsignup />)}/>
           <Route path="/signupend" element={(<Endsignup />)}/>
           <Route path="/ChangePass" element={(<ChangePass />)}/>
-          {/* <Route path="/EditAdmin" element={(<EditAdminProfile />)}/> */}
+          
           {/* <Route path="/EditEndorsee" element={(<EditEndorseeProfile />)}/> */}
           <Route path="/announce" element={(<Announce />)}/>
           <Route path="/adminprofile" element={(<EditAdminProfile />)}/>
@@ -71,6 +72,7 @@ const App = ()=>{
           <Route path="/influencerCompletedOrders" element={(<InfluencerCompleteOrderList />)}/>
           <Route path="/influencerRejectedOrders" element={(<RejectedJobOffer />)}/>
           <Route path ="/influencerHistory" element={(<InfluencerHistory />)}/>
+          <Route path="/EditProfile" element={(<EditProfile />)}/>
 
         </Routes>
       </Router>     

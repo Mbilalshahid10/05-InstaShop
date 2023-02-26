@@ -1,23 +1,61 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import axios from 'axios'
 import './EditAdmin.css'
 const  EditAdminProfile =  ()=>{
+  // console.log('in edit admin')
+  const location = useLocation()
 
-  axios.get("http://localhost:8000/adminProfile").then(res => {
-    console.log(res)
-  }).catch(err=>console.log(err))
+  const e = location.state.email
+  const r = location.state.role
+  const p = location.state.pass
+  console.log('e,r,p', e, r,p)
 
-    const [email, setEmail] = useState("23100069@lums.edu.pk")
-    const [fName, setFName] = useState("Muhammad Bilal")
-    const [lName, setLName] = useState("Shahid")
-    const [username, setUserName] = useState("Admin")
-    const [allEntry, setAllentry] = useState([])
+  const details = {role: r.toLowerCase(), e: e, pass:p}
+
+  
+    // const [email, setEmail] = useState('')
+    // const [fName, setFName] = useState('')
+    // const [lName, setLName] = useState('')
+    // const [username, setUserName] = useState('')
+    // const [role, setrole] = useState('')
+    const [allEntry, setAllentry] = useState([]) 
+    useEffect(()=>{ 
+
+    axios.post("http://localhost:8000/adminProfile", details, {withCredentials: true})
+  .then(response => 
+    // console.log('type',response.data)
+    // console.log('details', response.data.first, response.data.last, response.data.email, response.data.username, response.data.role),
+    // response => 
+    setAllentry(response.data)
+    // response => 
+    // setFName(response.data.first), 
+    // response => 
+    // setLName(response.data.last), 
+    // response => 
+    // setUserName(response.data.username), 
+    // response => 
+    // // setAllentry(response.data)
+    // setrole(response.data.role) 
+    
+  )
+},[])
+
+  console.log('aftr q', allEntry.email, allEntry.role, allEntry.first, allEntry.last, allEntry.username)
+
+  
     const navigate = useNavigate()
 
     const onClickHandler = () => {
-      navigate('/ChangePass')
+      navigate('/ChangePass', {state:{email:e, role: r, pass:p}})
+      
+    }
+
+    const onClickEdit = () => {
+      navigate('/EditProfile', {state:{fName: allEntry.first, lName: allEntry.last, username: allEntry.username, email: allEntry.email}})
+      
     }
 
   return (
@@ -25,7 +63,14 @@ const  EditAdminProfile =  ()=>{
       <div className='editaparea'>
         <p className='editapmsg'>YOU CANNOT EDIT DETAILS</p>
         <h1 className='editaptitle'>View Profile</h1>
-        <form onSubmit={onClickHandler}>
+
+        <p className='editapinput1'>{'Name : ' + allEntry.first + allEntry.last }</p>
+        <p className='editapinput2'>{'User Name : ' + allEntry.username}</p>
+        <p className='editapinput1'>{'Email : ' + allEntry.email}</p>
+        <p className='editapinput2'>{'Role : ' + allEntry.role}</p>
+        <button className='editapbuttons' onClick={onClickEdit} >Edit Profile</button>
+        <button className='editapbuttons' onClick={onClickHandler} >Change Password</button>
+        {/* <form onSubmit={onClickHandler}>
           <label>
             <input name='fname' id='fname' value={fName} type="text" placeholder='First Name'  onChange={(e)=>setFName(e.target.value)}className='editapinput1'/>
           </label>
@@ -38,8 +83,8 @@ const  EditAdminProfile =  ()=>{
           <label>
             <input value={username} name='username' id='username' type="text" placeholder='Username' onChange={(e)=>setUserName(e.target.value)} className='editapinput2'/>
           </label>
-          <button className='editapbuttons' onClick={onClickHandler} >Change Password</button>
-        </form>
+          {/* <button className='editapbuttons' onClick={onClickHandler} >Change Password</button> 
+        </form> */}
         
       </div>
     </div>

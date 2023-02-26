@@ -79,7 +79,7 @@ app.post('/create_announcement', (authenticateUser), async (req, res) => {
     await create_announcement(req, res)
 })
 
-app.get('/adminProfile' , (authenticateUser) , async(req,res) =>{
+app.post('/adminProfile' , (authenticateUser), async(req,res) =>{
     await  getAdminProfile(req, res)    
 })
 

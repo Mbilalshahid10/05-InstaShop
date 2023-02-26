@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
-import {useNavigate} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './ChangePass.css'
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-const ChangePass = ()=>{
+// import { useLocation } from "react-router-dom";
 
+const ChangePass = ()=>{
+  const location = useLocation()
+
+  const user_email = location.state.email
+  const r = location.state.role
+  const p = location.state.pass
   
 
 
@@ -37,9 +42,9 @@ const ChangePass = ()=>{
     try{
       if (pass1 === pass2){
       let password = await hash(pass1)
-      await axios.post("http://localhost:8000/ChangePass", {role:"admin",email:"bilal.shahid@gmail.com",password:password}, {withCredentials: true});
+      await axios.post("http://localhost:8000/ChangePass", {role:r.toLowerCase() ,email:user_email, password:password}, {withCredentials: true});
       
-      navigate('/home')
+      navigate('/home', {state:{role:r,email: user_email }})
       } 
     } catch(err){
         console.log(err);

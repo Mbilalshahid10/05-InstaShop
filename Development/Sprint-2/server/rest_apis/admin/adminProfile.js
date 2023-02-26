@@ -3,18 +3,25 @@ const Admin = require('../../database/Schema/Admin')
 
 
 async function getAdminProfile(req, res){
+    // console.log(req.body)
     try{
-        console.log(req.body)
-        if(req.role === 'Admin'){
-            const admin = await Admin.findOne({email: sanitize(req.body.email)})            
+        console.log('1', req.body)
+        if(req.body.role === 'admin'){
+            console.log('2')
+            const admin = await Admin.find({email: req.body.e});
+            console.log('admin', admin)   
+            console.log('det', admin[0].role, `${admin[0].name.first} ${admin[0].name.last}`, admin[0].email ,admin[0].username)        
             const toSend = {
                 // return the profile
                 // client:client,
-                role:admin.role,
-                name : `${admin.name.first} ${admin.name.last}`,
-                email:admin.email ,
-                username:admin.username
+                role:admin[0].role,
+                first : admin[0].name.first,
+                last :admin[0].name.last,  
+                email:admin[0].email ,
+                username:admin[0].username
             }
+            console.log('tosend', toSend)
+            // res.status(200).json(recommended_influencers) 
             res.status(200).json(toSend)
         } else{
             res.status(401).send()

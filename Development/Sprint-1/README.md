@@ -4,6 +4,7 @@ Team:
 - Muhammad Affan Ashraf 23100016
 - Muhammad Umair Mohsin 23100233
 - Salman Masood 23100254
+- Farva Talib 23100268
 
 SPRINT-1 SUBMISSION GUIDELINES
 

@@ -32,6 +32,31 @@ const Navbar = () => {
   const home = () => {
     navigate('/home', {state:{role:location.state.role, email:location.state.email}})
   }
+
+  const adminprofile = () => {
+    let email = " "
+    let pwd = ''
+    if (location.state.email !== null){
+      console.log('not null email')
+      email = location.state.email
+    }
+    if (location.state.role !== null){
+      console.log('not null role')
+      role = location.state.role
+    }
+    if (location.state.pwd !== null){
+      console.log('pwd not null')
+      pwd = location.state.pwd
+    }
+    else{
+      console.log('nulll')
+    }
+    // const r = location.state.role
+    console.log('email in navbar', email)
+    console.log('role in navbar', role)
+    navigate('/adminprofile', {state:{role:role,email:email, pass:pwd}})
+  }
+  
   
   if(role && role == "Admin") {
     return (
@@ -50,9 +75,8 @@ const Navbar = () => {
             <NavLink to='/access' activestyle="true">
               Restrict/Remove Access
             </NavLink>
-            <NavLink to='/adminprofile' activestyle="true">
-              Profile
-            </NavLink>
+            <button onClick={adminprofile}>Profile
+                    </button>
           </NavMenu>
           <NavBtn>
             <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
