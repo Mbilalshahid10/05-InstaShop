@@ -122,6 +122,10 @@ const HomePage = ()=>{
       navigate('/influencerOngoingOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
 
     }
+    else if (location.state.role === "Admin"){
+      navigate('/OngoingOrderAdmin', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+
+    }
   }
 
   const rejectedOrders = () => {
