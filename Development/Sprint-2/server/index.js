@@ -46,6 +46,9 @@ const{getClientHistory} = require('./rest_apis/client/clientHistory.js')
 const{getInfluencerHistory} = require('./rest_apis/influencer/influencerHistory.js')
 const{Ordercount} = require('./rest_apis/influencer/getOrder.js')
 
+
+const{JobOfferAdmin} = require('./rest_apis/admin/JobOfferAdmin.js')
+
 const PORT = process.env.PORT || 8000
 
 app.use(express.json())
@@ -165,6 +168,11 @@ app.post('/RatingsSendClient', async(req,res)=>{
 
 app.post('/RecommendationstoClient', async(req,res)=>{
     await sendRecommendationsClient(req,res)
+})
+
+
+app.get('/JobOffersAdmin', async(req,res)=>{
+    await JobOfferAdmin(req,res)
 })
 
 app.get('/searchInf', async(req,res) => {

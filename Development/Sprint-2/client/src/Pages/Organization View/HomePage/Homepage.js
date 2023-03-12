@@ -108,6 +108,10 @@ const HomePage = ()=>{
       navigate('/influencerJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
       
     }
+    else if (location.state.role === "Admin"){
+      navigate('/JobOffersAdmin', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+      
+    }
   }
 
   const ongoingOrders = () => {

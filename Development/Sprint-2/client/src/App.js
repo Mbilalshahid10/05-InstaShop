@@ -18,17 +18,19 @@ import SignUp from "./Pages/SignUp/signup";
 import ChangePass from "./Pages/Misc/Change Pass/ChangePass";
 import HomePage from "./Pages/Organization View/HomePage/Homepage";
 
-import ClientJobOffers from "./Pages/Organization View/Orders/JobOffer/ClientJobOffers"
-import ClientOngoingOrders from "./Pages/Organization View/Orders/Ongoing/ClientOngoingOrders"
+import ClientJobOffers from "./Pages/Organization View/Orders/JobOffer/ClientJobOffers";
+import ClientOngoingOrders from "./Pages/Organization View/Orders/Ongoing/ClientOngoingOrders";
 import ClientApprovalsPending from "./Pages/Organization View/Orders/Pending/ClientPendingApprovals";
 import ClientCompleteOrderList from "./Pages/Organization View/Orders/Completed/ClientCompletedOrders";
 import RejectedByInfluencer from "./Pages/Organization View/Orders/Rejected/RejectedByInfluencer"
 
-import InfluencerJobOffers from "./Pages/Endorsee View/Orders/JobOffer/InfluencerJobOffers"
+import InfluencerJobOffers from "./Pages/Endorsee View/Orders/JobOffer/InfluencerJobOffers";
 import InfluencerOngoingOrders from "./Pages/Endorsee View/Orders/Ongoing/InfluencerOngoingOrders";
 import InfluencerApprovalsPending from "./Pages/Endorsee View/Orders/Pending/InfluencerPendingApprovals";
 import InfluencerCompleteOrderList from "./Pages/Endorsee View/Orders/Completed/InfluencerCompletedOrders";
-import RejectedJobOffer from "./Pages/Endorsee View/Orders/Rejected/RejectedJobOffer"
+import RejectedJobOffer from "./Pages/Endorsee View/Orders/Rejected/RejectedJobOffer";
+
+import JobOffersAdmin from "./Pages/Admin/Orders/JobOffer/JobOfferAdmin";
 
 import ClientHistory from "./Pages/Organization View/Orders/OrderHistory/clientHistory";
 import InfluencerHistory from "./Pages/Endorsee View/Orders/OrderHistory/influencerHistory";
@@ -65,6 +67,8 @@ const App = ()=>{
           <Route path="/clientCompletedorders" element={(<ClientCompleteOrderList />)}/>
           <Route path="/clientRejectedOrders" element={(<RejectedByInfluencer />)}/>
           <Route path ="/clientHistory" element={(<ClientHistory />)}/>
+
+          <Route path="/JobOffersAdmin" element={(<JobOffersAdmin />)}/>
 
           <Route path="/influencerJobOffers" element={(<InfluencerJobOffers />)}/>
           <Route path="/influencerOngoingOrders" element={(<InfluencerOngoingOrders />)}/>

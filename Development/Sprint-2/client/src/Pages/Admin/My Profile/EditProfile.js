@@ -69,6 +69,8 @@ const  EditProfile =  ()=>{
 //     }
 
   return (
+
+    
     <div className="editap">
       <div className='editaparea'>
         {/* <p className='editapmsg'>YOU CANNOT EDIT DETAILS</p> */}

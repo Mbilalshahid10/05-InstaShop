@@ -64,7 +64,7 @@ const  EditAdminProfile =  ()=>{
         <p className='editapmsg'>YOU CANNOT EDIT DETAILS</p>
         <h1 className='editaptitle'>View Profile</h1>
 
-        <p className='editapinput1'>{'Name : ' + allEntry.first + allEntry.last }</p>
+        <p className='editapinput1'>{'Name : ' + allEntry.first + ' '+ allEntry.last }</p>
         <p className='editapinput2'>{'User Name : ' + allEntry.username}</p>
         <p className='editapinput1'>{'Email : ' + allEntry.email}</p>
         <p className='editapinput2'>{'Role : ' + allEntry.role}</p>
