@@ -31,6 +31,7 @@ import InfluencerCompleteOrderList from "./Pages/Endorsee View/Orders/Completed/
 import RejectedJobOffer from "./Pages/Endorsee View/Orders/Rejected/RejectedJobOffer";
 
 import JobOffersAdmin from "./Pages/Admin/Orders/JobOffer/JobOfferAdmin";
+import CompletedOrderAdmin from "./Pages/Admin/Orders/CompletedOrdersAdmin/completedOrderAdmin";
 
 import ClientHistory from "./Pages/Organization View/Orders/OrderHistory/clientHistory";
 import InfluencerHistory from "./Pages/Endorsee View/Orders/OrderHistory/influencerHistory";
@@ -69,6 +70,8 @@ const App = ()=>{
           <Route path ="/clientHistory" element={(<ClientHistory />)}/>
 
           <Route path="/JobOffersAdmin" element={(<JobOffersAdmin />)}/>
+          <Route path="/CompletedOrderAdmin" element={(<CompletedOrderAdmin />)}/>
+          
 
           <Route path="/influencerJobOffers" element={(<InfluencerJobOffers />)}/>
           <Route path="/influencerOngoingOrders" element={(<InfluencerOngoingOrders />)}/>

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import './JobOfferAdmin.css'
+import './completedOrderAdmin.css'
 
 import axios from 'axios'
 import { useState } from 'react'
 // const shapack = require('./database/Schema/Announcement')
 // const shapack = require("../../../server/database/Schema/Announcement")
-const JobOffersAdmin = ()=>{
+const CompletedOrderAdmin = ()=>{
 
-    console.log('Admin job offer')
+    console.log('Admin job completed')
     const location = useLocation()
     // const email = location.state.email
 
@@ -29,7 +29,7 @@ const JobOffersAdmin = ()=>{
 
     const myfunc = ()=>{
         pendinglist.map((val,key)=>{
-            if(val.status === "Pending" && val.acceptedByClient === false){
+            if(val.status === "Completed" && val.acceptedByClient === true){
                 newpendlist[key] = val
             }
         })
@@ -54,7 +54,7 @@ const JobOffersAdmin = ()=>{
         <div>
         {
             <div className='ipa'>
-                <h2>Here are the job offers</h2>
+                <h2>Here are the Completed Orders</h2>
                 {
                     newpendlist.map((val,key)=>{
                         return(
@@ -80,4 +80,4 @@ const JobOffersAdmin = ()=>{
 }
 
 
-export default JobOffersAdmin;
+export default CompletedOrderAdmin;

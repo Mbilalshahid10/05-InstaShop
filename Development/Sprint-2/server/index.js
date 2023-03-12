@@ -47,7 +47,7 @@ const{getInfluencerHistory} = require('./rest_apis/influencer/influencerHistory.
 const{Ordercount} = require('./rest_apis/influencer/getOrder.js')
 
 
-const{JobOfferAdmin} = require('./rest_apis/admin/JobOfferAdmin.js')
+const{AdminOrder} = require('./rest_apis/admin/AdminOrder.js')
 
 const PORT = process.env.PORT || 8000
 
@@ -171,8 +171,8 @@ app.post('/RecommendationstoClient', async(req,res)=>{
 })
 
 
-app.get('/JobOffersAdmin', async(req,res)=>{
-    await JobOfferAdmin(req,res)
+app.get('/AdminOrder', async(req,res)=>{
+    await AdminOrder(req,res)
 })
 
 app.get('/searchInf', async(req,res) => {

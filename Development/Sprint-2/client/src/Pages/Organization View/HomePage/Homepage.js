@@ -149,6 +149,10 @@ const HomePage = ()=>{
     else if(location.state.role === "Influencer"){
       navigate('/influencerCompletedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
     }
+
+    else if(location.state.role === "Admin"){
+      navigate('/completedOrderAdmin', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+    }
   }
 
   const OrderHistory = ()=>{
