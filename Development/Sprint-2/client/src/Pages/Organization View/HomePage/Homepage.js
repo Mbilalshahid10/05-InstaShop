@@ -136,10 +136,10 @@ const HomePage = ()=>{
       navigate('/influencerRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
 
     }
-    // else if (location.state.role === "Admin"){
-    //   navigate('/influencerRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+    else if (location.state.role === "Admin"){
+      navigate('/RejectedOrdersAdmin', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
 
-    // }
+    }
   }
 
   const topending = () => {
@@ -149,10 +149,10 @@ const HomePage = ()=>{
     else if(location.state.role === "Influencer"){
       navigate('/influencerPendingApprovals', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
     }
-    // else if (location.state.role === "Admin"){
-    //   navigate('/influencerRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+    else if (location.state.role === "Admin"){
+      navigate('/AdminPendingOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
 
-    // }
+    }
   }
   const toComplete = ()=>{
     if(location.state.role === "Client"){
@@ -206,6 +206,7 @@ const HomePage = ()=>{
         </div>
       </div>
       {/* <div className='orderTabs'> */}
+      
       <h1 className='rec'>Recommendations</h1>
         <div className='Card'>
           {recProfiles}

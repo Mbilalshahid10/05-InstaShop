@@ -54,7 +54,7 @@ const OngoingOrderAdmin = ()=>{
         <div>
         {
             <div className='ipa'>
-                <h2>Here are the Completed Orders</h2>
+                <h2>Here are the Ongoing Orders</h2>
                 {
                     newpendlist.map((val,key)=>{
                         return(

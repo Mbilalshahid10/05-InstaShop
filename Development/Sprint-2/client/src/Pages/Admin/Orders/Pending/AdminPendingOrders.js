@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import './AdminOrderHistory.css'
+import './AdminPendingOrders.css'
 
 import axios from 'axios'
 import { useState } from 'react'
 // const shapack = require('./database/Schema/Announcement')
 // const shapack = require("../../../server/database/Schema/Announcement")
-const AdminOrderHistory = ()=>{
+const AdminPendingOrders = ()=>{
 
     // console.log('Admin job completed')
     const location = useLocation()
@@ -29,7 +29,7 @@ const AdminOrderHistory = ()=>{
 
     const myfunc = ()=>{
         pendinglist.map((val,key)=>{
-            if(val.status === "Completed" && val.acceptedByClient === true){
+            if(val.status === "Completed" && val.acceptedByClient === false){
                 newpendlist[key] = val
             }
         })
@@ -54,7 +54,7 @@ const AdminOrderHistory = ()=>{
         <div>
         {
             <div className='ipa'>
-                <h2>Here are the Orders History</h2>
+                <h2>Here are the Pending Orders</h2>
                 {
                     newpendlist.map((val,key)=>{
                         return(
@@ -80,4 +80,4 @@ const AdminOrderHistory = ()=>{
 }
 
 
-export default AdminOrderHistory;
+export default AdminPendingOrders;
