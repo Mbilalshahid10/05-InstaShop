@@ -33,6 +33,9 @@ import RejectedJobOffer from "./Pages/Endorsee View/Orders/Rejected/RejectedJobO
 import JobOffersAdmin from "./Pages/Admin/Orders/JobOffer/JobOfferAdmin";
 import CompletedOrderAdmin from "./Pages/Admin/Orders/CompletedOrdersAdmin/completedOrderAdmin";
 import OngoingOrderAdmin from "./Pages/Admin/Orders/Ongoing/OngoingOrderAdmin";
+import AdminOrderHistory from "./Pages/Admin/Orders/OrderHistory/AdminOrderHistory";
+// import OngoingOrderAdmin from "./Pages/Admin/Orders/Ongoing/OngoingOrderAdmin";
+// import OngoingOrderAdmin from "./Pages/Admin/Orders/Ongoing/OngoingOrderAdmin";
 
 import ClientHistory from "./Pages/Organization View/Orders/OrderHistory/clientHistory";
 import InfluencerHistory from "./Pages/Endorsee View/Orders/OrderHistory/influencerHistory";
@@ -73,6 +76,9 @@ const App = ()=>{
           <Route path="/JobOffersAdmin" element={(<JobOffersAdmin />)}/>
           <Route path="/CompletedOrderAdmin" element={(<CompletedOrderAdmin />)}/>
           <Route path="/OngoingOrderAdmin" element={(<OngoingOrderAdmin />)}/>
+          <Route path="/AdminOrderHistory" element={(<AdminOrderHistory />)}/>
+          {/* <Route path="/OngoingOrderAdmin" element={(<OngoingOrderAdmin />)}/> */}
+          {/* <Route path="/OngoingOrderAdmin" element={(<OngoingOrderAdmin />)}/> */}
           
 
           <Route path="/influencerJobOffers" element={(<InfluencerJobOffers />)}/>

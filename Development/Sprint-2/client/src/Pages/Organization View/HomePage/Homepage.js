@@ -136,6 +136,10 @@ const HomePage = ()=>{
       navigate('/influencerRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
 
     }
+    // else if (location.state.role === "Admin"){
+    //   navigate('/influencerRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+
+    // }
   }
 
   const topending = () => {
@@ -145,6 +149,10 @@ const HomePage = ()=>{
     else if(location.state.role === "Influencer"){
       navigate('/influencerPendingApprovals', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
     }
+    // else if (location.state.role === "Admin"){
+    //   navigate('/influencerRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+
+    // }
   }
   const toComplete = ()=>{
     if(location.state.role === "Client"){
@@ -165,6 +173,10 @@ const HomePage = ()=>{
     }
     else if(location.state.role === "Influencer"){
       navigate('/influencerHistory', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+    }
+    else if (location.state.role === "Admin"){
+      navigate('/AdminOrderHistory', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+
     }
   }
   const searchInfluencer = ()=>{
