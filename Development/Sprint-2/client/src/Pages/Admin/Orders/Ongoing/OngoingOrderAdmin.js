@@ -44,11 +44,12 @@ const OngoingOrderAdmin = ()=>{
 
     // }
 
-    // const setStatus2 = async(myID)=>{
-    //     const acceptData = {ans:"Rejected", email:email, myID:myID}
-    //     // console.log(acceptData)
-    //     await axios.post("http://localhost:8000/changeStatus",acceptData)
-    // }
+    const setStatus2 = async(myID)=>{
+        const acceptData = {ans:"Rejected", myID:myID}
+        // console.log(acceptData)
+        await axios.post("http://localhost:8000/OngoingOrderAdminReject",acceptData)
+        myfunc()
+    }
     
     return(
         <div>
@@ -67,8 +68,8 @@ const OngoingOrderAdmin = ()=>{
                                     <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
                                 </div>
 
-                                {/* <button onClick={()=>{setStatus1(val.orderID)}}>Accept</button> 
-                                <button onClick={()=>{setStatus2(val.orderID)}}>Reject</button> */}
+                                {/* <button onClick={()=>{setStatus1(val.orderID)}}>Accept</button>  */}
+                                <button onClick={()=>{setStatus2(val.orderID)}}>Reject</button>
                             </div>
                         )
                     })

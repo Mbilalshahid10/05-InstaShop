@@ -49,6 +49,8 @@ const{Ordercount} = require('./rest_apis/influencer/getOrder.js')
 
 const{AdminOrder} = require('./rest_apis/admin/AdminOrder.js')
 
+const{OngoingRejectAdmin} = require('./rest_apis/admin/OngoingOrderRejectAdmin.js')
+
 const PORT = process.env.PORT || 8000
 
 app.use(express.json())
@@ -175,6 +177,10 @@ app.post('/RecommendationstoClient', async(req,res)=>{
 
 app.get('/AdminOrder', async(req,res)=>{
     await AdminOrder(req,res)
+})
+
+app.post('/OngoingOrderAdminReject', async(req,res)=>{
+    await OngoingRejectAdmin(req,res)
 })
 
 app.get('/searchInf', async(req,res) => {
