@@ -31,7 +31,7 @@ const { updateAccept } = require('./rest_apis/client/changeacceptdb.js')
 const { updateStatus } = require('./rest_apis/client/changeStatusToOngoing.js')
 const { placeOrder } = require('./rest_apis/client/placeOrder.js')
 const{findInfluencerByName} = require('./rest_apis/client/findInfluencer.js')
-
+const{addOrder} = require('./rest_apis/client/addPastOrder.js')
 // Rating
 const{updateRating} = require('./rest_apis/client/updateRating.js')
 const {updateRatingInfluencer} = require('./rest_apis/influencer/updateRatingInfluencer.js')
@@ -132,6 +132,10 @@ app.post('/placeOrder', async(req,res)=>{
     await placeOrder(req,res)
 })
 
+app.post('/addOrder', async(req,res)=>{
+    await addOrder(req,res)
+})
+
 app.get('/getOrder' , async(req,res)=>{
     await Ordercount(req,res)
 })
@@ -149,11 +153,9 @@ app.get('/GetRatingClient' , async(req,res)=>{
     await getRating(req,res)
 })
 
-
 // app.post('/RatingsSend', async(req,res)=>{
 //     await sendRating(req,res)
 // })
-
 app.post('/RatingsSendInfluencer', async(req,res)=>{
     await sendRatingInfluencer(req,res)
 })
