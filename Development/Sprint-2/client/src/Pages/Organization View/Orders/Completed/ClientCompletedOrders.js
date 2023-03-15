@@ -58,13 +58,13 @@ const ClientCompleteOrderList = ()=>{
                 console.log(data2)
                 console.log(" data of orders is displayed here : " , data2)
                 var result2 = data2.find(item => item.email === influencerEmail);
-                const newdata2 = result2.pastOrders
+                let newdata2 = result2.pastOrders
+                let orderlength =newdata2.length;
+                console.log("order length is " , orderlength)
                 console.log("what is new data2 : " , newdata2)
                 console.log("the length is " , newdata2.length)
-                
-                let updatedRating = (newrating+myrating)/2;
+                let updatedRating = (newrating*(orderlength-1)+myrating)/orderlength;
                 var num3 = Number(updatedRating.toFixed(2));
-
                 console.log("updated rating here is now " ,num3)
                 const acceptData ={ email: influencerEmail,  myrating: num3}
                 //third query
