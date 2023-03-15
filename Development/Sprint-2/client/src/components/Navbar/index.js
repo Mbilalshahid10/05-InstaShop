@@ -4,7 +4,7 @@ import './navbar.css'
 import logo from '../../images/logo.png'
 import Cookies from 'js-cookie'
 import jwt_decoded from 'jwt-decode'
-import axios from 'axios';
+import axios from 'axios'
 
 import {
   Nav,

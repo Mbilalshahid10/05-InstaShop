@@ -15,12 +15,15 @@ const ProfileCards = (props) => {
         console.log("In place Order")
         console.log("Props are: ", props)
         const orderDetails = {clientEmail: props.clientEmail, influencerEmail: props.influencerEmail, price: price};
-
+        console.log("shapck")
         await axios.post("http://localhost:8000/placeOrder", orderDetails).then(res =>{
             console.log("now add it in order history of client")
             console.log("print the data here " , res.data)
+            let a = {myID: res.data, uniqEmail: props.clientEmail}
+            axios.post('http://localhost:8000/addOrder',a)
 
-        let addorder = axios.post('http://localhost:8000/addOrder' , orderDetails)
+
+        // let addorder = axios.post('http://localhost:8000/addOrder' , orderDetails)
 
         })
 
