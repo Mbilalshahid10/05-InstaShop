@@ -9,67 +9,17 @@ const  EditProfile =  ()=>{
   const location = useLocation()
   const navigate = useNavigate()
 
-//   fName: allEntry.first, lName: allEntry.last, username: allEntry.username, email: allEntry.email
-
-//   const email = location.state.email
-//   const  = location.state.fName
-//   const last_name = location.state.lName
-//   const username = location.state.username
-//   console.log('e,r,p,q', e, r,p,q)
-
-//   const details = {role: r.toLowerCase(), e: e, pass:p}
 
 //     // const [email, setEmail] = useState('')
     const [fName, setFName] = useState('')
     const [lName, setLName] = useState('')
     const [userName, setUserName] = useState('')
-//     // const [username, setUserName] = useState('')
-//     // const [role, setrole] = useState('')
-//     const [allEntry, setAllentry] = useState([]) 
-
-
-
-//     useEffect(()=>{ 
-
-//     axios.post("http://localhost:8000/adminProfile", details, {withCredentials: true})
-//   .then(response => 
-//     // console.log('type',response.data)
-//     // console.log('details', response.data.first, response.data.last, response.data.email, response.data.username, response.data.role),
-//     // response => 
-//     setAllentry(response.data)
-//     // response => 
-//     // setFName(response.data.first), 
-//     // response => 
-//     // setLName(response.data.last), 
-//     // response => 
-//     // setUserName(response.data.username), 
-//     // response => 
-//     // // setAllentry(response.data)
-//     // setrole(response.data.role) 
-    
-//   )
-// },[])
-
-//   console.log('aftr q', allEntry.email, allEntry.role, allEntry.first, allEntry.last, allEntry.username)
-
-  
 //     const navigate = useNavigate()
-
     const onClickHandler = (e) => {
         e.preventDefault()
         navigate('/ChangePass')
-
-
-
-    //   navigate('/EditAdmin', {state:{fName: allEntry.first, lName: allEntry.last, username: allEntry.username}})
     }
-
-//     const onClickEdit = () => {
-//       navigate('/ChangePass')
-//     }
-
   return (
-
     
     <div className="editap">
       <div className='editaparea'>

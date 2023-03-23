@@ -30,14 +30,13 @@ const ClientCompleteOrderList = ()=>{
         })
     }
     myfunc()
- 
+
     const sendRating = async(myrating, influencerEmail , myID)=>{
         const ratingOrder ={ email: influencerEmail,  myrating: myrating , myID:myID} 
         console.log(ratingOrder)
         let request1  =  axios.post("http://localhost:8000/RatingAccepted", ratingOrder)
-    
         const ratedata = { email: influencerEmail,  myrating: myrating , myID:myID}
-
+        
         console.log("check if old rating is fetched")
         console.log("Check if rating is coming from backend !!! ")
         // console.log(ratenew.rating)

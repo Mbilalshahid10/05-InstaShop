@@ -30,18 +30,14 @@ import InfluencerApprovalsPending from "./Pages/Endorsee View/Orders/Pending/Inf
 import InfluencerCompleteOrderList from "./Pages/Endorsee View/Orders/Completed/InfluencerCompletedOrders";
 import RejectedJobOffer from "./Pages/Endorsee View/Orders/Rejected/RejectedJobOffer";
 
-import JobOffersAdmin from "./Pages/Admin/Orders/JobOffer/JobOfferAdmin";
-import CompletedOrderAdmin from "./Pages/Admin/Orders/CompletedOrdersAdmin/completedOrderAdmin";
-import OngoingOrderAdmin from "./Pages/Admin/Orders/Ongoing/OngoingOrderAdmin";
-import AdminOrderHistory from "./Pages/Admin/Orders/OrderHistory/AdminOrderHistory";
-import AdminPendingOrders from "./Pages/Admin/Orders/Pending/AdminPendingOrders";
-import RejectedOrdersAdmin from "./Pages/Admin/Orders/Rejected/RejectedOrdersAdmin";
 
+// import AdminOrderHistory from "./Pages/Admin/Orders/OrderHistory/AdminOrderHistory";
 import ClientHistory from "./Pages/Organization View/Orders/OrderHistory/clientHistory";
 import InfluencerHistory from "./Pages/Endorsee View/Orders/OrderHistory/influencerHistory";
 import SendAnnouncement from "./Pages/Admin/Announcement/ViewAnnouncement";
 import SearchInfluencerByName from "./Pages/Organization View/HomePage/searchInfluencer";
 import EditProfile from "./Pages/Admin/My Profile/EditProfile";
+import SendOrder from "./Pages/Organization View/Send Order/SendOrder";
 
 const App = ()=>{
   return(
@@ -62,7 +58,7 @@ const App = ()=>{
           <Route path="/adminprofile" element={(<EditAdminProfile />)}/>
           <Route path="/home" element={(<HomePage />)}/>
           <Route path ="/clientProfile" element ={(<EditOrgProfile/>)}/>
-          <Route path ="/InfluencerProfile" element ={(<EditEndorseeProfile/>)}/>
+          <Route path ="/influencerProfile" element ={(<EditEndorseeProfile/>)}/>
           <Route path = "/viewannouncement" element={(<SendAnnouncement/>)}/>
           <Route path ="/searchInf" element={(<SearchInfluencerByName />)}/>
 
@@ -73,14 +69,8 @@ const App = ()=>{
           <Route path="/clientRejectedOrders" element={(<RejectedByInfluencer />)}/>
           <Route path ="/clientHistory" element={(<ClientHistory />)}/>
 
-          <Route path="/JobOffersAdmin" element={(<JobOffersAdmin />)}/>
-          <Route path="/CompletedOrderAdmin" element={(<CompletedOrderAdmin />)}/>
-          <Route path="/OngoingOrderAdmin" element={(<OngoingOrderAdmin />)}/>
-          <Route path="/AdminOrderHistory" element={(<AdminOrderHistory />)}/>
-          <Route path="/AdminPendingOrders" element={(<AdminPendingOrders />)}/>
-          <Route path="/RejectedOrdersAdmin" element={(<RejectedOrdersAdmin />)}/>
-          
 
+          {/* <Route path="/AdminOrderHistory" element={(<AdminOrderHistory />)}/> */}
           <Route path="/influencerJobOffers" element={(<InfluencerJobOffers />)}/>
           <Route path="/influencerOngoingOrders" element={(<InfluencerOngoingOrders />)}/>
           <Route path="/influencerPendingApprovals" element={(<InfluencerApprovalsPending />)}/>
@@ -88,6 +78,8 @@ const App = ()=>{
           <Route path="/influencerRejectedOrders" element={(<RejectedJobOffer />)}/>
           <Route path ="/influencerHistory" element={(<InfluencerHistory />)}/>
           <Route path="/EditProfile" element={(<EditProfile />)}/>
+
+          <Route path="/sendOrder" element={(<SendOrder/>)}/>
 
         </Routes>
       </Router>     

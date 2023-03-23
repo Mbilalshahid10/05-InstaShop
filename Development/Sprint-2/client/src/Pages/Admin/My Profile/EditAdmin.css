@@ -4,13 +4,11 @@
     align-items: center;
     justify-content: center;
   }
-  
   .editaparea {
     text-align: left;
     width: 27rem;
     height: 25rem;
   }
-  
   .editapmsg {
     position: relative;
     top: 1.75rem;
@@ -19,7 +17,6 @@
     font-size: 0.8rem;
     opacity: 0.7;
   }
-  
   .editaptitle {
     font-family: semibold;
     color: white;

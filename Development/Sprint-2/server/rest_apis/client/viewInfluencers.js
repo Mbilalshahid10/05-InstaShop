@@ -1,8 +1,6 @@
 const sanitize = require('mongo-sanitize')
 const mongoose = require("mongoose")
-
 const Influencer = require('../../database/Schema/Influencer')
-
 const Order = require('../../database/Schema/Order')
 
 async function getAllInfluencers(req, res){

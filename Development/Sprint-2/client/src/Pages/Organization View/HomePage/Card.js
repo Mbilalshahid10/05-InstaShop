@@ -1,6 +1,7 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState  } from "react";
 import axios from 'axios';
 import './Card.css'
+import {useNavigate, useLocation} from 'react-router-dom';
 
 
 const ProfileCards = (props) => {
@@ -10,37 +11,29 @@ const ProfileCards = (props) => {
     const handleChange = (e) => {
         setPrice(e.target.value)
     }
-
-    const placeOrder = async () => {
-        console.log("In place Order")
-        console.log("Props are: ", props)
-        const orderDetails = {clientEmail: props.clientEmail, influencerEmail: props.influencerEmail, price: price};
-        console.log("shapck")
-        await axios.post("http://localhost:8000/placeOrder", orderDetails).then(res =>{
-            console.log("now add it in order history of client")
-            console.log("print the data here " , res.data)
-            let a = {myID: res.data, uniqEmail: props.clientEmail}
-            axios.post('http://localhost:8000/addOrder',a)
-
-
-        // let addorder = axios.post('http://localhost:8000/addOrder' , orderDetails)
-
-        })
-
-        // let placeorder = await axios.post("http://localhost:8000/placeOrder",  orderDetails).then(response =>{
-        // console.log("is the data printed here")
-        // console.log(response.data)
-        // let addorder = axios.post('http://localhost:8000/addOrder' , orderDetails)
-        // })
+    const navigate = useNavigate()
+    const placeOrder = () =>{
+        navigate('/sendOrder')
     }
-    
+    // const OrderPlaced = async () => {
+    //     console.log("In place Order")
+    //     // console.log("Props are: ", props)
+    //     const orderDetails = {clientEmail: props.clientEmail, influencerEmail: props.influencerEmail, price: price};
+    //     console.log("shapck")
+    //     await axios.post("http://localhost:8000/placeOrder", orderDetails).then(res =>{
+    //         console.log("now add it in order history of client")
+    //         console.log("print the data here " , res.data)
+    //         let a = {myID: res.data, uniqEmail: props.clientEmail}
+    //         axios.post('http://localhost:8000/addOrder',a)
+    //     })
+    // }
+
     return (
         <div className="card">
-            <h1>Name: {props.name}</h1>
-            <p className="title">Niche: {props.niche}</p>
-            <p>Rating: {props.rating}</p>
-            <input className="price" type="Number" value={price} onChange={handleChange}></input>
-            <button onClick={placeOrder}>Place Order</button>
+        <h1>{props.name}</h1>
+        <p>Niche: {props.niche}</p>
+        <p>Rating: {props.rating.toFixed(2)}/5</p>
+        <button onClick={placeOrder}>Place Order</button>
         </div>
     ); 
 }

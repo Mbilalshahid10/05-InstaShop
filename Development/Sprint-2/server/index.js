@@ -11,7 +11,7 @@ connect(uri);
 // rest apis
 const {login} = require('./rest_apis/login')
 const {create_announcement} = require('./rest_apis/admin/createAnnouncement')
-const {Signup}  = require('./rest_apis/Signup')
+const {Signup} = require('./rest_apis/Signup')
 const {changePasswordGeneral} = require('./rest_apis/changePasswordGeneral')
 
 //Admin
@@ -22,30 +22,30 @@ const{get_announcement} = require('./rest_apis/admin/getAnnouncement.js')
 
 //Influencer
 const{getInfluencerProfile} = require('./rest_apis/influencer/InfluencerProfile')
+
 // Client
 const {getclientProfile} = require('./rest_apis/client/clientProfile')
 const {getAllInfluencers} = require('./rest_apis/client/viewInfluencers')
-const { getPendingApprovals } = require('./rest_apis/client/viewpendingapprovals.js')
-const { getCompletedOrders} = require('./rest_apis/client/completedorders.js')
-const { updateAccept } = require('./rest_apis/client/changeacceptdb.js')
-const { updateStatus } = require('./rest_apis/client/changeStatusToOngoing.js')
-const { placeOrder } = require('./rest_apis/client/placeOrder.js')
-const{findInfluencerByName} = require('./rest_apis/client/findInfluencer.js')
-const{addOrder} = require('./rest_apis/client/addPastOrder.js')
+const {getPendingApprovals } = require('./rest_apis/client/viewpendingapprovals.js')
+const {getCompletedOrders} = require('./rest_apis/client/completedorders.js')
+const {updateAccept } = require('./rest_apis/client/changeacceptdb.js')
+const {updateStatus } = require('./rest_apis/client/changeStatusToOngoing.js')
+const {placeOrder } = require('./rest_apis/client/placeOrder.js')
+const {findInfluencerByName} = require('./rest_apis/client/findInfluencer.js')
+const {addOrder} = require('./rest_apis/client/addPastOrder.js')
 // Rating
-const{updateRating} = require('./rest_apis/client/updateRating.js')
+const {updateRating} = require('./rest_apis/client/updateRating.js')
 const {updateRatingInfluencer} = require('./rest_apis/influencer/updateRatingInfluencer.js')
 
-const{getRating} = require('./rest_apis/influencer/getRating.js')
+const {getRating} = require('./rest_apis/influencer/getRating.js')
 // const{sendRating} = require('./rest_apis/client/RatingSend.js')
 const {sendRatingInfluencer} = require('./rest_apis/influencer/RatingsSendInfluencer.js')
-const{sendRatingClient} = require('./rest_apis/client/RatingSendClient.js')
-const{sendRecommendationsClient} = require('./rest_apis/client/sendRecommendationsClient.js')
+const {sendRatingClient} = require('./rest_apis/client/RatingSendClient.js')
+const {sendRecommendationsClient} = require('./rest_apis/client/sendRecommendationsClient.js')
 //Order History
-const{getClientHistory} = require('./rest_apis/client/clientHistory.js')
-const{getInfluencerHistory} = require('./rest_apis/influencer/influencerHistory.js')
-const{Ordercount} = require('./rest_apis/influencer/getOrder.js')
-
+const {getClientHistory} = require('./rest_apis/client/clientHistory.js')
+const {getInfluencerHistory} = require('./rest_apis/influencer/influencerHistory.js')
+const {Ordercount} = require('./rest_apis/influencer/getOrder.js')
 
 const{AdminOrder} = require('./rest_apis/admin/AdminOrder.js')
 
@@ -189,14 +189,23 @@ app.get('/searchInf', async(req,res) => {
 
 // see the correct files names
 //Influencer Profile
-app.get('/InfluencerProfile' , (authenticateUser) , async(req,res) =>{
+// app.get('/InfluencerProfile' , (authenticateUser) , async(req,res) =>{
+//     await  getInfluencerProfile(req, res)    
+// })
+
+app.post('/InfluencerProfile' , (authenticateUser) , async(req,res) =>{
     await  getInfluencerProfile(req, res)    
 })
-// //Client Profile
-app.get('/clientProfile' , (authenticateUser) , async(req,res) =>{
-    await  getclientProfile(req, res)    
-})
 
+
+// //Client Profile
+// app.get('/clientProfile' , (authenticateUser) , async(req,res) =>{
+//     await  getclientProfile(req, res)    
+// })
+app.post('/clientProfile' , (authenticateUser) , async(req,res) =>{
+        await  getclientProfile(req, res)    
+    })
+    
 // general
 app.get('/logout', (req, res) => {
     // console.log("Backend Logout")

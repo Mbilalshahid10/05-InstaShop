@@ -40,9 +40,9 @@ const clientSchema = new mongoose.Schema({
         required: true
     },
     // confirmPassword:{
-    //     type: String,
-    //     required: true
-    // },
+    // type: String,
+    // required: true
+    //},
     rating:{
         type: Number,
         required:true

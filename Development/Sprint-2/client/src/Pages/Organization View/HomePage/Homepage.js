@@ -1,9 +1,8 @@
 import React, { useState, useEffect} from 'react'
-// import {useNavigate} from 'react-router-dom';
-// import React, { useState } from 'react'
-import {useNavigate, useLocation} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import './HomePage.css'
 import ProfileCards from './Card.js'
+import {useNavigate} from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -28,13 +27,15 @@ const HomePage = ()=>{
         const temp = data.slice(0,5)
         const profiles = temp.map(profile => {
           return (
-            <ProfileCards 
-            name = {profile.name.first}
-            niche = {profile.niche}
-            rating = {profile.rating}
-            clientEmail = {location.state.email}
-            influencerEmail = {profile.email}
-            />
+            <div className='cardcontainer'>
+              <ProfileCards 
+              name = {profile.name.first}
+              niche = {profile.niche}
+              rating = {profile.rating}
+              clientEmail = {location.state.email}
+              influencerEmail = {profile.email}
+              />
+          </div>
           )
         })
         setAllProfiles(profiles)
@@ -42,11 +43,7 @@ const HomePage = ()=>{
     }
     
   }, [])    
-  // let email = 
   const client_email = {email: location.state.email}
-
-
-
 
 
   useEffect( () => {
@@ -58,48 +55,23 @@ const HomePage = ()=>{
         const temp = data.slice(0,5)
         const profiles = temp.map(profile => {
           return (
-            <ProfileCards 
-            name = {profile.name.first}
-            niche = {profile.niche}
-            rating = {profile.rating}
-            clientEmail = {location.state.email}
-            influencerEmail = {profile.email}
-            />
+            <div className='cardcontainer'>
+              <ProfileCards
+                name = {profile.name.first}
+                niche = {profile.niche}
+                rating = {profile.rating}
+                clientEmail = {location.state.email}
+                influencerEmail = {profile.email}
+              />
+          </div>
           )
         })
         setRecProfiles(profiles)
       })
     }
-    
   }, [])    
   
-  // // console.log(newEntry)
-  // axios.post('http://localhost:8000/RecommendationstoClient', client_email ,{withCredentials: true})
-  //     .then(response => 
-  //       console.log(response.data)
-  //       )
-      // .then(data => {
-      //   // console.log(data)
-      //   // const temp = data.slice(0,5)
-      //   // const profiles = temp.map(profile => {
-      //   //   return (
-      //   //     <ProfileCards 
-      //   //     name = {profile.name.first}
-      //   //     niche = {profile.niche}
-      //   //     rating = {profile.rating}
-      //   //     clientEmail = {location.state.email}
-      //   //     influencerEmail = {profile.email}
-      //   //     />
-      //   //   )
-      //   // }
-      //   )
-      //   setAllProfiles(profiles)
-      // })
 
-
-
-  // console.log("Location.state: ", location.state)
-  
   const jobOffers = () => {
     if(location.state.role === "Client"){
       navigate('/clientJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
@@ -110,7 +82,6 @@ const HomePage = ()=>{
     }
     else if (location.state.role === "Admin"){
       navigate('/JobOffersAdmin', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-      
     }
   }
 
@@ -186,41 +157,40 @@ const HomePage = ()=>{
 
   return (
     <div className="homepage">
-      <div className='homepagearea'>
-        <p className='homepagemsg'>MAKE SURE YOU ENTER THE EXACT NAME</p>
-        <h1 className='homepagetitle'>Find An Endorsee</h1>
-        <form>
-          <label>
-          <input type="text" placeholder="Enter Endorsee's first Name" className='homepageinput1' value={first} onChange={(e)=>setFirst(e.target.value)}/>
-          </label>
-        </form>
-        
-        <button onClick={searchInfluencer} className='homepagebuttons' type='submit'>Search</button>
-        <div className='orderTabs'>
-          <button onClick={jobOffers}>Job Offers</button>
-          <button onClick={ongoingOrders}>Ongoing Orders</button>
-          <button onClick={topending}>Pending approvals</button>
-          <button onClick={toComplete}>Completed Orders</button>
-          <button onClick={rejectedOrders}>Rejected Orders</button>
-          <button onClick={OrderHistory}>Order History</button>
-        </div>
-      </div>
-      {/* <div className='orderTabs'> */}
-      
-      <h1 className='rec'>Recommendations</h1>
-        <div className='Card'>
-          {recProfiles}
-        </div>
-        {/* </div> */}
+    <div className='homepagearea'>
+      <p className='homepagemsg'>MAKE SURE YOU ENTER THE EXACT NAME</p>
+      <h1 className='homepagetitle'>Find An Endorsee</h1>
+      <form>
+        <label>
+        <input type="text" placeholder="Enter Endorsee's first Name" className='homepageinput1' value={first} onChange={(e)=>setFirst(e.target.value)}/>
+        </label>
+      </form>
+      <button onClick={searchInfluencer} className='homepagebuttons' type='submit'>Search</button>
+    </div>
+    
+    <div className='tabsContainer'>
+      <h1 className='rec'>Find Your Orders</h1>
+        <button className='orderTabs' onClick={jobOffers}>Job Offers</button>
+        <button className='orderTabs' onClick={ongoingOrders}>Ongoing Orders</button>
+        <button className='orderTabs' onClick={topending}>Pending approvals</button>
+        <button className='orderTabs' onClick={toComplete}>Completed Orders</button>
+        <button className='orderTabs' onClick={rejectedOrders}>Rejected Orders</button>
+        <button className='orderTabs' onClick={OrderHistory}>Order History</button>
+    </div>
 
-      {allProfiles && 
-        <div className='Card'>
-          {allProfiles}
-        </div>
-      }
-
+    <h1 className='rec'>Recommended For You</h1>
+    <div className='recscontainer'>
+      <div className='cardcontainer'>
+        {recProfiles}
       </div>
+    </div>
+
+    <h1 className='rec'>All Influencers</h1>
+    <div className='cardcontainer'>
+      {allProfiles}
+    </div>
+  </div>
+    
   );
 }
-
 export default HomePage;

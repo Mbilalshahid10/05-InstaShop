@@ -49,7 +49,7 @@ const Navbar = () => {
       pwd = location.state.pwd
     }
     else{
-      console.log('nulll')
+      console.log('null')
     }
     // const r = location.state.role
     console.log('email in navbar', email)
@@ -57,7 +57,54 @@ const Navbar = () => {
     navigate('/adminprofile', {state:{role:role,email:email, pass:pwd}})
   }
   
-  
+  const influencerProfile = () => {
+    let email = " "
+    let pwd = ''
+    if (location.state.email !== null){
+      console.log('not null email')
+      email = location.state.email
+    }
+    if (location.state.role !== null){
+      console.log('not null role')
+      role = location.state.role
+    }
+    if (location.state.pwd !== null){
+      console.log('pwd not null')
+      pwd = location.state.pwd
+    }
+    else{
+      console.log('null')
+    }
+    console.log('email in navbar', email)
+    console.log('role in navbar', role)
+    navigate('/influencerProfile', {state:{role:role,email:email, pass:pwd}})
+  }
+
+  const clientProfile = () => {
+    let email = " "
+    let pwd = ''
+    if (location.state.email !== null){
+      console.log('not null email')
+      email = location.state.email
+    }
+    if (location.state.role !== null){
+      console.log('not null role')
+      role = location.state.role
+    }
+    if (location.state.pwd !== null){
+      console.log('pwd not null')
+      pwd = location.state.pwd
+    }
+    else{
+      console.log('null')
+    }
+    console.log('email in navbar', email)
+    console.log('role in navbar', role)
+    navigate('/clientProfile', {state:{role:role,email:email, pass:pwd}})
+  }
+
+
+
   if(role && role == "Admin") {
     return (
         <Nav>
@@ -73,10 +120,10 @@ const Navbar = () => {
               Send Announcement
             </NavLink>
             <NavLink to='/access' activestyle="true">
-              Restrict/Remove Access
+              Restrict Access
             </NavLink>
-            <button onClick={adminprofile}>Profile
-                    </button>
+            <button onClick={adminprofile} activestyle="true">Profile
+            </button>
           </NavMenu>
           <NavBtn>
             <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
@@ -102,12 +149,11 @@ const Navbar = () => {
             <NavLink to='/clientorders' activestyle="true">
               Orders
             </NavLink>
-            <NavLink to='/clientannounce' activestyle="true">
-              Announcements
-            </NavLink>
-            <NavLink to='/clientprofile' activestyle="true">
+            <button onClick={clientProfile} activestyle="true">Profile
+            </button>
+            {/* <NavLink to='/clientprofile' activestyle="true">
               Profile
-            </NavLink>
+            </NavLink> */}
           </NavMenu>
           <NavBtn>
             <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
@@ -130,12 +176,11 @@ const Navbar = () => {
             <NavLink to='/influencerorders' activestyle="true">
               Orders
             </NavLink>
-            <NavLink to='/influencerannounce' activestyle="true">
-              Announcement
-            </NavLink>
-            <NavLink to='/influencerprofile' activestyle="true">
+            {/* <NavLink to='/influencerProfile' activestyle="true">
               Profile
-            </NavLink>
+            </NavLink> */}
+            <button onClick={influencerProfile} activestyle="true">Profile
+            </button>
           </NavMenu>
           <NavBtn>
             <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
@@ -143,7 +188,6 @@ const Navbar = () => {
         </Nav>
     );
   }
-
   else{
     return (
         <Nav>
