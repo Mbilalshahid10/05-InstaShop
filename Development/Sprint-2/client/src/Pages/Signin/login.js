@@ -37,15 +37,16 @@ const Login = ()=>{
         e.preventDefault()
         let pw = await hash(password)
         const newEntry = {role: role.toLowerCase(), email: email, password:pw}
-        // console.log(newEntry)
-        // setAllentry([...allEntry, newEntry])
-        // console.log(allEntry)
-        // console.log("hello")
-        // console.log(newEntry)
         try{
           const res = await axios.post('http://localhost:8000/login', newEntry, {withCredentials: true});
           // console.log("After loggin in, data in req", res)
+          if (role === 'Admin'){
+            navigate('/home2', {state:{role:role,email:email,pwd:password}})
+          }
+          else
+          {
           navigate('/home', {state:{role:role,email:email,pwd:password}})
+          }
         }
         catch (err) {
             console.log("ERROR")

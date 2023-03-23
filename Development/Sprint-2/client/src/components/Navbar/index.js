@@ -32,6 +32,12 @@ const Navbar = () => {
   const home = () => {
     navigate('/home', {state:{role:location.state.role, email:location.state.email}})
   }
+  // const home2 = () => {
+  //   if(role == 'Admin'){
+  //   navigate('/home2', {state:{role:location.state.role, email:location.state.email}})
+  //   }
+  // }
+
 
   const adminprofile = () => {
     let email = " "
@@ -104,35 +110,34 @@ const Navbar = () => {
   }
 
 
-
-  if(role && role == "Admin") {
-    return (
-        <Nav>
-          <Bars />
-          <NavMenu>
-            <NavLink to='/home' activestyle="true">
-              <img src={logo} />
-            </NavLink>
-            <NavLink to='/home' activestyle="true">
-              Home
-            </NavLink>
-            <NavLink to='/announce' activestyle="true">
-              Send Announcement
-            </NavLink>
-            <NavLink to='/access' activestyle="true">
-              Restrict Access
-            </NavLink>
-            <button onClick={adminprofile} activestyle="true">Profile
-            </button>
-          </NavMenu>
-          <NavBtn>
-            <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
-          </NavBtn>
-        </Nav>
-    );
-  }
+  // if(role && role == "Admin") {
+  //   return (
+  //       <Nav>
+  //         <Bars />
+  //         <NavMenu>
+  //           <NavLink to='/home2' activestyle="true">
+  //             <img src={logo} />
+  //           </NavLink>
+  //           <NavLink to='/home2' activestyle="true">
+  //             Home
+  //           </NavLink>
+  //           <NavLink to='/adminhome' activestyle="true">
+  //             Send Announcement
+  //           </NavLink>
+  //           <NavLink to='/access' activestyle="true">
+  //             Restrict Access
+  //           </NavLink>
+  //           <button onClick={adminprofile} activestyle="true">Profile
+  //           </button>
+  //         </NavMenu>
+  //         <NavBtn>
+  //           <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
+  //         </NavBtn>
+  //       </Nav>
+  //   );
+  // }
   
-  else if(role && role == "Client") {
+  if(role && role == "Client") {
     return (
         <Nav>
           <Bars />

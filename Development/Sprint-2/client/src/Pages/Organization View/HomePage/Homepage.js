@@ -13,11 +13,8 @@ const HomePage = ()=>{
   const [allProfiles, setAllProfiles] = useState([])
   const [first, setFirst] = useState("")
   const role = location.state.role
-
   const [recProfiles, setRecProfiles] = useState([])
   
-
-
   useEffect( () => {
     if (role === "Client"){
       axios.get('http://localhost:8000/allInfProfiles', {withCredentials: true})
@@ -41,10 +38,9 @@ const HomePage = ()=>{
         setAllProfiles(profiles)
       })
     }
-    
   }, [])    
+  
   const client_email = {email: location.state.email}
-
 
   useEffect( () => {
     if (role === "Client"){
@@ -77,11 +73,7 @@ const HomePage = ()=>{
       navigate('/clientJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
     }
     else if (location.state.role === "Influencer"){
-      navigate('/influencerJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-      
-    }
-    else if (location.state.role === "Admin"){
-      navigate('/JobOffersAdmin', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+      navigate('/influencerJobOffers', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}}) 
     }
   }
 
@@ -91,11 +83,6 @@ const HomePage = ()=>{
     }
     else if (location.state.role === "Influencer"){
       navigate('/influencerOngoingOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-
-    }
-    else if (location.state.role === "Admin"){
-      navigate('/OngoingOrderAdmin', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-
     }
   }
 
@@ -107,10 +94,6 @@ const HomePage = ()=>{
       navigate('/influencerRejectedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
 
     }
-    else if (location.state.role === "Admin"){
-      navigate('/RejectedOrdersAdmin', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-
-    }
   }
 
   const topending = () => {
@@ -120,10 +103,6 @@ const HomePage = ()=>{
     else if(location.state.role === "Influencer"){
       navigate('/influencerPendingApprovals', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
     }
-    else if (location.state.role === "Admin"){
-      navigate('/AdminPendingOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-
-    }
   }
   const toComplete = ()=>{
     if(location.state.role === "Client"){
@@ -131,10 +110,6 @@ const HomePage = ()=>{
     }
     else if(location.state.role === "Influencer"){
       navigate('/influencerCompletedOrders', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
-    }
-
-    else if(location.state.role === "Admin"){
-      navigate('/completedOrderAdmin', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
     }
   }
 
