@@ -79,9 +79,8 @@ const App = ()=>{
           <Route path="/clientRejectedOrders" element={(<RejectedByInfluencer />)}/>
           <Route path ="/clientHistory" element={(<ClientHistory />)}/>
 
-
           <Route path="/AdminOrderHistory" element={(<AdminOrderHistory />)}/>
-          
+                    
           <Route path="/influencerJobOffers" element={(<InfluencerJobOffers />)}/>
           <Route path="/influencerOngoingOrders" element={(<InfluencerOngoingOrders />)}/>
           <Route path="/influencerPendingApprovals" element={(<InfluencerApprovalsPending />)}/>

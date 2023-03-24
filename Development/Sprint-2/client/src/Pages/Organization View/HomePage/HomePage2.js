@@ -3,7 +3,6 @@ import {useLocation} from 'react-router-dom';
 import './HomePage.css'
 import ProfileCards from './Card.js'
 import {useNavigate} from 'react-router-dom';
-
 import axios from 'axios';
 
 const HomePage2 = ()=>{  
@@ -19,7 +18,6 @@ const HomePage2 = ()=>{
     const newData = {firstName: first}
     navigate('/searchInf',{state:{firstName:first}})
   }
-
   return (
     <div className="homepage">
     <div className='homepagearea'>

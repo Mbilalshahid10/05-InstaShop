@@ -16,14 +16,6 @@ async function addOrder(req,res){
         console.log("order is not added");
         console.log(err)
     }
-    
 
-    // orderModel.find({},(err,result)=>{
-    //     if(err){
-    //         res.send(err)
-    //     }
-    //     res.send(result)
-    //     console.log(result)
-    // })
 }
 module.exports = {addOrder}

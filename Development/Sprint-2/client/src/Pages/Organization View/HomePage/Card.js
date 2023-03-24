@@ -3,30 +3,16 @@ import axios from 'axios';
 import './Card.css'
 import {useNavigate, useLocation} from 'react-router-dom';
 
-
 const ProfileCards = (props) => {
     
     const [price, setPrice] = useState(0)
-
     const handleChange = (e) => {
         setPrice(e.target.value)
     }
     const navigate = useNavigate()
     const placeOrder = () =>{
-        navigate('/sendOrder')
+        navigate('/sendOrder', {state:{clientEmail:props.clientEmail, influencerEmail: props.influencerEmail}})
     }
-    // const OrderPlaced = async () => {
-    //     console.log("In place Order")
-    //     // console.log("Props are: ", props)
-    //     const orderDetails = {clientEmail: props.clientEmail, influencerEmail: props.influencerEmail, price: price};
-    //     console.log("shapck")
-    //     await axios.post("http://localhost:8000/placeOrder", orderDetails).then(res =>{
-    //         console.log("now add it in order history of client")
-    //         console.log("print the data here " , res.data)
-    //         let a = {myID: res.data, uniqEmail: props.clientEmail}
-    //         axios.post('http://localhost:8000/addOrder',a)
-    //     })
-    // }
 
     return (
         <div className="card">

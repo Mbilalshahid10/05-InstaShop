@@ -4,27 +4,26 @@ import {useLocation } from 'react-router-dom'
 
 import './SendOrder.css'
 import axios from 'axios'
-const SendOrder = (props)=>{
 
-    // const location = useLocation()
+const SendOrder = (props)=>{
+    const location = useLocation()
+    let var1 = location.state.clientEmail
+    let var2 = location.state.influencerEmail
     const [price, setPrice] = useState(0)
     const handleChange = (e) => {
         setPrice(e.target.value)
     }
-
     const OrderPlaced = async () => {
         console.log("In place Order")
-        // console.log("Props are: ", props)
-        const orderDetails = {clientEmail: props.clientEmail, influencerEmail: props.influencerEmail, price: price}; 
-        // const orderDetails = {clientEmail: c, influencerEmail: i, price: price};
+        const orderDetails = {clientEmail: var1, influencerEmail: var2, price: price}; 
 
         await axios.post("http://localhost:8000/placeOrder", orderDetails).then(res =>{
-            console.log("now add it in order history of client")
-            console.log("print the data here " , res.data)
+            // console.log("print the data here " , res.data)
             let a = {myID: res.data, uniqEmail: props.clientEmail}
             axios.post('http://localhost:8000/addOrder',a)
         })
     }
+
     return (
         <div className="sendOrder">
             <div className='sendOrderarea'>
@@ -45,7 +44,6 @@ const SendOrder = (props)=>{
                 </label>
                 </form>
                 <button className='sendOrderbuttons' onClick={OrderPlaced}>Send Order</button>
-
             </div>
         </div>
     );
