@@ -64,6 +64,7 @@
     border: none;
     border-radius: 0.15rem;
     font-family: semibold;
+    float: bottom;
   }
   
   .editopbuttons {
