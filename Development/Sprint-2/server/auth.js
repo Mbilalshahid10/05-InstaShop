@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken')
 const secretStr = "InstaShop-Database2022-SecretString-70483473" 
 
 const createToken = (id) => {
-    // 30 minute session
+    // 30 minute session  initially set at 1800
     // console.log("Creating Token")
-    return jwt.sign({id}, secretStr, {expiresIn: 1800})
+    return jwt.sign({id}, secretStr, {expiresIn: 900})
 }
 
 const verify = (token, secretStr) => {
@@ -18,6 +18,7 @@ const verify = (token, secretStr) => {
         })
     })
 }
+
 const authenticateUser = async (req, res, next) => {
     try{
         // console.log("IN AUTHENTICATE USER")

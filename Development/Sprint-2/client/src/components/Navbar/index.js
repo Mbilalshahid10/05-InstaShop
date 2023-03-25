@@ -154,11 +154,12 @@ const Navbar = () => {
             <NavLink to='/clientorders' activestyle="true">
               Orders
             </NavLink>
-            <button onClick={clientProfile} activestyle="true">Profile
-            </button>
-            {/* <NavLink to='/clientprofile' activestyle="true">
-              Profile
-            </NavLink> */}
+           
+            <button className='buttonprofile' onClick={clientProfile} activestyle="true">Profile </button>
+            {/* <NavBtn>
+            <NavBtnLink onClick={clientProfile} to='/'>View Profile</NavBtnLink>
+          </NavBtn> */}
+
           </NavMenu>
           <NavBtn>
             <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
@@ -181,10 +182,7 @@ const Navbar = () => {
             <NavLink to='/influencerorders' activestyle="true">
               Orders
             </NavLink>
-            {/* <NavLink to='/influencerProfile' activestyle="true">
-              Profile
-            </NavLink> */}
-            <button onClick={influencerProfile} activestyle="true">Profile
+            <button onClick={influencerProfile} className='buttonprofile' activestyle="true">Profile
             </button>
           </NavMenu>
           <NavBtn>

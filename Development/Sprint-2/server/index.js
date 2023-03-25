@@ -1,12 +1,17 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const bodyParser = require('body-parser')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const {authenticateUser} = require('./auth.js')
 const {connect} = require('./util')
 const uri = "mongodb+srv://bilal:sproj123@cluster0.efvzb9g.mongodb.net/InstaShop?retryWrites=true&w=majority"
 connect(uri);
+
+// stripe payment Routes
+const stripe = require('stripe')('sk_test_51MpBtqAF4ik8eFskBXY4Cyhp1iggT1dpTq0tE7wekVAcLCKKmAe6o2IQs7WWsZksN8xXeyXV6Yt2yCLtZqZAguWX00H5NdtsAZ');
+
 
 // rest apis
 const {login} = require('./rest_apis/login')
@@ -54,6 +59,12 @@ const{OngoingRejectAdmin} = require('./rest_apis/admin/OngoingOrderRejectAdmin.j
 const PORT = process.env.PORT || 8000
 
 app.use(express.json())
+
+// new addition stripe
+app.use(express.urlencoded({extended:false}))
+app.use(bodyParser.json())
+
+
 app.use(express.static(path.resolve(__dirname, '../client/build')))
 app.use(cookieParser())
 const corsConfig = {
@@ -63,7 +74,52 @@ const corsConfig = {
 app.use(cors(corsConfig))
 app.options('*', cors(corsConfig));
 
-app.post('/login', async (req, res) => {
+// Stripe
+app.post('/stripe', async (req, res) => {
+    //user sends price along with request
+    const userPrice = parseInt(req.body.price)*100;
+    //create a payment intent
+    const intent = await stripe.paymentIntents.create({
+      //use the specified price
+      amount: userPrice,
+      currency: 'usd'
+    });
+      //respond with the client secret and id of the new paymentintent
+  res.json({client_secret: intent.client_secret, intent_id:intent.id});
+});
+
+//handle payment confirmations
+app.post('/confirm-payment',  async (req, res) => {
+    //extract payment type from the client request
+    const paymentType = String(req.body.payment_type);
+    //handle confirmed stripe transaction
+    if (paymentType == "stripe") {
+      //get payment id for stripe
+      const clientid = String(req.body.payment_id);
+      //get the transaction based on the provided id
+      stripe.paymentIntents.retrieve(
+        clientid,
+        function(err, paymentIntent) {
+          //handle errors
+          if (err){
+            console.log(err);
+          }
+          //respond to the client that the server confirmed the transaction
+          if (paymentIntent.status === 'succeeded') {
+            /*YOUR CODE HERE*/  
+                  console.log("confirmed stripe payment: " + clientid);
+            res.json({success: true});
+          } else {
+            res.json({success: false});
+          }
+        }
+      );
+    } 
+  })
+
+/////////////////////////////////////////////////////////////////////
+
+app.post('/login', async(req, res) => {
     await login(req, res)
 })
 
@@ -93,29 +149,29 @@ app.get('/get_announcement' , (authenticateUser , async(req,res)=>{
 }))
 
 // Pending Approvals
-app.get('/clientPendingapprovals', async(req,res) =>{
+app.get('/clientPendingapprovals', (authenticateUser), async(req,res) =>{
     await  getPendingApprovals(req, res)    
 })
 
-app.get('/influencerpendingapprovals', async(req,res) =>{
+app.get('/influencerpendingapprovals', (authenticateUser) ,async(req,res) =>{
     await  getPendingApprovals(req, res)    
 })
 
 // Completed Orders
-app.get('/clientCompletedorders', async(req,res) =>{
+app.get('/clientCompletedorders', (authenticateUser), async(req,res) =>{
     await  getCompletedOrders(req, res)    
 })
 
-app.get('/influencercompletedorders', async(req,res) =>{
+app.get('/influencercompletedorders',(authenticateUser) , async(req,res) =>{
     await  getCompletedOrders(req, res)    
 })
 
 //Order history
-app.get('/clientHistory' , async(req,res)=>{
+app.get('/clientHistory' , (authenticateUser) ,async(req,res)=>{
     await getClientHistory(req,res)
 })
 
-app.get('/influencerHistory', async(req,res)=>{
+app.get('/influencerHistory',(authenticateUser) , async(req,res)=>{
     await getInfluencerHistory(req,res)
 })
 
@@ -123,22 +179,22 @@ app.get('/influencerHistory', async(req,res)=>{
 app.get('/allInfProfiles', (authenticateUser), async(req,res) => {
     await getAllInfluencers(req, res)
 })
-app.post('/changeAccepted',async(req,res)=>{
+app.post('/changeAccepted', (authenticateUser), async(req,res)=>{
     await updateAccept(req,res)
 })
-app.post('/changeStatus',async(req,res)=>{
+app.post('/changeStatus', (authenticateUser), async(req,res)=>{
     await updateStatus(req,res)
 })
 
-app.post('/placeOrder', async(req,res)=>{
+app.post('/placeOrder', (authenticateUser), async(req,res)=>{
     await placeOrder(req,res)
 })
 
-app.post('/addOrder', async(req,res)=>{
+app.post('/addOrder', (authenticateUser), async(req,res)=>{
     await addOrder(req,res)
 })
 
-app.get('/getOrder' , async(req,res)=>{
+app.get('/getOrder' , (authenticateUser), async(req,res)=>{
     await Ordercount(req,res)
 })
 
@@ -170,12 +226,12 @@ app.post('/RatingsSendClient', async(req,res)=>{
 //     await sendRecommendationsClient(req,res)
 // })
 
-app.post('/RecommendationstoClient', async(req,res)=>{
+app.post('/RecommendationstoClient', (authenticateUser), async(req,res)=>{
     await sendRecommendationsClient(req,res)
 })
 
 
-app.get('/AdminOrder', async(req,res)=>{
+app.get('/AdminOrder', (authenticateUser), async(req,res)=>{
     await AdminOrder(req,res)
 })
 
@@ -197,11 +253,6 @@ app.post('/InfluencerProfile' , (authenticateUser) , async(req,res) =>{
     await  getInfluencerProfile(req, res)    
 })
 
-
-// //Client Profile
-// app.get('/clientProfile' , (authenticateUser) , async(req,res) =>{
-//     await  getclientProfile(req, res)    
-// })
 app.post('/clientProfile' , (authenticateUser) , async(req,res) =>{
         await  getclientProfile(req, res)    
     })

@@ -12,6 +12,7 @@
     padding-left: 0.5rem;
     position: relative;
     background-color: #A5C9CA;
+    /* background-color: #bl; */
     height: 1.75rem;
     width: 16rem;
     color: #2C3333;
@@ -19,3 +20,13 @@
     border: none;
     border-radius: 1rem;
   }
+
+.buttonprofile{
+    display: flex;
+    height: 2.5rem;
+    width: 4.5rem;
+    position: relative;
+    border: none;
+    margin-top: 1.5rem;
+    border-radius: 1rem;
+}

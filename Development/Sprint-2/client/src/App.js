@@ -33,7 +33,6 @@ import InfluencerApprovalsPending from "./Pages/Endorsee View/Orders/Pending/Inf
 import InfluencerCompleteOrderList from "./Pages/Endorsee View/Orders/Completed/InfluencerCompletedOrders";
 import RejectedJobOffer from "./Pages/Endorsee View/Orders/Rejected/RejectedJobOffer";
 
-
 import AdminOrderHistory from "./Pages/Admin/Orders/OrderHistory/AdminOrderHistory";
 
 import ClientHistory from "./Pages/Organization View/Orders/OrderHistory/clientHistory";
@@ -43,9 +42,16 @@ import SearchInfluencerByName from "./Pages/Organization View/HomePage/searchInf
 import EditProfile from "./Pages/Admin/My Profile/EditProfile";
 import SendOrder from "./Pages/Organization View/Send Order/SendOrder";
 import NavbarAdmin from "./components/Navbar/index_admin";
+import axios from "axios";
+
+// import { Link } from 'react-router-dom';
+// // import PaymentComponent from "./PaymentWidget/PaymentComponent";
+// import { Container, Button, Image } from "react-bootstrap";
+// // import "bootstrap/dist/css/bootstrap.min.css";
+// import {loadStripe} from '@stripe/stripe-js';
+
 
 const App = ()=>{
-
   return(
     <div>
     <Router>
@@ -60,13 +66,10 @@ const App = ()=>{
           <Route path="/ChangePass" element={(<ChangePass />)}/>
           
           {/* <Route path="/EditEndorsee" element={(<EditEndorseeProfile />)}/> */}
-        
-
           <Route path="/home" element={(<HomePage />)}/>
           <Route path="/home2" element={(<HomePage2 />)}/>
           <Route path="/adminprofile" element={(<EditAdminProfile />)}/>
          
-          
           <Route path ="/clientProfile" element ={(<EditOrgProfile/>)}/>
           <Route path ="/influencerProfile" element ={(<EditEndorseeProfile/>)}/>
           <Route path = "/viewannouncement" element={(<SendAnnouncement/>)}/>
@@ -90,6 +93,33 @@ const App = ()=>{
           <Route path="/EditProfile" element={(<EditProfile />)}/>
 
           <Route path="/sendOrder" element={(<SendOrder/>)}/>
+
+
+          {/* <Routes>
+                <Route path="/payments">
+                    <Container>
+                        <PaymentComponent
+                            keys={{
+                                stripe: "pk_test_51MpBtqAF4ik8eFskzefWihMO6wp29rM4LQI3jkUtk3VPvOIeCV4Z6JjOI52Lo8xkLerWZnbyyV5CVvDcw8Oh1Fbm00gVWfnuQ4"
+                            }}
+                        />
+                    </Container>
+                </Route>
+                <Route path="/">
+					<Container style={{padding:"10px"}} classname = 'jumbotron'>
+						
+							<h1>Save the Jackalopes</h1>
+                            <Image src="jackalope.png" fluid/>
+							<h3>
+								This is an example homepage for our charity website! 
+                                To see the payments in action click the button below!
+							</h3>
+							<Link to="/payments" type="Button">
+								<Button variant="success">Make a payment</Button>
+							</Link>				
+					</Container>                    
+                </Route>
+            </Routes> */}
 
         </Routes>
       </Router>     
