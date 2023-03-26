@@ -44,12 +44,9 @@ import SendOrder from "./Pages/Organization View/Send Order/SendOrder";
 import NavbarAdmin from "./components/Navbar/index_admin";
 import axios from "axios";
 
-// import { Link } from 'react-router-dom';
-// // import PaymentComponent from "./PaymentWidget/PaymentComponent";
-// import { Container, Button, Image } from "react-bootstrap";
-// // import "bootstrap/dist/css/bootstrap.min.css";
-// import {loadStripe} from '@stripe/stripe-js';
 
+import OrderForm from './Pages/MyPayment'
+import OrderForm2 from "./Pages/MyPayment2";
 
 const App = ()=>{
   return(
@@ -94,22 +91,25 @@ const App = ()=>{
 
           <Route path="/sendOrder" element={(<SendOrder/>)}/>
 
+            {/*Original path  */}
+          {/* <Route path="/Mypayment" element={(<Payment/>)}/> */}
+          <Route path="/Mypayment" element={(<OrderForm/>)}/>
 
-          {/* <Routes>
-                <Route path="/payments">
-                    <Container>
-                        <PaymentComponent
-                            keys={{
-                                stripe: "pk_test_51MpBtqAF4ik8eFskzefWihMO6wp29rM4LQI3jkUtk3VPvOIeCV4Z6JjOI52Lo8xkLerWZnbyyV5CVvDcw8Oh1Fbm00gVWfnuQ4"
-                            }}
-                        />
-                    </Container>
-                </Route>
-                <Route path="/">
-					<Container style={{padding:"10px"}} classname = 'jumbotron'>
-						
+          <Route path="/Mypayment2" element={(<OrderForm2/>)}/>
+
+
+          {/* <Route path="/payments">
+            <Container>
+                <PaymentComponent keys={{
+                      stripe: "pk_test_51MpBtqAF4ik8eFskzefWihMO6wp29rM4LQI3jkUtk3VPvOIeCV4Z6JjOI52Lo8xkLerWZnbyyV5CVvDcw8Oh1Fbm00gVWfnuQ4"
+                    }}
+                  />
+            </Container>
+          </Route> */}
+
+          {/* 
+          /<Route path="/">						
 							<h1>Save the Jackalopes</h1>
-                            <Image src="jackalope.png" fluid/>
 							<h3>
 								This is an example homepage for our charity website! 
                                 To see the payments in action click the button below!
@@ -117,13 +117,17 @@ const App = ()=>{
 							<Link to="/payments" type="Button">
 								<Button variant="success">Make a payment</Button>
 							</Link>				
-					</Container>                    
-                </Route>
-            </Routes> */}
-
+                </Route> */}
+            
         </Routes>
+
       </Router>     
     </div>
+
+
+
+
+
 
   )
 }

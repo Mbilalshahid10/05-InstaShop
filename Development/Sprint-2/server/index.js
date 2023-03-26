@@ -9,9 +9,12 @@ const {connect} = require('./util')
 const uri = "mongodb+srv://bilal:sproj123@cluster0.efvzb9g.mongodb.net/InstaShop?retryWrites=true&w=majority"
 connect(uri);
 
-// stripe payment Routes
-const stripe = require('stripe')('sk_test_51MpBtqAF4ik8eFskBXY4Cyhp1iggT1dpTq0tE7wekVAcLCKKmAe6o2IQs7WWsZksN8xXeyXV6Yt2yCLtZqZAguWX00H5NdtsAZ');
-
+require('dotenv').config()
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
+// const storeItems = new Map([
+//     [1, { priceInCents: 10000, name: "Learn React Today" }],
+//     [2, { priceInCents: 20000, name: "Learn CSS Today" }],
+//   ])
 
 // rest apis
 const {login} = require('./rest_apis/login')
@@ -55,6 +58,8 @@ const {Ordercount} = require('./rest_apis/influencer/getOrder.js')
 const{AdminOrder} = require('./rest_apis/admin/AdminOrder.js')
 
 const{OngoingRejectAdmin} = require('./rest_apis/admin/OngoingOrderRejectAdmin.js')
+const{Payment} = require('./rest_apis/paymentStripe.js')
+
 
 const PORT = process.env.PORT || 8000
 
@@ -74,51 +79,47 @@ const corsConfig = {
 app.use(cors(corsConfig))
 app.options('*', cors(corsConfig));
 
-// Stripe
-app.post('/stripe', async (req, res) => {
-    //user sends price along with request
-    const userPrice = parseInt(req.body.price)*100;
-    //create a payment intent
-    const intent = await stripe.paymentIntents.create({
-      //use the specified price
-      amount: userPrice,
-      currency: 'usd'
+
+////////////////////////////////////////////////////
+// 2nd attempts
+app.post('/donate', async (req, res) => {
+    const { token = {}, amount = 0 } = req.body; 
+    if (!Object.keys(token).length || !amount) {
+        res.status(400).json({ success: false });
+    }
+    const { id:customerId } = await stripe.customers.create({
+        email: token.email,
+        source: token.id, 
+    }).catch(e => {
+        console.log(e);
+        return null; 
+    })
+    if (!customerId) {
+        res.status(500).json({ success: false });
+        return; 
+    }
+    const invoiceId = `${token.email}-${Math.random().toString()}-${Date.now().toString()}`;
+    const charge = await stripe.charges.create({
+        amount: amount * 100,
+        currency: "USD",
+        customer: customerId,
+        receipt_email: token.email,
+        description: "Donation",
+    }, { idempotencyKey: invoiceId }).catch(e => {
+        console.log(e);
+        return null; 
     });
-      //respond with the client secret and id of the new paymentintent
-  res.json({client_secret: intent.client_secret, intent_id:intent.id});
+    if (!charge) {
+        res.status(500).json({ success: false });
+        return;
+    };
+    res.status(201).json({ success: true });
 });
-
-//handle payment confirmations
-app.post('/confirm-payment',  async (req, res) => {
-    //extract payment type from the client request
-    const paymentType = String(req.body.payment_type);
-    //handle confirmed stripe transaction
-    if (paymentType == "stripe") {
-      //get payment id for stripe
-      const clientid = String(req.body.payment_id);
-      //get the transaction based on the provided id
-      stripe.paymentIntents.retrieve(
-        clientid,
-        function(err, paymentIntent) {
-          //handle errors
-          if (err){
-            console.log(err);
-          }
-          //respond to the client that the server confirmed the transaction
-          if (paymentIntent.status === 'succeeded') {
-            /*YOUR CODE HERE*/  
-                  console.log("confirmed stripe payment: " + clientid);
-            res.json({success: true});
-          } else {
-            res.json({success: false});
-          }
-        }
-      );
-    } 
-  })
-
+//////////////////////////////////////////////////////////////////////
+app.post('/paymentstripe', async (req, res) => {
+    await Payment(req,res)
+  });
 /////////////////////////////////////////////////////////////////////
-
 app.post('/login', async(req, res) => {
     await login(req, res)
 })
