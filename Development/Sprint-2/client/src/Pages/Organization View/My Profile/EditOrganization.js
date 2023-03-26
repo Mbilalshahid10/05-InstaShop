@@ -32,7 +32,7 @@ const EditOrgProfile = ()=>{
         <h1 className='editeptitle'>Client Profile</h1>
         {/* <button className='editepbuttons' onClick = {EditEndorsee}>Confirm Changes</button> */}
         <p className='editapinput1'>{'Name : ' + allEntry.name }</p>
-        <p className='editapinput1'>{'Email : ' + allEntry.email}</p>
+        <p className='editapinput2'>{'Email : ' + allEntry.email}</p>
         <p className='editapinput2'>{'Role : ' + allEntry.role}</p>
         <p className='editapinput1'>{'Category : ' + allEntry.category}</p>
         <p className='editapinput2'>{'Country : ' + allEntry.country}</p>

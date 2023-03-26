@@ -42,7 +42,6 @@ const Endsignup = ()=>{
     }
   return (
     <div className="esignup">
-      <img className='logo' src={logo} />
       <div className='esignuparea'>
         <p className='esignupmsg'>STEP 2 OF 2</p>
         <h1 className='esignuptitle'>Enter Details</h1>

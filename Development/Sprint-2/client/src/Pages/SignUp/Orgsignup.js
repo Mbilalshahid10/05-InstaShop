@@ -43,7 +43,6 @@ const Orgsignup = ()=>{
   }
   return(
     <div className="osignup">
-      <img className='logo' src={logo} />
       <div className='osignuparea'>
         <p className='osignupmsg'>STEP 2 OF 2</p>
         <h1 className='osignuptitle'>Enter Details</h1>
@@ -61,10 +60,10 @@ const Orgsignup = ()=>{
             <input name='year' id='year' value={year} onChange={(e)=>setYear(e.target.value)} type="date" placeholder='Year of Commencement' className='osignupinput2'/>
           </label>
           <label>
-            <input name='country' id='country' value={country} onChange={(e)=>setCountry(e.target.value)} type="text" placeholder='Country/Region' className='osignupinput1'/>
+            <input name='country' id='country' value={country} onChange={(e)=>setCountry(e.target.value)} type="text" placeholder='Country/Region' className='osignupinputfull'/>
           </label>
           <label>
-            <input name='zCode' id='zCode' value={zCode} onChange={(e)=>setZCode(e.target.value)} type="number" placeholder='ZIP Code' className='osignupinput2'/>
+            <input name='zCode' id='zCode' value={zCode} onChange={(e)=>setZCode(e.target.value)} type="number" placeholder='ZIP Code' className='osignupinputfull'/>
           </label>
           <label>
             <input name='address' id='address' value={address} onChange={(e)=>setAdd(e.target.value)} type="text" placeholder='Full Address' className='osignupinputfull'/>
