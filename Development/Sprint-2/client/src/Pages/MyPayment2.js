@@ -36,12 +36,11 @@ const [ amount, setAmount ] = useState(0);
        flexDirection: 'column',
        gap: 15,
        }}>
-
+        
         <label>
           Amount:
           <input type="text"  onChange={handleAmountChange} />
         </label>
-
 
     <StripeCheckout
           stripeKey={REACT_APP_STRIPE_KEY }

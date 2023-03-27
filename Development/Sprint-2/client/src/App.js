@@ -37,7 +37,7 @@ import AdminOrderHistory from "./Pages/Admin/Orders/OrderHistory/AdminOrderHisto
 
 import ClientHistory from "./Pages/Organization View/Orders/OrderHistory/clientHistory";
 import InfluencerHistory from "./Pages/Endorsee View/Orders/OrderHistory/influencerHistory";
-import SendAnnouncement from "./Pages/Admin/Announcement/ViewAnnouncement";
+import ViewAnnouncement from "./Pages/Admin/Announcement/ViewAnnouncement";
 import SearchInfluencerByName from "./Pages/Organization View/HomePage/searchInfluencer";
 import EditProfile from "./Pages/Admin/My Profile/EditProfile";
 import SendOrder from "./Pages/Organization View/Send Order/SendOrder";
@@ -66,10 +66,13 @@ const App = ()=>{
           <Route path="/home" element={(<HomePage />)}/>
           <Route path="/home2" element={(<HomePage2 />)}/>
           <Route path="/adminprofile" element={(<EditAdminProfile />)}/>
-         
+          <Route path = "/sendannouncement" element={(<Announce/>)}/>
+
+
+
           <Route path ="/clientProfile" element ={(<EditOrgProfile/>)}/>
           <Route path ="/influencerProfile" element ={(<EditEndorseeProfile/>)}/>
-          <Route path = "/viewannouncement" element={(<SendAnnouncement/>)}/>
+          <Route path = "/viewannouncement" element={(<ViewAnnouncement/>)}/>
           <Route path ="/searchInf" element={(<SearchInfluencerByName />)}/>
 
           <Route path="/clientJobOffers" element={(<ClientJobOffers />)}/>
