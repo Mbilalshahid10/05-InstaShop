@@ -187,15 +187,15 @@ app.post('/changeStatus', (authenticateUser), async(req,res)=>{
     await updateStatus(req,res)
 })
 
-app.post('/placeOrder', (authenticateUser), async(req,res)=>{
+app.post('/placeOrder',async(req,res)=>{
     await placeOrder(req,res)
 })
 
-app.post('/addOrder', (authenticateUser), async(req,res)=>{
+app.post('/addOrder', async(req,res)=>{
     await addOrder(req,res)
 })
 
-app.get('/getOrder' , (authenticateUser), async(req,res)=>{
+app.get('/getOrder' , async(req,res)=>{
     await Ordercount(req,res)
 })
 

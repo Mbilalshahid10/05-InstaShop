@@ -69,7 +69,6 @@ const App = ()=>{
           <Route path = "/sendannouncement" element={(<Announce/>)}/>
 
 
-
           <Route path ="/clientProfile" element ={(<EditOrgProfile/>)}/>
           <Route path ="/influencerProfile" element ={(<EditEndorseeProfile/>)}/>
           <Route path = "/viewannouncement" element={(<ViewAnnouncement/>)}/>
@@ -93,34 +92,8 @@ const App = ()=>{
           <Route path="/EditProfile" element={(<EditProfile />)}/>
 
           <Route path="/sendOrder" element={(<SendOrder/>)}/>
-
-            {/*Original path  */}
-          {/* <Route path="/Mypayment" element={(<Payment/>)}/> */}
           <Route path="/Mypayment" element={(<OrderForm/>)}/>
-
           <Route path="/Mypayment2" element={(<OrderForm2/>)}/>
-
-
-          {/* <Route path="/payments">
-            <Container>
-                <PaymentComponent keys={{
-                      stripe: "pk_test_51MpBtqAF4ik8eFskzefWihMO6wp29rM4LQI3jkUtk3VPvOIeCV4Z6JjOI52Lo8xkLerWZnbyyV5CVvDcw8Oh1Fbm00gVWfnuQ4"
-                    }}
-                  />
-            </Container>
-          </Route> */}
-
-          {/* 
-          /<Route path="/">						
-							<h1>Save the Jackalopes</h1>
-							<h3>
-								This is an example homepage for our charity website! 
-                                To see the payments in action click the button below!
-							</h3>
-							<Link to="/payments" type="Button">
-								<Button variant="success">Make a payment</Button>
-							</Link>				
-                </Route> */}
             
         </Routes>
 

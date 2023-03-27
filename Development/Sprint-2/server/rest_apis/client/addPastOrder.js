@@ -7,7 +7,7 @@ async function addOrder(req,res){
     console.log(req.body)
     try{
         const add = await mongoose.connection.db.collection('clients').updateOne
-        ({"email": req.body.uniqEmail}, {
+        ({"email": req.body.clientEmail}, {
             $push:{pastOrders: req.body.myID}
         })
         console.log("shapato")

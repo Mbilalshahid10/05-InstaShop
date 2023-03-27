@@ -6,6 +6,7 @@ import './SendOrder.css'
 import axios from 'axios'
 
 const SendOrder = (props)=>{
+    const navigate = useNavigate();
     const location = useLocation()
     let var1 = location.state.clientEmail
     let var2 = location.state.influencerEmail
@@ -14,14 +15,26 @@ const SendOrder = (props)=>{
         setPrice(e.target.value)
     }
     const OrderPlaced = async () => {
+
+try{        
         console.log("In place Order")
         const orderDetails = {clientEmail: var1, influencerEmail: var2, price: price}; 
-
-        await axios.post("http://localhost:8000/placeOrder", orderDetails).then(res =>{
+        console.log("Order details ", orderDetails);
+       const resposne  =  await axios.post("http://localhost:8000/placeOrder", orderDetails).then(res =>{
             // console.log("print the data here " , res.data)
-            let a = {myID: res.data, uniqEmail: props.clientEmail}
-            axios.post('http://localhost:8000/addOrder',a)
-        })
+            console.log("is the order placed yet")
+            let a = {myID: res.data, clientEmail: var1}
+            console.log("a is" , a)
+                axios.post('http://localhost:8000/addOrder',a)
+        
+            })
+        navigate('/MyPayment2')
+        }catch(error)
+        {
+            console.log("error here :" , error)
+        }
+
+
     }
 
     return (

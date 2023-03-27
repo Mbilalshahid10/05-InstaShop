@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './ChangePass.css'
 import axios from "axios";
-// import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const ChangePass = ()=>{
+  
   const location = useLocation()
-
   const user_email = location.state.email
   const r = location.state.role
   const p = location.state.pass
   
-
-
   const navigate = useNavigate()
   const {state} = useLocation();
   async function hash(string) {
@@ -36,7 +34,6 @@ const ChangePass = ()=>{
   
   const handleClick = async (ev) => {
 
-    
     ev.preventDefault()
     // navigate('/')
     try{
@@ -72,8 +69,6 @@ const ChangePass = ()=>{
     setEmail(ev.target.value)
   }
 
-
-
   return (
     <div className="changepass">
       <div className='changepassarea'>
@@ -94,7 +89,6 @@ const ChangePass = ()=>{
           </label>
           <button className='changepassbuttons' onClick={handleClick}>Change Password</button>
         </form>
-        
       </div>
     </div>
   );

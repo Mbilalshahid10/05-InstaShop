@@ -26,6 +26,7 @@ const Announce = ()=>{
 }
 
   return (
+    
     <div className="announce">
       <div className='announcearea'>
         <p className='announcemsg'>REVIEW BEFORE SENDING</p>

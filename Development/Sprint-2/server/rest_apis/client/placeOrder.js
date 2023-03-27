@@ -4,6 +4,7 @@ const orderModel = require('../../../server/database/Schema/Order')
 
 async function placeOrder(req,res){
     try{
+     console.log("bilalllllllllllllll")   
     const totalOrders = await orderModel.countDocuments({}).exec();
     const orderID = totalOrders + 1
     await createOrder(orderID, req.body.clientEmail, req.body.influencerEmail, req.body.price , req.body.ratingGivenClient , req.body.ratingGivenInfluencer)
@@ -14,7 +15,6 @@ async function placeOrder(req,res){
         console.log(err)
         res.status(400).send(err)
     }
-
 }
 
 module.exports = {placeOrder}

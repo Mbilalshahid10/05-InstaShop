@@ -41,3 +41,17 @@
     align-items: center;
     text-decoration: none;
 }
+
+
+.buttonprofile3{
+    margin-top: 0.6rem;
+    height: 70%;
+    width: 11rem;
+    padding: 0 1rem;
+    border-radius: 0.8rem;
+    /* display: flex; */
+    align-items: center;
+    gap: 12rem;
+    margin-left: 1rem;
+    text-decoration: none;
+}

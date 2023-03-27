@@ -23,7 +23,7 @@ const EditOrgProfile = ()=>{
 
   const navigate = useNavigate()
     const onClickHandler = () => {
-      navigate('/ChangePass')
+      navigate('/ChangePass' , {state:{email : e }})
     }   
   return (
     <div className="editop">

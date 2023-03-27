@@ -109,6 +109,99 @@ const Navbar = () => {
     navigate('/clientProfile', {state:{role:role,email:email, pass:pwd}})
   }
 
+  const redirectHomepage = () => {
+    let email = " "
+    let pwd = ''
+    if (location.state.email !== null){
+      console.log('not null email')
+      email = location.state.email
+    }
+    if (location.state.role !== null){
+      console.log('not null role')
+      role = location.state.role
+    }
+    if (location.state.pwd !== null){
+      console.log('pwd not null')
+      pwd = location.state.pwd
+    }
+    else{
+      console.log('null')
+    }
+    console.log('email in navbar', email)
+    console.log('role in navbar', role)
+    navigate('/home', {state:{role:role,email:email, pass:pwd}})
+  }
+
+  const redirectHomepage2 = () => {
+    let email = " "
+    let pwd = ''
+    if (location.state.email !== null){
+      console.log('not null email')
+      email = location.state.email
+    }
+    if (location.state.role !== null){
+      console.log('not null role')
+      role = location.state.role
+    }
+    if (location.state.pwd !== null){
+      console.log('pwd not null')
+      pwd = location.state.pwd
+    }
+    else{
+      console.log('null')
+    }
+    console.log('email in navbar', email)
+    console.log('role in navbar', role)
+    navigate('/home2', {state:{role:role,email:email, pass:pwd}})
+  }
+
+  const viewAnnounce = () => {
+    let email = " "
+    let pwd = ''
+    if (location.state.email !== null){
+      console.log('not null email')
+      email = location.state.email
+    }
+    if (location.state.role !== null){
+      console.log('not null role')
+      role = location.state.role
+    }
+    if (location.state.pwd !== null){
+      console.log('pwd not null')
+      pwd = location.state.pwd
+    }
+    else{
+      console.log('null')
+    }
+    console.log('email in navbar', email)
+    console.log('role in navbar', role)
+    navigate('/sendannouncement', {state:{role:role,email:email, pass:pwd}})
+  }
+
+  const sendAnnounce = () => {
+    let email = " "
+    let pwd = ''
+    if (location.state.email !== null){
+      console.log('not null email')
+      email = location.state.email
+    }
+    if (location.state.role !== null){
+      console.log('not null role')
+      role = location.state.role
+    }
+    if (location.state.pwd !== null){
+      console.log('pwd not null')
+      pwd = location.state.pwd
+    }
+    else{
+      console.log('null')
+    }
+    console.log('email in navbar', email)
+    console.log('role in navbar', role)
+    navigate('/viewannouncement', {state:{role:role,email:email, pass:pwd}})
+  }
+
+
 
   if(role && role == "Admin") {
     return (
@@ -118,19 +211,18 @@ const Navbar = () => {
             <NavLink to='/home2' activestyle="true">
               <img src={logo} />
             </NavLink>
-            <NavLink to='/home2' activestyle="true">
+            {/* <NavLink to='/home2' activestyle="true">
               Home
-            </NavLink>
-            <NavLink to='/sendannouncement' activestyle="true">
-              Send Announcement
-            </NavLink>
-            <NavLink to='/viewannouncement' activestyle="true">
-              View Announcements
-            </NavLink>
-            <NavLink to='/access' activestyle="true">
-              Restrict Access
-            </NavLink>
-            <button  className='buttonprofile2' onClick={adminprofile} activestyle="true">Profile
+            </NavLink> */}
+            <button  className='buttonprofile3' onClick={redirectHomepage2} activestyle="true">Home </button>
+            <button  className='buttonprofile3' onClick={viewAnnounce} activestyle="true">Send Announcement </button>
+            <button  className='buttonprofile3' onClick={sendAnnounce} activestyle="true">View Announcements</button>
+            
+            {/* <NavLink to='/access' activestyle="true">
+              Restrict Access */}
+            <button  className='buttonprofile3' onClick={sendAnnounce} activestyle="true">Restrict Access</button>
+            {/* </NavLink> */}
+            <button  className='buttonprofile3' onClick={adminprofile} activestyle="true">Profile
             </button>
           </NavMenu>
           <NavBtn>
@@ -145,21 +237,18 @@ const Navbar = () => {
         <Nav>
           <Bars />
           <NavMenu>
-            <NavLink to='/home' activestyle="true">
-              <img src={logo} />
+            <NavLink to='/home'  activestyle="true">
+              <img src={logo}/>
             </NavLink>
-            <form className='searchform'>
+          <form className='searchform'>
               <input className='searchinput' name='search' id='search' type="text" placeholder='Search for an influencer'/>
-            </form>
-            <NavLink to='/home' activestyle="true">
-              Home
-            </NavLink>
-            {/* <NavLink to='/clientorders' activestyle="true">
-              Orders
-            </NavLink> */}
-            <NavLink to='/viewannouncement' activestyle="true">
+          </form>
+          <button  className='buttonprofile2' onClick={redirectHomepage} activestyle="true">Back to HomePage </button>
+          {/* <NavLink to='/viewannouncement' activestyle="true">
               View Announcements
-            </NavLink>
+            </NavLink> */}
+          <button  className='buttonprofile3' onClick={sendAnnounce} activestyle="true">View Announcements</button>
+
             <button className='buttonprofile' onClick={clientProfile} activestyle="true">Profile </button>
           </NavMenu>
           <NavBtn>
@@ -177,15 +266,12 @@ const Navbar = () => {
             <NavLink to='/home' activestyle="true">
               <img src={logo} />
             </NavLink>
-            <NavLink to='/home' activestyle="true">
-              Home
-            </NavLink>
-            {/* <NavLink to='/influencerorders' activestyle="true">
-              Orders
-            </NavLink> */}
-            <NavLink to='/viewannouncement' activestyle="true">
+            <button  className='buttonprofile2' onClick={redirectHomepage} activestyle="true">Back to HomePage </button>
+            {/* <NavLink to='/viewannouncement' activestyle="true">
               View Announcements
-            </NavLink>
+            </NavLink> */}
+            <button  className='buttonprofile3' onClick={sendAnnounce} activestyle="true">View Announcements</button>
+
             <button onClick={influencerProfile} className='buttonprofile' activestyle="true">Profile
             </button>
           </NavMenu>
