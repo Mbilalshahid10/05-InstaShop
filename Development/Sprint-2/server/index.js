@@ -11,17 +11,11 @@ connect(uri);
 
 require('dotenv').config()
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
-// const storeItems = new Map([
-//     [1, { priceInCents: 10000, name: "Learn React Today" }],
-//     [2, { priceInCents: 20000, name: "Learn CSS Today" }],
-//   ])
-
 // rest apis
 const {login} = require('./rest_apis/login')
 const {create_announcement} = require('./rest_apis/admin/createAnnouncement')
 const {Signup} = require('./rest_apis/Signup')
 const {changePasswordGeneral} = require('./rest_apis/changePasswordGeneral')
-
 //Admin
 // const {changePassword} = require('./rest_apis/admin/changePassword')
 const{getAdminProfile} = require('./rest_apis/admin/adminProfile')
@@ -30,7 +24,6 @@ const{get_announcement} = require('./rest_apis/admin/getAnnouncement.js')
 
 //Influencer
 const{getInfluencerProfile} = require('./rest_apis/influencer/InfluencerProfile')
-
 // Client
 const {getclientProfile} = require('./rest_apis/client/clientProfile')
 const {getAllInfluencers} = require('./rest_apis/client/viewInfluencers')
@@ -59,7 +52,6 @@ const{AdminOrder} = require('./rest_apis/admin/AdminOrder.js')
 
 const{OngoingRejectAdmin} = require('./rest_apis/admin/OngoingOrderRejectAdmin.js')
 const{Payment} = require('./rest_apis/paymentStripe.js')
-
 
 const PORT = process.env.PORT || 8000
 
@@ -146,40 +138,39 @@ app.get('/get_announcement' , (authenticateUser , async(req,res)=>{
 }))
 
 // Pending Approvals
-app.get('/clientPendingapprovals', (authenticateUser), async(req,res) =>{
+app.get('/clientPendingapprovals', async(req,res) =>{
     await  getPendingApprovals(req, res)    
 })
 
-app.get('/influencerpendingapprovals', (authenticateUser) ,async(req,res) =>{
+app.get('/influencerpendingapprovals' ,async(req,res) =>{
     await  getPendingApprovals(req, res)    
 })
 
 // Completed Orders
-app.get('/clientCompletedorders', (authenticateUser), async(req,res) =>{
+app.get('/clientCompletedorders',  async(req,res) =>{
     await  getCompletedOrders(req, res)    
 })
 
-app.get('/influencercompletedorders',(authenticateUser) , async(req,res) =>{
+app.get('/influencercompletedorders', async(req,res) =>{
     await  getCompletedOrders(req, res)    
 })
 
 //Order history
-app.get('/clientHistory' , (authenticateUser) ,async(req,res)=>{
+app.get('/clientHistory'  ,async(req,res)=>{
     await getClientHistory(req,res)
 })
 
-app.get('/influencerHistory',(authenticateUser) , async(req,res)=>{
+app.get('/influencerHistory' , async(req,res)=>{
     await getInfluencerHistory(req,res)
 })
 
-
-app.get('/allInfProfiles', (authenticateUser), async(req,res) => {
+app.get('/allInfProfiles',  async(req,res) => {
     await getAllInfluencers(req, res)
 })
-app.post('/changeAccepted', (authenticateUser), async(req,res)=>{
+app.post('/changeAccepted',  async(req,res)=>{
     await updateAccept(req,res)
 })
-app.post('/changeStatus', (authenticateUser), async(req,res)=>{
+app.post('/changeStatus',  async(req,res)=>{
     await updateStatus(req,res)
 })
 
@@ -232,11 +223,6 @@ app.get('/searchInf', async(req,res) => {
     await findInfluencerByName(req, res)
 })
 
-// see the correct files names
-//Influencer Profile
-// app.get('/InfluencerProfile' , (authenticateUser) , async(req,res) =>{
-//     await  getInfluencerProfile(req, res)    
-// })
 
 app.post('/InfluencerProfile' , (authenticateUser) , async(req,res) =>{
     await  getInfluencerProfile(req, res)    
