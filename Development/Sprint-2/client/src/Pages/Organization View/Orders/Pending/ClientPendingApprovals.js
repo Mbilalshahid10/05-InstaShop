@@ -64,8 +64,9 @@ const ClientApprovalsPending = ()=>{
                                     <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
                                 </div>
 
-                                <button onClick={()=>{setAccepted(val.orderID)}}>Accept</button> 
-                                <button onClick={()=>{setStatus(val.orderID)}}>Reject</button>
+                                <button className='clientPendingAcceptButton' onClick={()=>{setAccepted(val.orderID)}}>Accept</button> 
+                                <button className='clientPendingRejectButton' onClick={()=>{setStatus(val.orderID)}}>Reject</button>
+                                <br></br>
                             </div>
                         )
                     })

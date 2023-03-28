@@ -19,3 +19,31 @@
     height: 9rem;
     margin-top: 5rem;
 }
+
+.influencerJobOfferAcceptButton {
+    position: relative;
+    margin-right: 0.5rem;
+    top: 1rem;
+    background-color: #F47458;
+    height: 2.5rem;
+    width: 25%;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.15rem;
+    font-family: semibold;
+}
+
+.influencerJobOfferRejectButton {
+    position: relative;
+    margin-left: 0.5rem;
+    top: 1rem;
+    background-color: #F47458;
+    height: 2.5rem;
+    width: 25%;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.15rem;
+    font-family: semibold;
+}

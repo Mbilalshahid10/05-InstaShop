@@ -24,22 +24,23 @@
     align-self: center;
     width: 80%;
     background-color: #395B64;
-    color:ce 10%;
-    width: 51%;
-    background-color: #F47458;
     color: white;
     border-radius: 0.5rem;
-    height: 1.75rem;
+    height: 9rem;
+    margin-bottom: 1rem;
 }
 
-.ccoratingconfirm{
+
+.ccoRatingButton {
     position: relative;
-    margin-top: 0.2rem;
-    margin-bottom: 1rem;
-    right: 10%;
-    width: 51%;
+    margin-right: 0.3rem;
+    margin-left: 0.3rem;
     background-color: #F47458;
+    height: 2.5rem;
+    width: 15%;
     color: white;
-    border-radius: 0.5rem;
-    height: 1.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.15rem;
+    font-family: semibold;
 }
