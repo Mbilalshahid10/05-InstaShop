@@ -6,7 +6,6 @@ const REACT_APP_STRIPE_KEY = 'pk_test_51MpBtqAF4ik8eFskzefWihMO6wp29rM4LQI3jkUtk
 
 const OrderForm2 =()=>{
 const [ amount, setAmount ] = useState(0);
-
   const handleToken = (token) => {
     fetch("/payment/donate", {
       method: "POST",

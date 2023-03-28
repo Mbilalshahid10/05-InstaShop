@@ -23,7 +23,6 @@ const Navbar = () => {
   }
   
   const navigate = useNavigate()
-
   const logout = async () => {
     await axios.get('http://localhost:8000/logout', {withCredentials: true})
     navigate('/')  
@@ -243,13 +242,13 @@ const Navbar = () => {
           <form className='searchform'>
               <input className='searchinput' name='search' id='search' type="text" placeholder='Search for an influencer'/>
           </form>
-          <button  className='buttonprofile2' onClick={redirectHomepage} activestyle="true">Back to HomePage </button>
+          <button  className='buttonprofile3' onClick={redirectHomepage} activestyle="true">Back to HomePage </button>
           {/* <NavLink to='/viewannouncement' activestyle="true">
               View Announcements
             </NavLink> */}
           <button  className='buttonprofile3' onClick={sendAnnounce} activestyle="true">View Announcements</button>
 
-            <button className='buttonprofile' onClick={clientProfile} activestyle="true">Profile </button>
+            <button className='buttonprofile3' onClick={clientProfile} activestyle="true">Profile </button>
           </NavMenu>
           <NavBtn>
             <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
@@ -266,13 +265,13 @@ const Navbar = () => {
             <NavLink to='/home' activestyle="true">
               <img src={logo} />
             </NavLink>
-            <button  className='buttonprofile2' onClick={redirectHomepage} activestyle="true">Back to HomePage </button>
+            <button  className='buttonprofile3' onClick={redirectHomepage} activestyle="true">Back to HomePage </button>
             {/* <NavLink to='/viewannouncement' activestyle="true">
               View Announcements
             </NavLink> */}
             <button  className='buttonprofile3' onClick={sendAnnounce} activestyle="true">View Announcements</button>
 
-            <button onClick={influencerProfile} className='buttonprofile' activestyle="true">Profile
+            <button onClick={influencerProfile} className='buttonprofile3' activestyle="true">Profile
             </button>
           </NavMenu>
           <NavBtn>
