@@ -1,23 +1,19 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import './AdminOrderHistory.css'
+// import './AdminOrderHistory.css'
+
 import axios from 'axios'
 import { useState } from 'react'
-// const shapack = require('./database/Schema/Announcement')
-// const shapack = require("../../../server/database/Schema/Announcement")
-const AdminOrderHistory = ()=>{
 
-    console.log('Admin job completed')
+const RemoveInfluencer = ()=>{
     const location = useLocation()
-    // const email = location.state.email
-
         // e.preventDefault();
     const [pendinglist,setpendinglist] = useState([])
     const [newpendlist, setnewpendlist] = useState([])
     useEffect(()=>{
         axios.get("http://localhost:8000/AdminOrder").then(
             (res)=>{
-                console.log('orders in admin client side', res.data)
+                // console.log('orders in admin client side', res.data)
                 setpendinglist(res.data)
             }
 
@@ -32,8 +28,10 @@ const AdminOrderHistory = ()=>{
                 newpendlist[key] = val
             }
         })
+
     }
     myfunc()
+
     // const setStatus1 = async(myID)=>{
     //     const acceptData = {ans:"Ongoing", email:email, myID:myID}
     //     // console.log(acceptData)
@@ -77,4 +75,4 @@ const AdminOrderHistory = ()=>{
 }
 
 
-export default AdminOrderHistory;
+export default RemoveInfluencer;

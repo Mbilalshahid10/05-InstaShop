@@ -9,11 +9,24 @@ const HomePage2 = ()=>{
   const navigate = useNavigate()
   const location = useLocation()
   const [first, setFirst] = useState("")
+  
   const OrderHistory = ()=>{
     if (location.state.role === "Admin"){
       navigate('/AdminOrderHistory', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
     }
   }
+
+  const RemoveClient =()=>{
+    if (location.state.role === "Admin"){
+      navigate('/removeclient', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+    }
+  }
+  const RemoveInfluencer = ()=>{
+    if (location.state.role === "Admin"){
+      navigate('/removeinfluencer', {state:{role:location.state.role,email:location.state.email,pwd:location.state.pwd}})
+    }
+  }
+
   const searchInfluencer = ()=>{
     const newData = {firstName: first}
     navigate('/searchInf',{state:{firstName:first}})
@@ -32,6 +45,9 @@ const HomePage2 = ()=>{
     </div>    
     <div className='tabsContainer'>
         <button className='orderTabs' onClick={OrderHistory}>Admin Order History</button>
+        <button className='orderTabs' onClick={RemoveClient}>Remove Clients</button>
+        <button className='orderTabs' onClick={RemoveInfluencer}>Remove Influencer</button>
+
     </div>
   </div>
     

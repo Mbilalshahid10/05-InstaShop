@@ -28,7 +28,7 @@ try{
                 axios.post('http://localhost:8000/addOrder',a)
         
             })
-        navigate('/MyPayment2')
+        navigate('/MyPayment2' , {state:{role:location.state.role,clientEmail:var1}})
         }catch(error)
         {
             console.log("error here :" , error)

@@ -64,11 +64,9 @@ const{Payment} = require('./rest_apis/paymentStripe.js')
 const PORT = process.env.PORT || 8000
 
 app.use(express.json())
-
 // new addition stripe
 app.use(express.urlencoded({extended:false}))
 app.use(bodyParser.json())
-
 
 app.use(express.static(path.resolve(__dirname, '../client/build')))
 app.use(cookieParser())
@@ -79,9 +77,7 @@ const corsConfig = {
 app.use(cors(corsConfig))
 app.options('*', cors(corsConfig));
 
-
-////////////////////////////////////////////////////
-// 2nd attempts
+///////// STRIPE //////////
 app.post('/donate', async (req, res) => {
     const { token = {}, amount = 0 } = req.body; 
     if (!Object.keys(token).length || !amount) {
@@ -115,12 +111,12 @@ app.post('/donate', async (req, res) => {
     };
     res.status(201).json({ success: true });
 });
-//////////////////////////////////////////////////////////////////////
+
 app.post('/paymentstripe', async (req, res) => {
     await Payment(req,res)
   });
-/////////////////////////////////////////////////////////////////////
-app.post('/login', async(req, res) => {
+
+  app.post('/login', async(req, res) => {
     await login(req, res)
 })
 
@@ -212,9 +208,6 @@ app.get('/GetRatingClient' , async(req,res)=>{
     await getRating(req,res)
 })
 
-// app.post('/RatingsSend', async(req,res)=>{
-//     await sendRating(req,res)
-// })
 app.post('/RatingsSendInfluencer', async(req,res)=>{
     await sendRatingInfluencer(req,res)
 })
@@ -223,16 +216,11 @@ app.post('/RatingsSendClient', async(req,res)=>{
     await sendRatingClient(req,res)
 })
 
-// app.get('/RecommendationstoClient', async(req,res)=>{
-//     await sendRecommendationsClient(req,res)
-// })
-
-app.post('/RecommendationstoClient', (authenticateUser), async(req,res)=>{
+app.post('/RecommendationstoClient', async(req,res)=>{
     await sendRecommendationsClient(req,res)
 })
 
-
-app.get('/AdminOrder', (authenticateUser), async(req,res)=>{
+app.get('/AdminOrder',  async(req,res)=>{
     await AdminOrder(req,res)
 })
 
