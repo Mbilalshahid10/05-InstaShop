@@ -207,21 +207,21 @@ const Navbar = () => {
         <Nav>
           <Bars />
           <NavMenu>
-            <NavLink to='/home2' activestyle="true">
+            <NavLink activestyle="true">
               <img src={logo} />
             </NavLink>
             {/* <NavLink to='/home2' activestyle="true">
               Home
             </NavLink> */}
-            <button  className='buttonprofile3' onClick={redirectHomepage2} activestyle="true">Home </button>
-            <button  className='buttonprofile3' onClick={viewAnnounce} activestyle="true">Send Announcement </button>
-            <button  className='buttonprofile3' onClick={sendAnnounce} activestyle="true">View Announcements</button>
+            <button  className='buttonprofile' onClick={redirectHomepage2} activestyle="true">Home </button>
+            <button  className='buttonprofile' onClick={viewAnnounce} activestyle="true">Send Announcement </button>
+            <button  className='buttonprofile' onClick={sendAnnounce} activestyle="true">View Announcements</button>
             
             {/* <NavLink to='/access' activestyle="true">
               Restrict Access */}
-            <button  className='buttonprofile3' onClick={sendAnnounce} activestyle="true">Restrict Access</button>
+            <button  className='buttonprofile' onClick={sendAnnounce} activestyle="true">Restrict Access</button>
             {/* </NavLink> */}
-            <button  className='buttonprofile3' onClick={adminprofile} activestyle="true">Profile
+            <button  className='buttonprofile' onClick={adminprofile} activestyle="true">Profile
             </button>
           </NavMenu>
           <NavBtn>
@@ -242,13 +242,13 @@ const Navbar = () => {
           <form className='searchform'>
               <input className='searchinput' name='search' id='search' type="text" placeholder='Search for an influencer'/>
           </form>
-          <button  className='buttonprofile3' onClick={redirectHomepage} activestyle="true">Back to HomePage </button>
+          <button  className='buttonprofile' onClick={redirectHomepage} activestyle="true"> Home </button>
           {/* <NavLink to='/viewannouncement' activestyle="true">
               View Announcements
             </NavLink> */}
-          <button  className='buttonprofile3' onClick={sendAnnounce} activestyle="true">View Announcements</button>
+          <button  className='buttonprofile' onClick={sendAnnounce} activestyle="true"> Announcements</button>
 
-            <button className='buttonprofile3' onClick={clientProfile} activestyle="true">Profile </button>
+          <button className='buttonprofile' onClick={clientProfile} activestyle="true">Profile </button>
           </NavMenu>
           <NavBtn>
             <NavBtnLink onClick={logout} to='/'>Sign Out</NavBtnLink>
@@ -265,13 +265,13 @@ const Navbar = () => {
             <NavLink to='/home' activestyle="true">
               <img src={logo} />
             </NavLink>
-            <button  className='buttonprofile3' onClick={redirectHomepage} activestyle="true">Back to HomePage </button>
+            <button  className='buttonprofile' onClick={redirectHomepage} activestyle="true">Home </button>
             {/* <NavLink to='/viewannouncement' activestyle="true">
               View Announcements
             </NavLink> */}
-            <button  className='buttonprofile3' onClick={sendAnnounce} activestyle="true">View Announcements</button>
+            <button  className='buttonprofile' onClick={sendAnnounce} activestyle="true">Announcements</button>
 
-            <button onClick={influencerProfile} className='buttonprofile3' activestyle="true">Profile
+            <button onClick={influencerProfile} className='buttonprofile' activestyle="true">Profile
             </button>
           </NavMenu>
           <NavBtn>

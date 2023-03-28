@@ -64,8 +64,9 @@ const InfluencerJobOffers = ()=>{
                                     <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
                                 </div>
 
-                                <button onClick={()=>{setStatus1(val.orderID)}}>Accept</button> 
-                                <button onClick={()=>{setStatus2(val.orderID)}}>Reject</button>
+                                <button className='influencerJobOfferAcceptButton' onClick={()=>{setStatus1(val.orderID)}}>Accept</button> 
+                                <button className='influencerJobOfferRejectButton' onClick={()=>{setStatus2(val.orderID)}}>Reject</button>
+                                <br></br>
                             </div>
                         )
                     })

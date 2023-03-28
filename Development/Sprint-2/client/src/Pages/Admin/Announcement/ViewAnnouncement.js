@@ -33,7 +33,7 @@ const SendAnnouncement = ()=>{
             <h2> </h2>
        {
             <div className='ipa'>
-                <h2>Here are your sent Announcements Posted</h2>
+                <h2>All Posted Announcements</h2>
                 {
                     mapdata2.map((val,key)=>{
                         return(

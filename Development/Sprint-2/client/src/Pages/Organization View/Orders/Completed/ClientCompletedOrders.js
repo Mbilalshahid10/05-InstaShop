@@ -83,23 +83,23 @@ const ClientCompleteOrderList = ()=>{
                 {
                     newpendlist.map((val,key)=>{
                         return(
-                            <div className='clientCompletedOrderCard'>
-                                <div>
+                            <div>
+                                <div className='clientCompletedOrderCard'>
                                     <p>Order ID: {JSON.parse(JSON.stringify(val,undefined,3)).orderID}</p>
                                     <p>Influencer Email: {JSON.parse(JSON.stringify(val,undefined,3)).influencerEmail}</p>
                                     <p>Price: PKR{JSON.parse(JSON.stringify(val,undefined,3)).price}</p>
                                     <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
-
                                     <br></br>
-                                    <div >
-                                    <button  onClick={()=>sendRating(1 , val.influencerEmail , val.orderID)} type="radio" name="stars" value="1">1 </button>
-                                    <button onClick={()=>sendRating(2 , val.influencerEmail, val.orderID )} type="radio" name="stars" value="2">2 </button>
-                                    <button onClick={()=>sendRating(3 , val.influencerEmail,  val.orderID)} type="radio" name="stars" value="3">3 </button>
-                                    <button onClick={()=>sendRating(4 , val.influencerEmail ,  val.orderID)} type="radio" name="stars" value="4">4 </button>
-                                    <button onClick={()=>sendRating(5 , val.influencerEmail,  val.orderID)} type="radio" name="stars" value="5">5 </button>
-                                    </div>
                                 </div>
-                            </div>
+                                <div>
+                                    <p>Please rate your experience:</p>
+                                    <button className='ccoRatingButton' onClick={()=>sendRating(1 , val.influencerEmail , val.orderID)} type="radio" name="stars" value="1">1 </button>
+                                    <button className='ccoRatingButton' onClick={()=>sendRating(2 , val.influencerEmail, val.orderID )} type="radio" name="stars" value="2">2 </button>
+                                    <button className='ccoRatingButton' onClick={()=>sendRating(3 , val.influencerEmail,  val.orderID)} type="radio" name="stars" value="3">3 </button>
+                                    <button className='ccoRatingButton' onClick={()=>sendRating(4 , val.influencerEmail ,  val.orderID)} type="radio" name="stars" value="4">4 </button>
+                                    <button className='ccoRatingButton' onClick={()=>sendRating(5 , val.influencerEmail,  val.orderID)} type="radio" name="stars" value="5">5 </button>
+                                </div>
+                            </div>      
                         )
                     })
                 }
