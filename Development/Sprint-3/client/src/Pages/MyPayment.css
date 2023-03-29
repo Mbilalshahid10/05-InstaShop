@@ -1,0 +1,15 @@
+.App {
+    margin: 300px;
+}
+
+.sty {
+    margin-left: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 0 auto;
+    font-size: 25px;
+    height: 9vh;
+    width: 350px;
+}
