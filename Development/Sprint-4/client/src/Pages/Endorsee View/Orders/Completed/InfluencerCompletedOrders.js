@@ -70,12 +70,13 @@ const InfluencerCompleteOrderList = ()=>{
                                     <p>Client Email: {JSON.parse(JSON.stringify(val,undefined,3)).clientEmail}</p>
                                     <p>Price: PKR{JSON.parse(JSON.stringify(val,undefined,3)).price}</p>
                                     <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
-                                    <br></br>
+
+                                    {/* <br></br>
                                     <button onClick={()=>sendRating2(1 , val.clientEmail,  val.orderID)} type="radio" name="stars" value="1">1 </button>
                                     <button onClick={()=>sendRating2(2 , val.clientEmail,  val.orderID)} type="radio" name="stars" value="2">2 </button>
                                     <button onClick={()=>sendRating2(3 , val.clientEmail,  val.orderID)} type="radio" name="stars" value="3">3 </button>
                                     <button onClick={()=>sendRating2(4 , val.clientEmail,  val.orderID)} type="radio" name="stars" value="4">4 </button>
-                                    <button onClick={()=>sendRating2(5 , val.clientEmail,  val.orderID)} type="radio" name="stars" value="5">5 </button>
+                                    <button onClick={()=>sendRating2(5 , val.clientEmail,  val.orderID)} type="radio" name="stars" value="5">5 </button> */}
 
                                     {/* <button onClick={()=>{SetRatingInfluencer(val.orderID,
                                     val.ratingGivenClient)}}>Click to Finish !!!</button> 
