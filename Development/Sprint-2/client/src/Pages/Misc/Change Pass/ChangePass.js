@@ -41,7 +41,7 @@ const ChangePass = ()=>{
       let password = await hash(pass1)
       await axios.post("http://localhost:8000/ChangePass", {role:r.toLowerCase() ,email:user_email, password:password}, {withCredentials: true});
       
-      navigate('/home', {state:{role:r,email: user_email }})
+      navigate('/home', {state:{role:r ,email: user_email }})
       } 
     } catch(err){
         console.log(err);

@@ -24,7 +24,7 @@ const EditEndorseeProfile = ()=>{
   const navigate = useNavigate()
   const onClickHandler = () => {
     console.log("here :" , location.state)
-      navigate('/ChangePass' , {state:{email : e }})
+      navigate('/ChangePass' , {state:{email : e  , role:r}})
     }
 
   return (

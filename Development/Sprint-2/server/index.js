@@ -38,6 +38,7 @@ const {addOrder} = require('./rest_apis/client/addPastOrder.js')
 const {updateRating} = require('./rest_apis/client/updateRating.js')
 const {updateRatingInfluencer} = require('./rest_apis/influencer/updateRatingInfluencer.js')
 
+const{getRatingInf} = require('./rest_apis/client/getRatingInf.js')
 const {getRating} = require('./rest_apis/influencer/getRating.js')
 // const{sendRating} = require('./rest_apis/client/RatingSend.js')
 const {sendRatingInfluencer} = require('./rest_apis/influencer/RatingsSendInfluencer.js')
@@ -47,7 +48,7 @@ const {sendRecommendationsClient} = require('./rest_apis/client/sendRecommendati
 const {getClientHistory} = require('./rest_apis/client/clientHistory.js')
 const {getInfluencerHistory} = require('./rest_apis/influencer/influencerHistory.js')
 const {Ordercount} = require('./rest_apis/influencer/getOrder.js')
-
+const {Ordercount2} = require('./rest_apis/client/getOrder2.js')
 const{AdminOrder} = require('./rest_apis/admin/AdminOrder.js')
 
 const{OngoingRejectAdmin} = require('./rest_apis/admin/OngoingOrderRejectAdmin.js')
@@ -186,6 +187,9 @@ app.get('/getOrder' , async(req,res)=>{
     await Ordercount(req,res)
 })
 
+app.get('/getOrder2' , async(req,res)=>{
+    await Ordercount2(req,res)
+})
 // Rating Stars and Order marks
 app.post('/RatingAccepted',async(req,res)=>{  //Order is marked true when updated status
     await updateRating(req,res)
@@ -197,6 +201,10 @@ app.post('/RatingAcceptedInfluencer', async(req,res)=>{
 
 app.get('/GetRatingClient' , async(req,res)=>{
     await getRating(req,res)
+})
+
+app.get('GetRatingInfluencer' , async(req,res)=>{
+    await getRatingInf(req,res)
 })
 
 app.post('/RatingsSendInfluencer', async(req,res)=>{
