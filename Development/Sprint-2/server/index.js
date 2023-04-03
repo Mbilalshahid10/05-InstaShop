@@ -176,7 +176,6 @@ app.delete(`/Client/:email`,async(req,res)=>{
 app.delete(`/Influencer/:email`,async(req,res)=>{
     await deletetheInfluencer(req,res)
 })
-
 app.get('/influencerHistory' , async(req,res)=>{
     await getInfluencerHistory(req,res)
 })

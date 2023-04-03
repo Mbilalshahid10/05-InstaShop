@@ -1,5 +1,5 @@
 const sanitize = require('mongo-sanitize')
-const influencerModel = require('../../database/Schema/Influencer')
+const influencerModel = require('../../../server/database/Schema/Influencer')
 
 async function getAllInfluencerHistory(req,res){
     influencerModel.find({},(err,result)=>{
