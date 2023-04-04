@@ -37,10 +37,8 @@ const ClientCompleteOrderList = ()=>{
         let request1  =  axios.post("http://localhost:8000/RatingAccepted", ratingOrder)
         const ratedata = { email: influencerEmail,  myrating: myrating , myID:myID}
         
-        console.log("check if old rating is fetched")
-        console.log("Check if rating is coming from backend !!! ")
-        // console.log(ratenew.rating)
-
+   
+   
         let newrate = await axios.get('http://localhost:8000/GetRatingClient' ,{withCredentials:true} ,ratedata)
         .then(response => {
             const data = response.data;
@@ -79,7 +77,7 @@ const ClientCompleteOrderList = ()=>{
         <div>
         {
             <div className='cco'>    
-                <h2>Here are your completed orders</h2>
+                <h2>Here are your Completed orders</h2>
                 {
                     newpendlist.map((val,key)=>{
                         return(
