@@ -18,7 +18,7 @@ const ProfileCards = (props) => {
     }
     const navigate = useNavigate()
     const placeOrder = () =>{
-        navigate('/sendOrder',   {state:{ role:r , clientEmail:props.clientEmail, influencerEmail: props.influencerEmail}})
+        navigate('/sendOrder',   {state:{ role: location.state.role , clientEmail:props.clientEmail, influencerEmail: props.influencerEmail}})
     }
 
     return (

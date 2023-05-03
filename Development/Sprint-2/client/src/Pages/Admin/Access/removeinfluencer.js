@@ -32,18 +32,14 @@ const RemoveInfluencer = ()=>{
     }
     myfunc()
 
-    // const setStatus1 = async(myID)=>{
-    //     const acceptData = {ans:"Ongoing", email:email, myID:myID}
-    //     // console.log(acceptData)
-    //     await axios.post("http://localhost:8000/changeStatus",acceptData)
-
-    // }
-
-    // const setStatus2 = async(myID)=>{
-    //     const acceptData = {ans:"Rejected", email:email, myID:myID}
-    //     // console.log(acceptData)
-    //     await axios.post("http://localhost:8000/changeStatus",acceptData)
-    // }
+    const deleteInfluencerByEmail = async(email)=>{
+        try{
+            const response = await axios.delete(`http://localhost:8000/Influencer/${email}`);
+            console.log(response.data)
+        }catch(error){
+            console.log(error)
+        }
+    }
     
     return(
         <div>
@@ -60,10 +56,8 @@ const RemoveInfluencer = ()=>{
                                     <p>Influencer Email: {JSON.parse(JSON.stringify(val,undefined,3)).influencerEmail}</p>
                                     <p>Price: PKR{JSON.parse(JSON.stringify(val,undefined,3)).price}</p>
                                     <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
+                                    <button onClick={()=>deleteInfluencerByEmail(JSON.parse(JSON.stringify(val,undefined,3)).email)} >Remove</button>
                                 </div>
-
-                                {/* <button onClick={()=>{setStatus1(val.orderID)}}>Accept</button> 
-                                <button onClick={()=>{setStatus2(val.orderID)}}>Reject</button> */}
                             </div>
                         )
                     })

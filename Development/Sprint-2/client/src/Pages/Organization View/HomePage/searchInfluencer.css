@@ -9,8 +9,10 @@
     text-align: center;
     background-color: grey;
     margin-top: 50px;
+    padding: 8px;
+    background-color: #395B64;
+    border-radius: 10px;
     /* color: blue; */
-
   }
   
 .title {

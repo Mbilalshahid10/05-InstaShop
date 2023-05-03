@@ -29,7 +29,7 @@ const HomePage2 = ()=>{
 
   const searchInfluencer = ()=>{
     const newData = {firstName: first}
-    navigate('/searchInf',{state:{firstName:first}})
+    navigate('/searchInf',{state:{firstName:first , role: location.state.role ,  email : location.state.email}})
   }
   return (
     <div className="homepage">
