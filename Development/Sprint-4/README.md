@@ -8,7 +8,7 @@ Team:
 
 SPRINT-1 SUBMISSION GUIDELINES
 
-1. Properly tested working system deployed on an online hosting platform. https://colleasydemo.netlify.app/
+1. Properly tested working system deployed on an online hosting platform. https://colleeasy.herokuapp.com/
 2. Code with readable comments uploaded in “Development/Sprint-1” folder of your project’s Github repository.
 3. 3-4 minutes video that explains the functionality of your system developed so far. This must be uploaded in “Sprint-1” folder of your project’s Github repository.
 4. Updated architecture and data model must be uploaded in the respective folders on Github.

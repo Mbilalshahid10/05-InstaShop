@@ -5,13 +5,20 @@ import {useNavigate, useLocation} from 'react-router-dom';
 
 const ProfileCards = (props) => {
     
+    const location = useLocation()
+    
+    const e = location.state.email
+    const r = location.state.role
+    
+
+
     const [price, setPrice] = useState(0)
     const handleChange = (e) => {
         setPrice(e.target.value)
     }
     const navigate = useNavigate()
     const placeOrder = () =>{
-        navigate('/sendOrder', {state:{clientEmail:props.clientEmail, influencerEmail: props.influencerEmail}})
+        navigate('/sendOrder',   {state:{ role:r , clientEmail:props.clientEmail, influencerEmail: props.influencerEmail}})
     }
 
     return (

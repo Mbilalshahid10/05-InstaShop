@@ -6,8 +6,13 @@ import './SendOrder.css'
 import axios from 'axios'
 
 const SendOrder = (props)=>{
+
     const navigate = useNavigate();
     const location = useLocation()
+    
+    const e = location.state.email
+    const r = location.state.role
+    
     let var1 = location.state.clientEmail
     let var2 = location.state.influencerEmail
     const [price, setPrice] = useState(0)
@@ -26,9 +31,9 @@ try{
             let a = {myID: res.data, clientEmail: var1}
             console.log("a is" , a)
                 axios.post('http://localhost:8000/addOrder',a)
-        
             })
-        navigate('/MyPayment2' , {state:{role:location.state.role,clientEmail:var1}})
+
+        navigate('/MyPayment2' , {state:{role: r , email : e ,  clientEmail:var1}})
         }catch(error)
         {
             console.log("error here :" , error)

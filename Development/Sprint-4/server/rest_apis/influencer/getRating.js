@@ -1,6 +1,5 @@
 const sanitize = require('mongo-sanitize')
 const mongoose = require("mongoose")
-// const influencer = require('../../database/Schema/Influencer')
 const influencer = require('../../../server/database/Schema/Influencer')
 
 async function getRating(req, res){

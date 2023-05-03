@@ -11,9 +11,11 @@ const RemoveInfluencer = ()=>{
     const [pendinglist,setpendinglist] = useState([])
     const [newpendlist, setnewpendlist] = useState([])
     useEffect(()=>{
-        axios.get("http://localhost:8000/AdminOrder").then(
+        axios.get("http://localhost:8000/allInfluencers").then(
             (res)=>{
                 // console.log('orders in admin client side', res.data)
+                console.log("sare influencer yaha rah hai")
+                console.log(res.data)
                 setpendinglist(res.data)
             }
 
@@ -22,16 +24,28 @@ const RemoveInfluencer = ()=>{
             )
     },[])
 
-    const myfunc = ()=>{
-        pendinglist.map((val,key)=>{
-            if(val.status === "Completed" && val.acceptedByClient === true){
-                newpendlist[key] = val
-            }
-        })
+    // const myfunc = ()=>{
+    //     pendinglist.map((val,key)=>{
+    //         if(val.status === "Completed" && val.acceptedByClient === true){
+    //             newpendlist[key] = val
+    //         }
+    //     })
 
-    }
-    myfunc()
+    // }
+    // myfunc()
 
+    // const setStatus1 = async(myID)=>{
+    //     const acceptData = {ans:"Ongoing", email:email, myID:myID}
+    //     // console.log(acceptData)
+    //     await axios.post("http://localhost:8000/changeStatus",acceptData)
+
+    // }
+
+    // const setStatus2 = async(myID)=>{
+    //     const acceptData = {ans:"Rejected", email:email, myID:myID}
+    //     // console.log(acceptData)
+    //     await axios.post("http://localhost:8000/changeStatus",acceptData)
+    // }
     const deleteInfluencerByEmail = async(email)=>{
         try{
             const response = await axios.delete(`http://localhost:8000/Influencer/${email}`);
@@ -45,18 +59,17 @@ const RemoveInfluencer = ()=>{
         <div>
         {
             <div className='ipa'>
-                <h2>Here are the Orders History</h2>
+                <h2>Here are the list of all influencers</h2>
                 {
-                    newpendlist.map((val,key)=>{
+                    pendinglist.map((val,key)=>{
                         return(
                             <div className='AdminCard'>
                                 <div>
-                                    <p>Order ID: {JSON.parse(JSON.stringify(val,undefined,3)).orderID}</p>
-                                    <p>Client Email: {JSON.parse(JSON.stringify(val,undefined,3)).clientEmail}</p>
-                                    <p>Influencer Email: {JSON.parse(JSON.stringify(val,undefined,3)).influencerEmail}</p>
-                                    <p>Price: PKR{JSON.parse(JSON.stringify(val,undefined,3)).price}</p>
-                                    <p>Status: {JSON.parse(JSON.stringify(val,undefined,3)).status}</p>
-                                    <button onClick={()=>deleteInfluencerByEmail(JSON.parse(JSON.stringify(val,undefined,3)).email)} >Remove</button>
+                                <p>Influencer Name: {JSON.parse(JSON.stringify(val,undefined,3)).name.first}</p>
+                                <p>Influencer Niche: {JSON.parse(JSON.stringify(val,undefined,3)).niche}</p>
+                                <p>Influencer Email{JSON.parse(JSON.stringify(val,undefined,3)).email}</p>
+                                <p>Influencer Rating {JSON.parse(JSON.stringify(val,undefined,3)).rating}</p>
+                                <button onClick={()=>deleteInfluencerByEmail(JSON.parse(JSON.stringify(val,undefined,3)).email)} >Remove</button>
                                 </div>
                             </div>
                         )

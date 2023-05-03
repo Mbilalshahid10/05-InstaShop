@@ -15,3 +15,4 @@ const sendRatingClient =async(req,res)=>{
         console.log(err)
     }
 }
+module.exports = {sendRatingClient}

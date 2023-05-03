@@ -46,6 +46,10 @@ const {sendRatingClient} = require('./rest_apis/client/RatingSendClient.js')
 const {sendRecommendationsClient} = require('./rest_apis/client/sendRecommendationsClient.js')
 //Order History
 const {getClientHistory} = require('./rest_apis/client/clientHistory.js')
+const {getAllClientHistory} = require('./rest_apis/client/getAllClients.js')
+const {getAllInfluencerHistory} = require('./rest_apis/influencer/getAllInfluencers.js')
+const {deletetheClient} = require('./rest_apis/client/deleteClient.js')
+const {deletetheInfluencer} = require('./rest_apis/influencer/deleteInfluencer.js')
 const {getInfluencerHistory} = require('./rest_apis/influencer/influencerHistory.js')
 const {Ordercount} = require('./rest_apis/influencer/getOrder.js')
 const {Ordercount2} = require('./rest_apis/client/getOrder2.js')
@@ -160,7 +164,18 @@ app.get('/influencercompletedorders', async(req,res) =>{
 app.get('/clientHistory'  ,async(req,res)=>{
     await getClientHistory(req,res)
 })
-
+app.get('/allClients'  ,async(req,res)=>{
+    await getAllClientHistory(req,res)
+})
+app.get('/allInfluencers'  ,async(req,res)=>{
+    await getAllInfluencerHistory(req,res)
+})
+app.delete(`/Client/:email`,async(req,res)=>{
+    await deletetheClient(req,res)
+})
+app.delete(`/Influencer/:email`,async(req,res)=>{
+    await deletetheInfluencer(req,res)
+})
 app.get('/influencerHistory' , async(req,res)=>{
     await getInfluencerHistory(req,res)
 })

@@ -38,6 +38,7 @@ const {addOrder} = require('./rest_apis/client/addPastOrder.js')
 const {updateRating} = require('./rest_apis/client/updateRating.js')
 const {updateRatingInfluencer} = require('./rest_apis/influencer/updateRatingInfluencer.js')
 
+const{getRatingInf} = require('./rest_apis/client/getRatingInf.js')
 const {getRating} = require('./rest_apis/influencer/getRating.js')
 // const{sendRating} = require('./rest_apis/client/RatingSend.js')
 const {sendRatingInfluencer} = require('./rest_apis/influencer/RatingsSendInfluencer.js')
@@ -45,9 +46,13 @@ const {sendRatingClient} = require('./rest_apis/client/RatingSendClient.js')
 const {sendRecommendationsClient} = require('./rest_apis/client/sendRecommendationsClient.js')
 //Order History
 const {getClientHistory} = require('./rest_apis/client/clientHistory.js')
+const {getAllClientHistory} = require('./rest_apis/client/getAllClients.js')
+const {getAllInfluencerHistory} = require('./rest_apis/influencer/getAllInfluencers.js')
+const {deletetheClient} = require('./rest_apis/client/deleteClient.js')
+const {deletetheInfluencer} = require('./rest_apis/influencer/deleteInfluencer.js')
 const {getInfluencerHistory} = require('./rest_apis/influencer/influencerHistory.js')
 const {Ordercount} = require('./rest_apis/influencer/getOrder.js')
-
+const {Ordercount2} = require('./rest_apis/client/getOrder2.js')
 const{AdminOrder} = require('./rest_apis/admin/AdminOrder.js')
 
 const{OngoingRejectAdmin} = require('./rest_apis/admin/OngoingOrderRejectAdmin.js')
@@ -159,7 +164,18 @@ app.get('/influencercompletedorders', async(req,res) =>{
 app.get('/clientHistory'  ,async(req,res)=>{
     await getClientHistory(req,res)
 })
-
+app.get('/allClients'  ,async(req,res)=>{
+    await getAllClientHistory(req,res)
+})
+app.get('/allInfluencers'  ,async(req,res)=>{
+    await getAllInfluencerHistory(req,res)
+})
+app.delete(`/Client/:email`,async(req,res)=>{
+    await deletetheClient(req,res)
+})
+app.delete(`/Influencer/:email`,async(req,res)=>{
+    await deletetheInfluencer(req,res)
+})
 app.get('/influencerHistory' , async(req,res)=>{
     await getInfluencerHistory(req,res)
 })
@@ -186,6 +202,9 @@ app.get('/getOrder' , async(req,res)=>{
     await Ordercount(req,res)
 })
 
+app.get('/getOrder2' , async(req,res)=>{
+    await Ordercount2(req,res)
+})
 // Rating Stars and Order marks
 app.post('/RatingAccepted',async(req,res)=>{  //Order is marked true when updated status
     await updateRating(req,res)
@@ -197,6 +216,10 @@ app.post('/RatingAcceptedInfluencer', async(req,res)=>{
 
 app.get('/GetRatingClient' , async(req,res)=>{
     await getRating(req,res)
+})
+
+app.get('GetRatingInfluencer' , async(req,res)=>{
+    await getRatingInf(req,res)
 })
 
 app.post('/RatingsSendInfluencer', async(req,res)=>{
