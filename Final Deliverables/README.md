@@ -62,15 +62,17 @@ LIST OF REQUIREMENTS COMPLETED SO FAR
 10- View Pending Approval (Client + Influencer)
 11- View Completed Orders (Client + Influencer)
 12- View Rejected Offers (Client + Influencer)
-13- Send Job Offer (Client)
-14- Influencer accepts the Job Offer
-15- Influencer declines the Job Offer
-16- Influencer marks the contract as completed
-17- Client accepts the deliverable
-18- Client Rejects the deliverable
-19- Client Gives Rating After Accepting Deliverable
-25- Logout
-
+13- View Order History (Client + Influencer + Admin)
+14- Order Placed + Payment Stripe payment (Client) 
+15- Send Job Offer (Client)
+16- Influencer accepts the Job Offer
+17- Influencer declines the Job Offer
+18- Influencer marks the contract as completed
+19- Client accepts the deliverable
+20- Client Rejects the deliverable
+21- Client Gives Rating After Accepting Deliverable
+22- Logout
+23 - Remove Client/Influencer (Admin)
 
 ------------------------------------------------------------------------------------------------
 
