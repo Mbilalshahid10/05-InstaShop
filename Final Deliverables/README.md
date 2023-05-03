@@ -94,7 +94,12 @@ Influencer Emails:
 
 Influencer password for every email: influencer123 
 
+Admin Emails:
+-bilal.shahid@gmail.com
 
+ Admin password for every email: admin123 
+
+  
 ------------------------------------------------------------------------------------------------
 
 
